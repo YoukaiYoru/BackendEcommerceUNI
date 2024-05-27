@@ -1,12 +1,10 @@
 package org.backend.trabajo.backendproyecto.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "Ref_orden_estado")
 public class RefOrdenEstado {
     @Id
     @GeneratedValue

@@ -2,8 +2,10 @@ package org.backend.trabajo.backendproyecto.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "Producto")
 public class Producto {
     @Id
     private Long idProducto;

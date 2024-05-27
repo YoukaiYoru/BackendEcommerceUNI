@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "Orden")
 public class Orden {
     @Id
     private Long id;
@@ -15,11 +16,22 @@ public class Orden {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    @OneToOne
+    @JoinColumn(name = "fact_estado")
+    private RefFacturaEstado ref_factura_estado;
 
-    private String orden_estado;
 
 
     public Orden() {}
+
+    public RefFacturaEstado getRef_factura_estado() {
+        return ref_factura_estado;
+    }
+
+    public void setRef_factura_estado(RefFacturaEstado ref_factura_estado) {
+        this.ref_factura_estado = ref_factura_estado;
+    }
+
 
     public Long getId() {
         return id;
@@ -53,11 +65,4 @@ public class Orden {
         this.usuario = usuario;
     }
 
-    public String getOrden_estado() {
-        return orden_estado;
-    }
-
-    public void setOrden_estado(String orden_estado) {
-        this.orden_estado = orden_estado;
-    }
 }

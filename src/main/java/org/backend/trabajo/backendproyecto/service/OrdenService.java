@@ -36,4 +36,9 @@ public class OrdenService {
         }
         return null;
     }
+
+    public List<OrdenDTO> obtenerPorUsrId(Long id) {
+        return convierteDatos(ordenRepository.findByIdUsr(id));
+    }
+
 }
