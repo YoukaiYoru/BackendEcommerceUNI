@@ -1,14 +1,12 @@
 package org.backend.trabajo.backendproyecto.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import org.backend.trabajo.backendproyecto.model.Orden;
 
 import java.util.List;
 
 @Entity
+@Table(name = "usuario")
 public class Usuario{
 
     @Id
@@ -21,10 +19,10 @@ public class Usuario{
     private String usr_contrasenia;
     private String usr_telefono;
     // Ordenes
-    @OneToMany
+    @OneToMany(mappedBy = "usuario")
     private List<Orden> ordenList;
 
-
+//Getters and Setters
     public long getIdUsuario() {
         return idUsuario;
     }

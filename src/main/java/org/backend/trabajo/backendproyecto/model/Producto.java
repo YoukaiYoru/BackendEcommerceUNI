@@ -11,6 +11,17 @@ public class Producto {
     private String prod_descripcion;
     private String prod_imagen;
 
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "idProducto=" + idProducto +
+                ", prod_nombre='" + prod_nombre + '\'' +
+                ", prod_descripcion='" + prod_descripcion + '\'' +
+                ", prod_imagen='" + prod_imagen + '\'' +
+                '}';
+    }
+
     public Long getIdProducto() {
         return idProducto;
     }
