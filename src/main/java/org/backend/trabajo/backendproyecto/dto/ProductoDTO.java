@@ -5,5 +5,6 @@ public record ProductoDTO(
         String prod_nombre,
         Double prod_precio,
         String prod_descripcion,
-        String prod_imagen) {
+        String prod_imagen,
+        Double prod_costo) {
 }

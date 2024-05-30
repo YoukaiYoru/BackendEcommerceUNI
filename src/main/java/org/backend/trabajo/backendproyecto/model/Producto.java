@@ -16,14 +16,15 @@ public class Producto {
 
 
     @Override
-    public String toString() {
-        return "Producto{" +
-                "idProducto=" + idProducto +
-                ", prod_nombre='" + prod_nombre + '\'' +
-                ", prod_descripcion='" + prod_descripcion + '\'' +
-                ", prod_imagen='" + prod_imagen + '\'' +
-                '}';
-    }
+        public String toString() {
+            return "Producto{" +
+                    "idProducto=" + idProducto +
+                    ", prod_nombre='" + prod_nombre + '\'' +
+                    ", prod_descripcion='" + prod_descripcion + '\'' +
+                    ", prod_imagen='" + prod_imagen + '\'' +
+                    ", prod_precio=" + prod_precio +
+                    '}';
+        }
 
     public Long getIdProducto() {
         return idProducto;
