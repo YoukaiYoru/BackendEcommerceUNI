@@ -7,54 +7,63 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "Producto")
 public class Producto {
-    @Id
-    private Long idProducto;
-    private String prod_nombre;
-    private String prod_descripcion;
-    private String prod_imagen;
+        @Id
+        private Long idProducto;
+        private String prod_nombre;
+        private String prod_descripcion;
+        private String prod_imagen;
+        private Double prod_costo;
 
 
     @Override
-    public String toString() {
-        return "Producto{" +
-                "idProducto=" + idProducto +
-                ", prod_nombre='" + prod_nombre + '\'' +
-                ", prod_descripcion='" + prod_descripcion + '\'' +
-                ", prod_imagen='" + prod_imagen + '\'' +
-                '}';
-    }
+        public String toString() {
+            return "Producto{" +
+                    "idProducto=" + idProducto +
+                    ", prod_nombre='" + prod_nombre + '\'' +
+                    ", prod_descripcion='" + prod_descripcion + '\'' +
+                    ", prod_imagen='" + prod_imagen + '\'' +
+                    ", prod_costo=" + prod_costo +
+                    '}';
+        }
 
-    public Long getIdProducto() {
-        return idProducto;
-    }
+        public Long getIdProducto() {
+            return idProducto;
+        }
 
-    public void setIdProducto(Long idProducto) {
-        this.idProducto = idProducto;
-    }
+        public void setIdProducto(Long idProducto) {
+            this.idProducto = idProducto;
+        }
 
-    public String getProd_nombre() {
-        return prod_nombre;
-    }
+        public String getProd_nombre() {
+            return prod_nombre;
+        }
 
-    public void setProd_nombre(String prod_nombre) {
-        this.prod_nombre = prod_nombre;
-    }
+        public void setProd_nombre(String prod_nombre) {
+            this.prod_nombre = prod_nombre;
+        }
 
-    public String getProd_descripcion() {
-        return prod_descripcion;
-    }
+        public String getProd_descripcion() {
+            return prod_descripcion;
+        }
 
-    public void setProd_descripcion(String prod_descripcion) {
-        this.prod_descripcion = prod_descripcion;
-    }
+        public void setProd_descripcion(String prod_descripcion) {
+            this.prod_descripcion = prod_descripcion;
+        }
 
-    public String getProd_imagen() {
-        return prod_imagen;
-    }
+        public String getProd_imagen() {
+            return prod_imagen;
+        }
 
-    public void setProd_imagen(String prod_imagen) {
-        this.prod_imagen = prod_imagen;
-    }
+        public void setProd_imagen(String prod_imagen) {
+            this.prod_imagen = prod_imagen;
+        }
+
+        public Double getProd_costo() {
+            return prod_costo;
+        }
+        public void setProd_costo(double prod_costo) {
+            this.prod_costo = prod_costo;
+        }
 
     public Producto() {}
 }

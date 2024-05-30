@@ -9,5 +9,5 @@ public record OrdenDTO(
         String orden_details,
         LocalDate orden_dia,
         Usuario usuario,
-        String orden_estado) {
+        org.backend.trabajo.backendproyecto.model.RefFacturaEstado orden_estado) {
 }

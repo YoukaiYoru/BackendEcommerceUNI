@@ -20,19 +20,20 @@ public class ProductoService {
     }
 
 
-    public List<ProductoDTO> convierteDatos(List<Producto> productos){
+    public List<ProductoDTO> convierteDatos(List<Producto> productos) {
         return productos.stream()
-                .map(p -> new ProductoDTO(p.getIdProducto(),p.getProd_nombre(),p.getProd_descripcion(),p.getProd_imagen()))
+                .map(p -> new ProductoDTO(p.getIdProducto(), p.getProd_nombre(), p.getProd_descripcion(), p.getProd_imagen(), p.getProd_costo()))
                 .collect(Collectors.toList());
     }
 
 
     public ProductoDTO obtenerPorId(Long id) {
         Optional<Producto> producto = productoRepository.findById(id);
-        if (producto.isPresent()){
+        if (producto.isPresent()) {
             Producto p = producto.get();
-            return new ProductoDTO(p.getIdProducto(),p.getProd_nombre(),p.getProd_descripcion(),p.getProd_imagen());
+            return new ProductoDTO(p.getIdProducto(), p.getProd_nombre(), p.getProd_descripcion(), p.getProd_imagen(), p.getProd_costo());
         }
         return null;
     }
 }
+
