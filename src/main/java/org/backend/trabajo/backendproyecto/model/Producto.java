@@ -9,22 +9,35 @@ import jakarta.persistence.Table;
 public class Producto {
     @Id
     private Long idProducto;
-    private String prod_nombre;
-    private Double prod_precio;
-    private String prod_descripcion;
-    private String prod_imagen;
+    private String prodNombre;
+    private Double prodPrecio;
+    private String prodDescripcion;
+    private String prodImagen;
+    private Long prodCantidad;
 
 
     @Override
         public String toString() {
             return "Producto{" +
                     "idProducto=" + idProducto +
-                    ", prod_nombre='" + prod_nombre + '\'' +
-                    ", prod_descripcion='" + prod_descripcion + '\'' +
-                    ", prod_imagen='" + prod_imagen + '\'' +
-                    ", prod_precio=" + prod_precio +
+                    ", prodNombre='" + prodNombre + '\'' +
+                    ", prodDescripcion='" + prodDescripcion + '\'' +
+                    ", prodImagen='" + prodImagen + '\'' +
+                    ", prodPrecio=" + prodPrecio + '\'' +
+                    ", prodCantidad=" + prodCantidad + '\'' +
                     '}';
         }
+
+
+        //GETTERS AND SETTERS
+
+    public Long getProdCantidad() {
+        return prodCantidad;
+    }
+
+    public void setProdCantidad(Long prodCantidad) {
+        this.prodCantidad = prodCantidad;
+    }
 
     public Long getIdProducto() {
         return idProducto;
@@ -34,36 +47,36 @@ public class Producto {
         this.idProducto = idProducto;
     }
 
-    public String getProd_nombre() {
-        return prod_nombre;
+    public String getProdNombre() {
+        return prodNombre;
     }
 
-    public void setProd_nombre(String prod_nombre) {
-        this.prod_nombre = prod_nombre;
+    public void setProdNombre(String prodNombre) {
+        this.prodNombre = prodNombre;
     }
 
-    public String getProd_descripcion() {
-        return prod_descripcion;
+    public String getProdDescripcion() {
+        return prodDescripcion;
     }
 
-    public void setProd_descripcion(String prod_descripcion) {
-        this.prod_descripcion = prod_descripcion;
+    public void setProdDescripcion(String prodDescripcion) {
+        this.prodDescripcion = prodDescripcion;
     }
 
-    public String getProd_imagen() {
-        return prod_imagen;
+    public String getProdImagen() {
+        return prodImagen;
     }
 
-    public void setProd_imagen(String prod_imagen) {
-        this.prod_imagen = prod_imagen;
+    public void setProdImagen(String prodImagen) {
+        this.prodImagen = prodImagen;
     }
 
-    public Double getProd_precio() {
-        return prod_precio;
+    public Double getProdPrecio() {
+        return prodPrecio;
     }
 
-    public void setProd_precio(Double prod_precio) {
-        this.prod_precio = prod_precio;
+    public void setProdPrecio(Double prodPrecio) {
+        this.prodPrecio = prodPrecio;
     }
 
     public Producto() {}
