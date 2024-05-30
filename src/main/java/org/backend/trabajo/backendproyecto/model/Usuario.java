@@ -1,7 +1,6 @@
 package org.backend.trabajo.backendproyecto.model;
 
 import jakarta.persistence.*;
-import org.backend.trabajo.backendproyecto.model.Orden;
 
 import java.util.List;
 
@@ -11,13 +10,13 @@ public class Usuario{
 
     @Id
     @GeneratedValue
-    private long idUsuario;
-    private String usr_nombre;
-    private String usr_apellido;
-    private String usr_correo;
-    private String usr_login;
-    private String usr_contrasenia;
-    private String usr_telefono;
+    private Long idUsuario;
+    private String usrNombre;
+    private String usrApellido;
+    private String usrCorreo;
+    private String usrLogin;
+    private String usrContrasenia;
+    private String usrTelefono;
     // Ordenes
     @OneToMany(mappedBy = "usuario")
     private List<Orden> ordenList;
@@ -31,52 +30,52 @@ public class Usuario{
         this.idUsuario = idUsuario;
     }
 
-    public String getUsr_nombre() {
-        return usr_nombre;
+    public String getUsrNombre() {
+        return usrNombre;
     }
 
-    public void setUsr_nombre(String usr_nombre) {
-        this.usr_nombre = usr_nombre;
+    public void setUsrNombre(String usrNombre) {
+        this.usrNombre = usrNombre;
     }
 
-    public String getUsr_apellido() {
-        return usr_apellido;
+    public String getUsrApellido() {
+        return usrApellido;
     }
 
-    public void setUsr_apellido(String usr_apellido) {
-        this.usr_apellido = usr_apellido;
+    public void setUsrApellido(String usrApellido) {
+        this.usrApellido = usrApellido;
     }
 
-    public String getUsr_correo() {
-        return usr_correo;
+    public String getUsrCorreo() {
+        return usrCorreo;
     }
 
-    public void setUsr_correo(String usr_correo) {
-        this.usr_correo = usr_correo;
+    public void setUsrCorreo(String usrCorreo) {
+        this.usrCorreo = usrCorreo;
     }
 
-    public String getUsr_login() {
-        return usr_login;
+    public String getUsrLogin() {
+        return usrLogin;
     }
 
-    public void setUsr_login(String usr_login) {
-        this.usr_login = usr_login;
+    public void setUsrLogin(String usrLogin) {
+        this.usrLogin = usrLogin;
     }
 
-    public String getUsr_contrasenia() {
-        return usr_contrasenia;
+    public String getUsrContrasenia() {
+        return usrContrasenia;
     }
 
-    public void setUsr_contrasenia(String usr_contrasenia) {
-        this.usr_contrasenia = usr_contrasenia;
+    public void setUsrContrasenia(String usrContrasenia) {
+        this.usrContrasenia = usrContrasenia;
     }
 
-    public String getUsr_telefono() {
-        return usr_telefono;
+    public String getUsrTelefono() {
+        return usrTelefono;
     }
 
-    public void setUsr_telefono(String usr_telefono) {
-        this.usr_telefono = usr_telefono;
+    public void setUsrTelefono(String usrTelefono) {
+        this.usrTelefono = usrTelefono;
     }
 
 
