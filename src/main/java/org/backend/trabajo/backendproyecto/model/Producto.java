@@ -10,6 +10,7 @@ public class Producto {
     @Id
     private Long idProducto;
     private String prod_nombre;
+    private Double prod_precio;
     private String prod_descripcion;
     private String prod_imagen;
 
@@ -54,6 +55,14 @@ public class Producto {
 
     public void setProd_imagen(String prod_imagen) {
         this.prod_imagen = prod_imagen;
+    }
+
+    public Double getProd_precio() {
+        return prod_precio;
+    }
+
+    public void setProd_precio(Double prod_precio) {
+        this.prod_precio = prod_precio;
     }
 
     public Producto() {}

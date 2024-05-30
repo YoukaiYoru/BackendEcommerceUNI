@@ -17,21 +17,20 @@ public class Orden {
     private Usuario usuario;
 
     @OneToOne
-    @JoinColumn(name = "fact_estado")
-    private RefFacturaEstado ref_factura_estado;
+    @JoinColumn(name = "ref_orden_estado")
+    private RefOrdenEstado ref_orden_estado;
 
 
 
     public Orden() {}
 
-    public RefFacturaEstado getRef_factura_estado() {
-        return ref_factura_estado;
+    public RefOrdenEstado getRef_orden_estado() {
+        return ref_orden_estado;
     }
 
-    public void setRef_factura_estado(RefFacturaEstado ref_factura_estado) {
-        this.ref_factura_estado = ref_factura_estado;
+    public void setRef_orden_estado(RefOrdenEstado ref_orden_estado) {
+        this.ref_orden_estado = ref_orden_estado;
     }
-
 
     public Long getId() {
         return id;
