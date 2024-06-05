@@ -1,31 +1,30 @@
 package org.backend.trabajo.backendproyecto.controller;
 
-import org.backend.trabajo.backendproyecto.dto.UsuarioDTO;
-import org.backend.trabajo.backendproyecto.service.UsuarioService;
+import org.backend.trabajo.backendproyecto.dto.ClienteDTO;
+import org.backend.trabajo.backendproyecto.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collections;
 import java.util.List;
 
 @RestController
 @RequestMapping("/user")
-public class UsuarioController {
+public class ClienteController {
     @Autowired
-    private UsuarioService UsuarioServicio;
+    private ClienteService ClienteService;
 
     @GetMapping()
-    public List<UsuarioDTO> obtenerUsuarios() {
-        return UsuarioServicio.obtenerTodosUsuarios();
+    public List<ClienteDTO> obtenerUsuarios() {
+        return ClienteService.obtenerTodosClientes();
     }
 
 
     @GetMapping("/{login}")
-    public List<UsuarioDTO> obtenerUsrPorLogin(@PathVariable String login) {
-        return UsuarioServicio.obtenerPorLogin(login);
+    public List<ClienteDTO> obtenerUsrPorLogin(@PathVariable String login) {
+        return ClienteService.obtenerPorLogin(login);
     }
 
 }

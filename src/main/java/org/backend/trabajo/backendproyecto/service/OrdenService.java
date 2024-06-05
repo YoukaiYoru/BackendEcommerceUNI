@@ -21,24 +21,24 @@ public class OrdenService {
     }
 
 
-    public List<OrdenDTO> convierteDatos(List<Orden> orden){
-        return orden.stream()
-                .map(o -> new OrdenDTO(o.getId(),o.getOrden_details(),o.getOrden_dia(),o.getUsuario(),o.getRef_orden_estado()))
+    public List<OrdenDTO> convierteDatos(List<Orden> ordenList){
+        return ordenList.stream()
+                .map(o -> new OrdenDTO(o.getId_order(),o.getOrder_amount(),o.getOrder_date(),o.getDate_delivery(),o.getCliente(),o.getOrdenEstado(),o.getMetodoPago()))
                 .collect(Collectors.toList());
     }
 
 
-    public OrdenDTO obtenerPorId(Long id) {
-        Optional<Orden> orden = ordenRepository.findById(id);
+    public OrdenDTO obtenerPorId(Long id_order) {
+        Optional<Orden> orden = ordenRepository.findById(id_order);
         if (orden.isPresent()){
             Orden o = orden.get();
-            return new OrdenDTO(o.getId(),o.getOrden_details(),o.getOrden_dia(),o.getUsuario(),o.getRef_orden_estado());
+            return new OrdenDTO(o.getId_order(),o.getOrder_amount(),o.getOrder_date(),o.getDate_delivery(),o.getCliente(),o.getOrdenEstado(),o.getMetodoPago());
         }
         return null;
     }
 
-    public List<OrdenDTO> obtenerPorUsrId(Long id) {
-        return convierteDatos(ordenRepository.findByIdUsr(id));
+    public List<OrdenDTO> obtenerPorClientId(Long client_id) {
+        return convierteDatos(ordenRepository.findByIdUsr(client_id));
     }
 
 }

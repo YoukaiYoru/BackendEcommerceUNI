@@ -1,10 +1,13 @@
 package org.backend.trabajo.backendproyecto.dto;
 
+import org.backend.trabajo.backendproyecto.model.Categoria;
+
 public record ProductoDTO(
-        Long idProducto,
-        String prod_nombre,
-        Double prod_precio,
-        String prod_descripcion,
-        String prod_imagen,
-        Long prod_cantidad) {
+        int id_product,
+        String product_name,
+        String product_description,
+        float product_price,
+        int product_stock,
+        String product_img_url,
+        Categoria id_category){
 }

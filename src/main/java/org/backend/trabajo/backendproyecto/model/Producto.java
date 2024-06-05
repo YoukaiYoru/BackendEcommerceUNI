@@ -1,83 +1,69 @@
 package org.backend.trabajo.backendproyecto.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
-@Table(name = "Producto")
+@Table(name = "producto")
 public class Producto {
-    @Id
-    private Long idProducto;
-    private String prodNombre;
-    private Double prodPrecio;
-    private String prodDescripcion;
-    private String prodImagen;
-    private Long prodCantidad;
 
+    @Id
+    private int id_product;
+    private String product_name;
+    private String product_description;
+    private float product_price;
+    private int product_stock;
+    private String product_img_url;
 
     @Override
-        public String toString() {
-            return "Producto{" +
-                    "idProducto=" + idProducto +
-                    ", prodNombre='" + prodNombre + '\'' +
-                    ", prodDescripcion='" + prodDescripcion + '\'' +
-                    ", prodImagen='" + prodImagen + '\'' +
-                    ", prodPrecio=" + prodPrecio + '\'' +
-                    ", prodCantidad=" + prodCantidad + '\'' +
-                    '}';
-        }
+    public String toString() {
+        return "producto{" +
+                "id_product=" + id_product + '\'' +
+                ", product_name='" + product_name + '\'' +
+                ", product_description='" + product_description + '\'' +
+                ", product_price='" + product_price + '\'' +
+                ", product_stock='" + product_stock + '\'' +
+                ", product_img_url='" + product_img_url + '\'' +
+                '}';
+    }
 
+        //ORDERS
+    @ManyToOne
+    @JoinColumn(name = "id_category")
+    private Categoria categoria;
+
+    @OneToMany(mappedBy = "producto")
+    private List<OrdenDetalles> OrdenDatalles;
 
         //GETTERS AND SETTERS
+    public int getId_product() { return id_product; }
 
-    public Long getProdCantidad() {
-        return prodCantidad;
-    }
+    public void setId_product(int id_product) { this.id_product = id_product;}
 
-    public void setProdCantidad(Long prodCantidad) {
-        this.prodCantidad = prodCantidad;
-    }
+    public String getProduct_name() { return product_name; }
 
-    public Long getIdProducto() {
-        return idProducto;
-    }
+    public void setProduct_name(String product_name) { this.product_name = product_name;}
 
-    public void setIdProducto(Long idProducto) {
-        this.idProducto = idProducto;
-    }
+    public String getProduct_description() { return product_description; }
 
-    public String getProdNombre() {
-        return prodNombre;
-    }
+    public void setProduct_description(String product_description) { this.product_description = product_description;}
 
-    public void setProdNombre(String prodNombre) {
-        this.prodNombre = prodNombre;
-    }
+    public float getProduct_price() { return product_price; }
 
-    public String getProdDescripcion() {
-        return prodDescripcion;
-    }
+    public void setProduct_price(float product_price) { this.product_price = product_price; }
 
-    public void setProdDescripcion(String prodDescripcion) {
-        this.prodDescripcion = prodDescripcion;
-    }
+    public int getProduct_stock() { return product_stock;}
 
-    public String getProdImagen() {
-        return prodImagen;
-    }
+    public void setProduct_stock(int product_stock) { this.product_stock = product_stock;}
 
-    public void setProdImagen(String prodImagen) {
-        this.prodImagen = prodImagen;
-    }
+    public String getProduct_img_url() { return product_img_url;}
 
-    public Double getProdPrecio() {
-        return prodPrecio;
-    }
+    public void setProduct_img_url(String product_img_url) { this.product_img_url = product_img_url;}
 
-    public void setProdPrecio(Double prodPrecio) {
-        this.prodPrecio = prodPrecio;
-    }
+    public Categoria getCategoria() { return categoria; }
+
+    public void setCategoria(Categoria categoria) { this.categoria = categoria; }
 
     public Producto() {}
 }

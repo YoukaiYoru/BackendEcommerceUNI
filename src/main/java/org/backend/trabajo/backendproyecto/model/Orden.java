@@ -3,65 +3,66 @@ package org.backend.trabajo.backendproyecto.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Table(name = "Orden")
+@Table(name = "orden")
 public class Orden {
-    @Id
-    private Long id;
-    private String orden_details;
-    private LocalDate orden_dia;
 
+    @Id
+    private int id_order;
+    private float order_amount;
+    private LocalDate order_date;
+    private LocalDate date_delivery;
+
+        //ORDERS
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
+    @JoinColumn(name = "id_client")
+    private Cliente cliente;
 
     @OneToOne
-    @JoinColumn(name = "ref_orden_estado")
-    private RefOrdenEstado ref_orden_estado;
+    @JoinColumn(name = "orden_estado")
+    private OrdenEstado ordenEstado;
 
+    @OneToOne
+    @JoinColumn(name = "metodo_pago")
+    private MetodoPago metodoPago;
 
+    @OneToMany(mappedBy = "orden")
+    private List<OrdenDetalles> ordenDetallesList;
+
+        //GETTERS AND SETTERS
+    public int getId_order() { return id_order; }
+
+    public void setId_order(int id_order) { this.id_order = id_order; }
+
+    public float getOrder_amount() { return order_amount; }
+
+    public void setOrder_amount(float order_amount) { this.order_amount = order_amount; }
+
+    public LocalDate getOrder_date() { return order_date; }
+
+    public void setOrder_date(LocalDate order_date) { this.order_date = order_date; }
+
+    public LocalDate getDate_delivery() { return date_delivery; }
+
+    public void serDate_delivery(LocalDate date_delivery) { this.date_delivery = date_delivery; }
+
+    public Cliente getCliente() { return cliente; }
+
+    public void setCliente(Cliente cliente) { this.cliente = cliente; }
+
+    public OrdenEstado getOrdenEstado() { return ordenEstado; }
+
+    public void setOrdenEstado(OrdenEstado ordenEstado) { this.ordenEstado = ordenEstado; }
+
+    public MetodoPago getMetodoPago() { return metodoPago; }
+
+    public void setMetodoPago(MetodoPago metodoPago) { this.metodoPago = metodoPago; }
+
+    public List<OrdenDetalles> getOrdenDetallesList() { return ordenDetallesList; }
+
+    public void setOrdenDetallesList(List<OrdenDetalles> ordenDetallesList) { this.ordenDetallesList = ordenDetallesList; }
 
     public Orden() {}
-
-    public RefOrdenEstado getRef_orden_estado() {
-        return ref_orden_estado;
-    }
-
-    public void setRef_orden_estado(RefOrdenEstado ref_orden_estado) {
-        this.ref_orden_estado = ref_orden_estado;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getOrden_details() {
-        return orden_details;
-    }
-
-    public void setOrden_details(String orden_details) {
-        this.orden_details = orden_details;
-    }
-
-    public LocalDate getOrden_dia() {
-        return orden_dia;
-    }
-
-    public void setOrden_dia(LocalDate orden_dia) {
-        this.orden_dia = orden_dia;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
 }

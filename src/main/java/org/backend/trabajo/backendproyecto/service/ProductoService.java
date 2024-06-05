@@ -19,19 +19,17 @@ public class ProductoService {
         return convierteDatos(productoRepository.findAll());
     }
 
-
-    public List<ProductoDTO> convierteDatos(List<Producto> productos){
-        return productos.stream()
-                .map(p -> new ProductoDTO(p.getIdProducto(),p.getProdNombre(),p.getProdPrecio(),p.getProdDescripcion(),p.getProdImagen()))
-                .collect(Collectors.toList());
+    public List<ProductoDTO> convierteDatos(List<Producto> productoList){
+        return productoList.stream()
+                .map(p -> new ProductoDTO(p.getId_product(),p.getProduct_name(),p.getProduct_description(),p.getProduct_price(),p.getProduct_stock(),p.getProduct_img_url(),p.getCategoria())).
+                collect(Collectors.toList());
     }
 
-
-    public ProductoDTO obtenerPorId(Long id) {
-        Optional<Producto> producto = productoRepository.findById(id);
+    public ProductoDTO obtenerPorId(Long id_product) {
+        Optional<Producto> producto = productoRepository.findById(id_product);
         if (producto.isPresent()){
             Producto p = producto.get();
-            return new ProductoDTO(p.getIdProducto(),p.getProdNombre(),p.getProdPrecio(),p.getProdDescripcion(),p.getProdImagen());
+            return new ProductoDTO(p.getId_product(),p.getProduct_name(),p.getProduct_description(),p.getProduct_price(),p.getProduct_stock(),p.getProduct_img_url(),p.getCategoria());
         }
         return null;
     }
