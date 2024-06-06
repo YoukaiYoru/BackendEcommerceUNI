@@ -1,7 +1,10 @@
 package org.backend.trabajo.backendproyecto.model;
 
 import jakarta.persistence.*;
+import org.backend.trabajo.backendproyecto.dto.DatosRegistroClienteDTO;
 import org.backend.trabajo.backendproyecto.model.Orden;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,7 +12,7 @@ import java.util.List;
 public class Cliente {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     private Long idClient;
     private String clientUser;
@@ -42,8 +45,22 @@ public class Cliente {
                 '}';
     }
 
+    // CONSTRUCTOR
+    public Cliente() {
+
+    }
+
+    public Cliente(DatosRegistroClienteDTO datosCliente) {
+        this.clientUser = datosCliente.clientUser();
+        this.clientPassword = datosCliente.clientPassword();
+        this.clientFirstName = datosCliente.clientFirstName();
+        this.clientLastName = datosCliente.clientLastName();
+        this.clientEmail = datosCliente.clientEmail();
+        this.clientPhone = datosCliente.clientPhone();
+    }
+
+
     // GETTERS AND SETTERS
-    public Cliente() {}
 
     public Long getIdClient() {
         return idClient;

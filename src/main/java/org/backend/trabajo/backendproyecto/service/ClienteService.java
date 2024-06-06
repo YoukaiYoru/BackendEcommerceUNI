@@ -1,11 +1,13 @@
 package org.backend.trabajo.backendproyecto.service;
 
 import org.backend.trabajo.backendproyecto.dto.ClienteDTO;
+import org.backend.trabajo.backendproyecto.dto.DatosRegistroClienteDTO;
 import org.backend.trabajo.backendproyecto.model.Cliente;
 import org.backend.trabajo.backendproyecto.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,5 +29,10 @@ public class ClienteService {
     public List<ClienteDTO> obtenerPorLogin(String login) {
         return convierteDatos(clienteRepository.findByClientUser(login));
     }
+
+    public void guardarUsuario(DatosRegistroClienteDTO datosRegistroClienteDTO) {
+        clienteRepository.save(new Cliente(datosRegistroClienteDTO));
+    }
+
 
 }
