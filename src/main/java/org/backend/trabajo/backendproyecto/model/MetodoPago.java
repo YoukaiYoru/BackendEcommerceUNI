@@ -12,5 +12,6 @@ public class MetodoPago {
     private String payment_method;
 
 
-
+     //GETTERS AND SETTERS
+    public MetodoPago() {}
 }

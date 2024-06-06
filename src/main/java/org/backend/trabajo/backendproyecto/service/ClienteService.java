@@ -16,7 +16,7 @@ public class ClienteService {
 
     public List<ClienteDTO> convierteDatos(List<Cliente> clienteList){
         return clienteList.stream()
-                .map(u -> new ClienteDTO(u.getId_client(),u.getClientUser(),u.getClientPassword(),u.getClient_firstName(),u.getClient_lastName(),u.getClient_email(),u.getClient_phone()))
+                .map(u -> new ClienteDTO(u.getIdClient(),u.getClientUser(),u.getClientPassword(),u.getClientFirstName(),u.getClientLastName(),u.getClientEmail(),u.getClientPhone()))
                 .collect(Collectors.toList());
     }
 

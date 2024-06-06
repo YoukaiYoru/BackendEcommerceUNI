@@ -23,7 +23,7 @@ public class OrdenService {
 
     public List<OrdenDTO> convierteDatos(List<Orden> ordenList){
         return ordenList.stream()
-                .map(o -> new OrdenDTO(o.getIdOrder(),o.getOrder_amount(),o.getOrder_date(),o.getDate_delivery(),o.getCliente(),o.getOrdenEstado()))
+                .map(o -> new OrdenDTO(o.getIdOrder(),o.getOrderAmount(),o.getOrderDate(),o.getDateDelivery(),o.getCliente(),o.getOrdenEstado()))
                 .collect(Collectors.toList());
     }
 
@@ -32,7 +32,7 @@ public class OrdenService {
         Optional<Orden> orden = ordenRepository.findById(id_order);
         if (orden.isPresent()){
             Orden o = orden.get();
-            return new OrdenDTO(o.getIdOrder(),o.getOrder_amount(),o.getOrder_date(),o.getDate_delivery(),o.getCliente(),o.getOrdenEstado());
+            return new OrdenDTO(o.getIdOrder(),o.getOrderAmount(),o.getOrderDate(),o.getDateDelivery(),o.getCliente(),o.getOrdenEstado());
         }
         return null;
     }

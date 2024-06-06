@@ -8,6 +8,6 @@ public record ProductoDTO(
         String product_description,
         float product_price,
         int product_stock,
-        String product_img_url,
-        Categoria id_category){
+        String product_img_url
+        ){
 }

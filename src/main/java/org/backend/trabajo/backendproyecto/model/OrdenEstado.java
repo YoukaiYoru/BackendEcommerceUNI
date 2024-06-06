@@ -8,6 +8,20 @@ public class OrdenEstado {
 
     @Id
     @GeneratedValue
-    private int id_order_status;
-    private String order_status_name;
+    private int idOrderStatus;
+    private String orderStatusName;
+
+    //RELATIONS
+
+    @OneToOne
+    @JoinColumn(name = "id_orden_estado")
+    private Orden orden;
+
+
+    //GETTERS AND SETTERS
+
+    public OrdenEstado() {}
+
+
+
 }

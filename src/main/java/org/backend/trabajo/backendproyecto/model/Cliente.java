@@ -1,7 +1,7 @@
 package org.backend.trabajo.backendproyecto.model;
 
 import jakarta.persistence.*;
-
+import org.backend.trabajo.backendproyecto.model.Orden;
 import java.util.List;
 
 @Entity
@@ -14,45 +14,98 @@ public class Cliente {
     private Long idClient;
     private String clientUser;
     private String clientPassword;
-    private String client_firstName;
-    private String client_lastName;
-    private String client_email;
-    private String client_phone;
+    private String clientFirstName;
+    private String clientLastName;
+    private String clientEmail;
+    private String clientPhone;
 
-        //ORDERS
+
+    //RELATIONS
     @OneToMany(mappedBy = "cliente")
-    private List<Orden> ordenList;
+    private List<Orden> listOrden;
 
-        //GETTERS AND SETTERS
-    public Long getId_client(){ return idClient; }
 
-    public void setId_client(Long id_client){ this.idClient = id_client;}
 
-    public String getClientUser(){ return clientUser; }
+    //TO STRING
 
-    public void setClientUser(String clientUser){ this.clientUser = clientUser; }
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "idClient=" + idClient +
+                ", clientUser='" + clientUser + '\'' +
+                ", clientPassword='" + clientPassword + '\'' +
+                ", clientFirstName='" + clientFirstName + '\'' +
+                ", clientLastName='" + clientLastName + '\'' +
+                ", clientEmail='" + clientEmail + '\'' +
+                ", clientPhone='" + clientPhone + '\'' +
+                ", listOrden=" + listOrden +
+                '}';
+    }
 
-    public String getClientPassword(){ return clientPassword; }
+    // GETTERS AND SETTERS
+    public Cliente() {}
 
-    public void setClientPassword(String clientPassword){ this.clientPassword = clientPassword; }
+    public Long getIdClient() {
+        return idClient;
+    }
 
-    public String getClient_firstName(){ return client_firstName; }
+    public void setIdClient(Long idClient) {
+        this.idClient = idClient;
+    }
 
-    public void setClient_firstName(String client_firstName){ this.client_firstName = client_firstName; }
+    public String getClientUser() {
+        return clientUser;
+    }
 
-    public String getClient_lastName(){ return client_lastName; }
+    public void setClientUser(String clientUser) {
+        this.clientUser = clientUser;
+    }
 
-    public void setClient_lastName(String client_lastName){ this.client_lastName = client_lastName; }
+    public String getClientPassword() {
+        return clientPassword;
+    }
 
-    public String getClient_email(){ return client_email; }
+    public void setClientPassword(String clientPassword) {
+        this.clientPassword = clientPassword;
+    }
 
-    public void setClient_email(String client_email){ this.client_email = client_email; }
+    public String getClientFirstName() {
+        return clientFirstName;
+    }
 
-    public String getClient_phone(){ return client_phone; }
+    public void setClientFirstName(String clientFirstName) {
+        this.clientFirstName = clientFirstName;
+    }
 
-    public void setClient_phone(String client_phone){ this.client_phone = client_phone;}
+    public String getClientLastName() {
+        return clientLastName;
+    }
 
-    public List<Orden> getOrdenList(){ return ordenList; }
+    public void setClientLastName(String clientLastName) {
+        this.clientLastName = clientLastName;
+    }
 
-    public void setOrdenList(List<Orden> ordenList){ this.ordenList = ordenList; }
+    public String getClientEmail() {
+        return clientEmail;
+    }
+
+    public void setClientEmail(String clientEmail) {
+        this.clientEmail = clientEmail;
+    }
+
+    public String getClientPhone() {
+        return clientPhone;
+    }
+
+    public void setClientPhone(String clientPhone) {
+        this.clientPhone = clientPhone;
+    }
+
+    public List<Orden> getListOrden() {
+        return listOrden;
+    }
+
+    public void setListOrden(List<Orden> listOrden) {
+        this.listOrden = listOrden;
+    }
 }

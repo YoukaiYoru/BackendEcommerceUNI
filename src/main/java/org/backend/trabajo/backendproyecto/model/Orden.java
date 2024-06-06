@@ -11,24 +11,37 @@ public class Orden {
 
     @Id
     private Long idOrder;
-    private float order_amount;
-    private LocalDate order_date;
-    private LocalDate date_delivery;
+    private float orderAmount;
+    private LocalDate orderDate;
+    private LocalDate dateDelivery;
 
-        //ORDERS
+
+
+    //ORDERS
+
     @ManyToOne
-    @JoinColumn(name = "idClient")
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @OneToOne
-    @JoinColumn(name = "orden_estado")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "orden")
     private OrdenEstado ordenEstado;
 
 
-    @OneToMany(mappedBy = "orden")
-    private List<OrdenDetalles> ordenDetallesList;
+    //TO STRING
 
-        //GETTERS AND SETTERS
+    @Override
+    public String toString() {
+        return "Orden{" +
+                "idOrder=" + idOrder +
+                ", orderAmount=" + orderAmount +
+                ", orderDate=" + orderDate +
+                ", dateDelivery=" + dateDelivery +
+                ", cliente=" + cliente +
+                '}';
+    }
+
+
+    //GETTERS AND SETTERS
 
     public Orden() {}
 
@@ -40,28 +53,28 @@ public class Orden {
         this.idOrder = idOrder;
     }
 
-    public float getOrder_amount() {
-        return order_amount;
+    public float getOrderAmount() {
+        return orderAmount;
     }
 
-    public void setOrder_amount(float order_amount) {
-        this.order_amount = order_amount;
+    public void setOrderAmount(float orderAmount) {
+        this.orderAmount = orderAmount;
     }
 
-    public LocalDate getOrder_date() {
-        return order_date;
+    public LocalDate getOrderDate() {
+        return orderDate;
     }
 
-    public void setOrder_date(LocalDate order_date) {
-        this.order_date = order_date;
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public LocalDate getDate_delivery() {
-        return date_delivery;
+    public LocalDate getDateDelivery() {
+        return dateDelivery;
     }
 
-    public void setDate_delivery(LocalDate date_delivery) {
-        this.date_delivery = date_delivery;
+    public void setDateDelivery(LocalDate dateDelivery) {
+        this.dateDelivery = dateDelivery;
     }
 
     public Cliente getCliente() {
@@ -78,15 +91,5 @@ public class Orden {
 
     public void setOrdenEstado(OrdenEstado ordenEstado) {
         this.ordenEstado = ordenEstado;
-    }
-
-
-
-    public List<OrdenDetalles> getOrdenDetallesList() {
-        return ordenDetallesList;
-    }
-
-    public void setOrdenDetallesList(List<OrdenDetalles> ordenDetallesList) {
-        this.ordenDetallesList = ordenDetallesList;
     }
 }
