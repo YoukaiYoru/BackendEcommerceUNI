@@ -16,7 +16,7 @@ public class ClienteService {
 
     public List<ClienteDTO> convierteDatos(List<Cliente> clienteList){
         return clienteList.stream()
-                .map(u -> new ClienteDTO(u.getId_client(),u.getClient_user(),u.getClient_password(),u.getClient_firstName(),u.getClient_lastName(),u.getClient_email(),u.getClient_phone()))
+                .map(u -> new ClienteDTO(u.getId_client(),u.getClientUser(),u.getClientPassword(),u.getClient_firstName(),u.getClient_lastName(),u.getClient_email(),u.getClient_phone()))
                 .collect(Collectors.toList());
     }
 
@@ -25,7 +25,7 @@ public class ClienteService {
     }
 
     public List<ClienteDTO> obtenerPorLogin(String login) {
-        return convierteDatos(clienteRepository.findByUsrLoginIs(login));
+        return convierteDatos(clienteRepository.findByClientUser(login));
     }
 
 }

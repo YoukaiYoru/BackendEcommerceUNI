@@ -23,7 +23,7 @@ public class OrdenService {
 
     public List<OrdenDTO> convierteDatos(List<Orden> ordenList){
         return ordenList.stream()
-                .map(o -> new OrdenDTO(o.getId_order(),o.getOrder_amount(),o.getOrder_date(),o.getDate_delivery(),o.getCliente(),o.getOrdenEstado(),o.getMetodoPago()))
+                .map(o -> new OrdenDTO(o.getIdOrder(),o.getOrder_amount(),o.getOrder_date(),o.getDate_delivery(),o.getCliente(),o.getOrdenEstado()))
                 .collect(Collectors.toList());
     }
 
@@ -32,13 +32,13 @@ public class OrdenService {
         Optional<Orden> orden = ordenRepository.findById(id_order);
         if (orden.isPresent()){
             Orden o = orden.get();
-            return new OrdenDTO(o.getId_order(),o.getOrder_amount(),o.getOrder_date(),o.getDate_delivery(),o.getCliente(),o.getOrdenEstado(),o.getMetodoPago());
+            return new OrdenDTO(o.getIdOrder(),o.getOrder_amount(),o.getOrder_date(),o.getDate_delivery(),o.getCliente(),o.getOrdenEstado());
         }
         return null;
     }
 
-    public List<OrdenDTO> obtenerPorClientId(Long client_id) {
-        return convierteDatos(ordenRepository.findByIdUsr(client_id));
+    public List<OrdenDTO> obtenerPorClientUsr(String clientUsr) {
+        return convierteDatos(ordenRepository.findByClientUser(clientUsr));
     }
 
 }

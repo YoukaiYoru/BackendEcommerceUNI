@@ -25,8 +25,8 @@ public class OrdenController {
 
 
     @GetMapping("/orden/user/{id}")
-    public List<OrdenDTO> obtenerOrden(@PathVariable Long id) {
-        return ordenService.obtenerPorClientId((id));
+    public List<OrdenDTO> obtenerOrdenPorUsr(@PathVariable String usr) {
+        return ordenService.obtenerPorClientUsr((usr));
     }
 
     @GetMapping("/orden/{id}")

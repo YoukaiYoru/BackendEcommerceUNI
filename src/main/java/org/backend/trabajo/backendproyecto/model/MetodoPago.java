@@ -10,4 +10,7 @@ public class MetodoPago {
     @GeneratedValue
     private int id_payment_method;
     private String payment_method;
+
+
+
 }

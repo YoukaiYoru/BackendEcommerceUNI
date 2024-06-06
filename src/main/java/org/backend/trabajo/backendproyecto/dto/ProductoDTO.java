@@ -3,7 +3,7 @@ package org.backend.trabajo.backendproyecto.dto;
 import org.backend.trabajo.backendproyecto.model.Categoria;
 
 public record ProductoDTO(
-        int id_product,
+        Long id_product,
         String product_name,
         String product_description,
         float product_price,

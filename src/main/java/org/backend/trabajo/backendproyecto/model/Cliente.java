@@ -10,9 +10,10 @@ public class Cliente {
 
     @Id
     @GeneratedValue
-    private int id_client;
-    private String client_user;
-    private String client_password;
+    
+    private Long idClient;
+    private String clientUser;
+    private String clientPassword;
     private String client_firstName;
     private String client_lastName;
     private String client_email;
@@ -23,17 +24,17 @@ public class Cliente {
     private List<Orden> ordenList;
 
         //GETTERS AND SETTERS
-    public int getId_client(){ return id_client; }
+    public Long getId_client(){ return idClient; }
 
-    public void setId_client(int id_client){ this.id_client = id_client;}
+    public void setId_client(Long id_client){ this.idClient = id_client;}
 
-    public String getClient_user(){ return client_user; }
+    public String getClientUser(){ return clientUser; }
 
-    public void setClient_user(String client_user){ this.client_user = client_user; }
+    public void setClientUser(String clientUser){ this.clientUser = clientUser; }
 
-    public String getClient_password(){ return client_password; }
+    public String getClientPassword(){ return clientPassword; }
 
-    public void setClient_password(String client_password){ this.client_password = client_password; }
+    public void setClientPassword(String clientPassword){ this.clientPassword = clientPassword; }
 
     public String getClient_firstName(){ return client_firstName; }
 

@@ -1,8 +1,8 @@
 package org.backend.trabajo.backendproyecto.dto;
 
 public record ClienteDTO(
-        int id_client,
-        String client_user,
+        Long idClient,
+        String clientUsr,
         String client_password,
         String client_firstName,
         String client_lastName,

@@ -9,7 +9,7 @@ import java.util.List;
 public class Producto {
 
     @Id
-    private int id_product;
+    private Long idProduct;
     private String product_name;
     private String product_description;
     private float product_price;
@@ -19,7 +19,7 @@ public class Producto {
     @Override
     public String toString() {
         return "producto{" +
-                "id_product=" + id_product + '\'' +
+                "idProduct=" + idProduct + '\'' +
                 ", product_name='" + product_name + '\'' +
                 ", product_description='" + product_description + '\'' +
                 ", product_price='" + product_price + '\'' +
@@ -37,9 +37,9 @@ public class Producto {
     private List<OrdenDetalles> OrdenDatalles;
 
         //GETTERS AND SETTERS
-    public int getId_product() { return id_product; }
+    public Long getIdProduct() { return idProduct; }
 
-    public void setId_product(int id_product) { this.id_product = id_product;}
+    public void setIdProduct(Long idProduct) { this.idProduct = idProduct;}
 
     public String getProduct_name() { return product_name; }
 

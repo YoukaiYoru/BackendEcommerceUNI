@@ -5,10 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
-import java.util.Optional;
 
 
 public interface OrdenRepository extends JpaRepository<Orden, Long> {
-    @Query("SELECT u FROM Usuario u WHERE u.idUsuario =: idUsaurio ")
-    List<Orden> findByIdUsr(long idUsuario);
+    @Query("SELECT c FROM Cliente c WHERE c.clientUser =: clientUser ")
+    List<Orden> findByClientUser(String clientUser);
 }
