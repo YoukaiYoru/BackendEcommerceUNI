@@ -2,6 +2,8 @@ package org.backend.trabajo.backendproyecto.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "producto")
 public class Producto {
@@ -20,6 +22,9 @@ public class Producto {
 
     @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Categoria categoria;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "producto")
+    private List<OrdenDetalles> ordenDetalles;
 
     //TO STRING
     @Override
@@ -92,5 +97,13 @@ public class Producto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public List<OrdenDetalles> getOrdenDetalles() {
+        return ordenDetalles;
+    }
+
+    public void setOrdenDetalles(List<OrdenDetalles> ordenDetalles) {
+        this.ordenDetalles = ordenDetalles;
     }
 }

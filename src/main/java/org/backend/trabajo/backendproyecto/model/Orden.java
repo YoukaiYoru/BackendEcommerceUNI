@@ -10,7 +10,8 @@ import java.util.List;
 public class Orden {
 
     @Id
-    private Long idOrder;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idOrden;
     private float orderAmount;
     private LocalDate orderDate;
     private LocalDate dateDelivery;
@@ -23,8 +24,16 @@ public class Orden {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "orden")
+    @ManyToOne
+    @JoinColumn(name = "id_metodo_pago")
+    private MetodoPago metodoPago;
+
+    @ManyToOne
+    @JoinColumn(name = "id_orden_estado")
     private OrdenEstado ordenEstado;
+
+    @OneToMany(mappedBy = "orden")
+    private List<OrdenDetalles> ordenDetalles;
 
 
     //TO STRING
@@ -32,7 +41,7 @@ public class Orden {
     @Override
     public String toString() {
         return "Orden{" +
-                "idOrder=" + idOrder +
+                "idOrden=" + idOrden +
                 ", orderAmount=" + orderAmount +
                 ", orderDate=" + orderDate +
                 ", dateDelivery=" + dateDelivery +
@@ -45,12 +54,28 @@ public class Orden {
 
     public Orden() {}
 
-    public Long getIdOrder() {
-        return idOrder;
+    public MetodoPago getMetodoPago() {
+        return metodoPago;
     }
 
-    public void setIdOrder(Long idOrder) {
-        this.idOrder = idOrder;
+    public void setMetodoPago(MetodoPago metodoPago) {
+        this.metodoPago = metodoPago;
+    }
+
+    public List<OrdenDetalles> getOrdenDetalles() {
+        return ordenDetalles;
+    }
+
+    public void setOrdenDetalles(List<OrdenDetalles> ordenDetalles) {
+        this.ordenDetalles = ordenDetalles;
+    }
+
+    public Long getIdOrden() {
+        return idOrden;
+    }
+
+    public void setIdOrden(Long idOrden) {
+        this.idOrden = idOrden;
     }
 
     public float getOrderAmount() {
