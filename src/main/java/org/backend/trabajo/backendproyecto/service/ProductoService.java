@@ -21,7 +21,7 @@ public class ProductoService {
 
     public List<ProductoDTO> convierteDatos(List<Producto> productoList){
         return productoList.stream()
-                .map(p -> new ProductoDTO(p.getIdProduct(),p.getProductName(),p.getProductDescription(),p.getProductPrice(),p.getProductStock(),p.getProductImgUrl())).
+                .map(p -> new ProductoDTO(p.getIdProducto(),p.getProductName(),p.getProductDescription(),p.getProductPrice(),p.getProductStock(),p.getProductImgUrl())).
                 collect(Collectors.toList());
     }
 
@@ -29,7 +29,7 @@ public class ProductoService {
         Optional<Producto> producto = productoRepository.findById(id_product);
         if (producto.isPresent()){
             Producto p = producto.get();
-            return new ProductoDTO(p.getIdProduct(),p.getProductName(),p.getProductDescription(),p.getProductPrice(),p.getProductStock(),p.getProductImgUrl());
+            return new ProductoDTO(p.getIdProducto(),p.getProductName(),p.getProductDescription(),p.getProductPrice(),p.getProductStock(),p.getProductImgUrl());
         }
         return null;
     }

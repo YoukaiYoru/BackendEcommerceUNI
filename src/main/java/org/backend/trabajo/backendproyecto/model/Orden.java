@@ -1,5 +1,6 @@
 package org.backend.trabajo.backendproyecto.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -21,7 +22,7 @@ public class Orden {
     //ORDERS
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
     @ManyToOne
@@ -46,11 +47,12 @@ public class Orden {
                 ", orderDate=" + orderDate +
                 ", dateDelivery=" + dateDelivery +
                 ", cliente=" + cliente +
+                ", metodoPago=" + metodoPago +
+                ", ordenEstado=" + ordenEstado +
+                ", ordenDetalles=" + ordenDetalles +
                 '}';
     }
-
-
-    //GETTERS AND SETTERS
+//GETTERS AND SETTERS
 
     public Orden() {}
 
@@ -117,4 +119,5 @@ public class Orden {
     public void setOrdenEstado(OrdenEstado ordenEstado) {
         this.ordenEstado = ordenEstado;
     }
+
 }

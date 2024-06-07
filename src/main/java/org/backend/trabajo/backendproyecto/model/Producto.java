@@ -9,7 +9,7 @@ import java.util.List;
 public class Producto {
 
     @Id
-    private Long idProduct;
+    private Long idProducto;
 
     private String productName;
     private String productDescription;
@@ -26,29 +26,31 @@ public class Producto {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "producto")
     private List<OrdenDetalles> ordenDetalles;
 
-    //TO STRING
+    // TO STRING
+
     @Override
     public String toString() {
         return "Producto{" +
-                "idProduct=" + idProduct +
+                "idProducto=" + idProducto +
                 ", productName='" + productName + '\'' +
                 ", productDescription='" + productDescription + '\'' +
                 ", productPrice=" + productPrice +
                 ", productStock=" + productStock +
                 ", productImgUrl='" + productImgUrl + '\'' +
                 ", categoria=" + categoria +
+                ", ordenDetalles=" + ordenDetalles +
                 '}';
     }
 
     //GETTERS AND SETTERS
     public Producto() {}
 
-    public Long getIdProduct() {
-        return idProduct;
+    public Long getIdProducto() {
+        return idProducto;
     }
 
-    public void setIdProduct(Long idProduct) {
-        this.idProduct = idProduct;
+    public void setIdProducto(Long idProducto) {
+        this.idProducto = idProducto;
     }
 
     public String getProductName() {
@@ -106,4 +108,5 @@ public class Producto {
     public void setOrdenDetalles(List<OrdenDetalles> ordenDetalles) {
         this.ordenDetalles = ordenDetalles;
     }
+
 }
