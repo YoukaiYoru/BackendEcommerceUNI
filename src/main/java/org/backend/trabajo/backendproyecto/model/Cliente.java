@@ -10,7 +10,6 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     private Long idClient;
     private String clientUser;
     private String clientPassword;

@@ -15,7 +15,7 @@ public class Categoria {
     private int categoryCount;
 
         //RELATIONS
-    @OneToMany(mappedBy = "categoria")
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Producto> listProductos;
 
         //GETTERS AND SETTERS

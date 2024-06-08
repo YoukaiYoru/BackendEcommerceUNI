@@ -1,16 +1,22 @@
 package org.backend.trabajo.backendproyecto.dto;
 
-import org.backend.trabajo.backendproyecto.model.Categoria;
+import jakarta.validation.constraints.NotBlank;
 
-public record ProductoDTO(
-        Long id_product,
+public record DatosProductoDTO(
+        @NotBlank
         String product_name,
+        @NotBlank
         String product_description,
+        @NotBlank
         float product_price,
+        @NotBlank
         int product_stock,
+        @NotBlank
         String product_img_url,
+        @NotBlank
         String categoria_producto
-        ){
+) {
 
 
 }
+

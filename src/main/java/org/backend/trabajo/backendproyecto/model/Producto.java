@@ -1,6 +1,7 @@
 package org.backend.trabajo.backendproyecto.model;
 
 import jakarta.persistence.*;
+import org.backend.trabajo.backendproyecto.dto.DatosProductoDTO;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
 public class Producto {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProducto;
 
     private String productName;
@@ -43,9 +45,18 @@ public class Producto {
                 '}';
     }
 
-    //GETTERS AND SETTERS
+    //CONSTRUCTORES
     public Producto() {}
 
+    public Producto(DatosProductoDTO datosProductoDTO){
+        this.productName = datosProductoDTO.product_name();
+        this.productDescription = datosProductoDTO.product_description();
+        this.productPrice = datosProductoDTO.product_price();
+        this.productStock = datosProductoDTO.product_stock();
+        this.productImgUrl = datosProductoDTO.product_img_url();
+    }
+
+    //GETTERS AND SETTERS
     public Long getIdProducto() {
         return idProducto;
     }

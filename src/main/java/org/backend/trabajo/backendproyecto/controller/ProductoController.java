@@ -1,5 +1,6 @@
 package org.backend.trabajo.backendproyecto.controller;
 
+import org.backend.trabajo.backendproyecto.dto.DatosProductoDTO;
 import org.backend.trabajo.backendproyecto.dto.ProductoDTO;
 import org.backend.trabajo.backendproyecto.repository.ProductoRepository;
 import org.backend.trabajo.backendproyecto.service.ProductoService;
@@ -27,6 +28,11 @@ public class ProductoController {
     @GetMapping("/{id}")
     public ProductoDTO obtenerPorId(@PathVariable Long id) {
         return ProductServicio.obtenerPorId(id);
+    }
+
+    @PostMapping("/add")
+    public void agregarProducto(@RequestBody DatosProductoDTO productoDTO) {
+        ProductServicio.agregarProducto(productoDTO);
     }
 
 

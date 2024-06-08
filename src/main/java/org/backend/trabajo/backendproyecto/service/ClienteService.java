@@ -15,11 +15,15 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    //CONVERTIR DATOS A JSON
+
     public List<ClienteDTO> convierteDatos(List<Cliente> clienteList){
         return clienteList.stream()
                 .map(u -> new ClienteDTO(u.getIdClient(),u.getClientUser(),u.getClientPassword(),u.getClientFirstName(),u.getClientLastName(),u.getClientEmail(),u.getClientPhone()))
                 .collect(Collectors.toList());
     }
+
+    //METODOS CRUD
 
     public List<ClienteDTO> obtenerTodosClientes() {
         return convierteDatos(clienteRepository.findAll());
@@ -32,6 +36,9 @@ public class ClienteService {
     public void guardarUsuario(DatosRegistroClienteDTO datosRegistroClienteDTO) {
         clienteRepository.save(new Cliente(datosRegistroClienteDTO));
     }
+
+    //ADITIONAL SERVICE
+
 
 
 }
