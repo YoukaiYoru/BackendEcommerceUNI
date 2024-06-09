@@ -42,6 +42,15 @@ public class ProductoService {
         return null;
     }
 
+    public List<ProductoDTO> obtenerProductosPorCategoria(String categoriaDescripcion) {
+        Optional<Categoria> categoria = categoriaRepository.findCategoriaByCategoryDescription(categoriaDescripcion);
+        if (categoria.isPresent()) {
+            List<Producto> productos = productoRepository.findByCategoria(categoria.get());
+            return convierteDatos(productos);
+        }
+        return List.of(); // Devuelve una lista vacía si no se encuentra la categoría
+    }
+
     //Agrega producto y suma un contador a la categoria
     @Transactional
     public void agregarProducto(DatosProductoDTO datosProductoDTO) {
@@ -57,6 +66,8 @@ public class ProductoService {
         }
 
     }
+
+
 
 
 }

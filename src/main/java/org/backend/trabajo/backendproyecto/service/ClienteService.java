@@ -33,8 +33,36 @@ public class ClienteService {
         return convierteDatos(clienteRepository.findByClientUser(login));
     }
 
+    public List<ClienteDTO> obtenerPorID(Long idClient) {
+        return convierteDatos(clienteRepository.findByIdClient(idClient));
+    }
+
     public void guardarUsuario(DatosRegistroClienteDTO datosRegistroClienteDTO) {
         clienteRepository.save(new Cliente(datosRegistroClienteDTO));
+    }
+
+    public void actualizarClientePorUsuarioYContraseña(String login, String password, DatosRegistroClienteDTO datosRegistroClienteDTO) {
+        List<Cliente> clienteList = clienteRepository.findByClientUserAndClientPassword(login, password);
+
+        if (!clienteList.isEmpty()) {
+            Cliente cliente = clienteList.get(0); // Tomamos el primer cliente de la lista
+
+            cliente.setClientUser(datosRegistroClienteDTO.getClientUser());
+            cliente.setClientPassword(datosRegistroClienteDTO.getClientPassword());
+            cliente.setClientFirstName(datosRegistroClienteDTO.getClientFirstName());
+            cliente.setClientLastName(datosRegistroClienteDTO.getClientLastName());
+            cliente.setClientEmail(datosRegistroClienteDTO.getClientEmail());
+            cliente.setClientPhone(datosRegistroClienteDTO.getClientPhone());
+
+            clienteRepository.save(cliente);
+        } else {
+            throw new IllegalArgumentException("No se encontró ningún cliente con el usuario y contraseña especificados");
+        }
+    }
+
+
+    public void eliminarClientePorLogin(String login) {
+        clienteRepository.findByClientUser(login);
     }
 
     //ADITIONAL SERVICE
