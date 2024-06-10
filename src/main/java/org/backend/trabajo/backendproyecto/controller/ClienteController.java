@@ -13,6 +13,7 @@ public class ClienteController {
     @Autowired
     private ClienteService ClienteService;
 
+
     @GetMapping()
     public List<ClienteDTO> obtenerUsuarios() {
         return ClienteService.obtenerTodosClientes();
@@ -24,7 +25,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    public List<ClienteDTO> obtenerPorId(@PathVariable Long id){
+    public ClienteDTO obtenerPorId(@PathVariable Long id){
         return ClienteService.obtenerPorID(id);
     }
 
@@ -33,10 +34,7 @@ public class ClienteController {
         ClienteService.guardarUsuario(datosCliente);
     }
 
-    @PutMapping("/{login}/update")
-    public void actualizarClientePorUsuarioYContraseña(@PathVariable String login, @RequestParam String password, @RequestBody DatosRegistroClienteDTO datosCliente) {
-        ClienteService.actualizarClientePorUsuarioYContraseña(login, password, datosCliente);
-    }
+
 
     @DeleteMapping("/{login}")
     public void eliminarClientePorLogin(@PathVariable String login) {

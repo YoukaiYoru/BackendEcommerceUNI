@@ -1,5 +1,6 @@
 package org.backend.trabajo.backendproyecto.service;
 
+import ch.qos.logback.core.net.server.Client;
 import org.backend.trabajo.backendproyecto.dto.ClienteDTO;
 import org.backend.trabajo.backendproyecto.dto.DatosRegistroClienteDTO;
 import org.backend.trabajo.backendproyecto.model.Cliente;
@@ -23,6 +24,9 @@ public class ClienteService {
                 .collect(Collectors.toList());
     }
 
+    public ClienteDTO convierteDatos(Cliente c){
+        return new ClienteDTO(c.getIdClient(),c.getClientUser(),c.getClientPassword(),c.getClientFirstName(),c.getClientLastName(),c.getClientEmail(),c.getClientPhone());
+    }
     //METODOS CRUD
 
     public List<ClienteDTO> obtenerTodosClientes() {
@@ -33,31 +37,12 @@ public class ClienteService {
         return convierteDatos(clienteRepository.findByClientUser(login));
     }
 
-    public List<ClienteDTO> obtenerPorID(Long idClient) {
+    public ClienteDTO obtenerPorID(Long idClient) {
         return convierteDatos(clienteRepository.findByIdClient(idClient));
     }
 
     public void guardarUsuario(DatosRegistroClienteDTO datosRegistroClienteDTO) {
         clienteRepository.save(new Cliente(datosRegistroClienteDTO));
-    }
-
-    public void actualizarClientePorUsuarioYContraseña(String login, String password, DatosRegistroClienteDTO datosRegistroClienteDTO) {
-        List<Cliente> clienteList = clienteRepository.findByClientUserAndClientPassword(login, password);
-
-        if (!clienteList.isEmpty()) {
-            Cliente cliente = clienteList.get(0); // Tomamos el primer cliente de la lista
-
-            cliente.setClientUser(datosRegistroClienteDTO.getClientUser());
-            cliente.setClientPassword(datosRegistroClienteDTO.getClientPassword());
-            cliente.setClientFirstName(datosRegistroClienteDTO.getClientFirstName());
-            cliente.setClientLastName(datosRegistroClienteDTO.getClientLastName());
-            cliente.setClientEmail(datosRegistroClienteDTO.getClientEmail());
-            cliente.setClientPhone(datosRegistroClienteDTO.getClientPhone());
-
-            clienteRepository.save(cliente);
-        } else {
-            throw new IllegalArgumentException("No se encontró ningún cliente con el usuario y contraseña especificados");
-        }
     }
 
 
