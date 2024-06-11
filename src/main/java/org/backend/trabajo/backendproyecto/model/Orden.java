@@ -32,7 +32,7 @@ public class Orden {
     @JoinColumn(name = "id_orden_estado")
     private OrdenEstado ordenEstado;
 
-    @OneToMany(mappedBy = "orden")
+    @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL)
     private List<OrdenDetalles> ordenDetalles;
 
 
