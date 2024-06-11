@@ -14,5 +14,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     Cliente findByIdClient(Long idCliente);
     Optional<Cliente> findByClientUserAndClientEmail(String usr, String email);
 
-
+    @Modifying
+    @Query("DELETE FROM Cliente c WHERE c.clientUser = :clientUser")
+    @Transactional
+    void deleteByClientUser(String clientUser);
 }

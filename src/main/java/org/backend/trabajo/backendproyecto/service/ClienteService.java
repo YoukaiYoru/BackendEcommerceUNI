@@ -1,6 +1,5 @@
 package org.backend.trabajo.backendproyecto.service;
 
-import ch.qos.logback.core.net.server.Client;
 import org.backend.trabajo.backendproyecto.RuntimeExceptionCustom.ClienteAlreadyExistsException;
 import org.backend.trabajo.backendproyecto.dto.ClienteDTO;
 import org.backend.trabajo.backendproyecto.dto.DatosRegistroClienteDTO;
@@ -8,6 +7,7 @@ import org.backend.trabajo.backendproyecto.model.Cliente;
 import org.backend.trabajo.backendproyecto.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,8 +48,8 @@ public class ClienteService {
         String clientUser = datosRegistroClienteDTO.getClientUser();
         Optional<Cliente> clienteExistente= clienteRepository.findByClientUserAndClientEmail(clientUser, clientEmail);
          if(clienteExistente.isPresent()){
-             throw new ClienteAlreadyExistsException("El cliente con el email " + clientEmail + " y nombre de usuario "
-                     + clientUser + " ya está registrado.");
+             throw new ClienteAlreadyExistsException("El cliente con el email " + clientEmail +
+                     " y nombre de usuario " + clientUser + " ya está registrado.");
          }else{
              clienteRepository.save(new Cliente(datosRegistroClienteDTO));
          }
@@ -57,10 +57,16 @@ public class ClienteService {
     }
 
 
-    public void eliminarClientePorLogin(String login) {
-        clienteRepository.findByClientUser(login);
+    @Transactional
+    public boolean eliminarClientePorLogin(String login) {
+        List<Cliente> clientes = clienteRepository.findByClientUser(login);
+        if (!clientes.isEmpty()) {
+            clienteRepository.deleteAll(clientes);
+            return true;
+        } else {
+            return false;
+        }
     }
-
     //ADITIONAL SERVICE
 
 

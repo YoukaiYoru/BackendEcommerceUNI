@@ -7,7 +7,7 @@ public record DatosRegistroClienteDTO(
         @NotBlank String clientPassword,
         @NotBlank String clientFirstName,
         @NotBlank String clientLastName,
-        @NotBlank @Email String clientEmail,
+        @NotBlank @Email(message = "{email.invalido}") String clientEmail,
         @NotBlank String clientPhone
 ) {
         public String getClientUser() {
