@@ -34,9 +34,9 @@ public class ClienteController {
     }
 
     @GetMapping("/login/{login}")
-    public ResponseEntity<List<ClienteDTO>> obtenerClientePorLogin(@PathVariable String login) {
-        List<ClienteDTO> cliente = clienteService.obtenerPorLogin(login);
-        if (cliente.isEmpty()) {
+    public ResponseEntity<ClienteDTO> obtenerClientePorLogin(@PathVariable String login) {
+        ClienteDTO cliente = clienteService.obtenerPorLogin(login);
+        if (cliente!=null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
         return ResponseEntity.ok(cliente);
@@ -72,14 +72,15 @@ public class ClienteController {
     @Transactional
     @PutMapping("/changePassword")
     public ResponseEntity cambiarPassword(@RequestBody @Valid ChangePasswordDTO password){
-        Cliente clienteActualizado = clienteService.actualizarPassword(password.login(), password.oldPassword(), password.newPassword());
+        clienteService.actualizarPassword(password.login(), password.oldPassword(), password.newPassword());
+        ClienteDTO clienteActualizado = clienteService.obtenerPorLogin(password.login());
         DatosRespuestaClienteDTO r = new DatosRespuestaClienteDTO(
-                clienteActualizado.getClientUser(),
-                clienteActualizado.getClientPassword(),
-                clienteActualizado.getClientFirstName(),
-                clienteActualizado.getClientLastName(),
-                clienteActualizado.getClientEmail(),
-                clienteActualizado.getClientPhone()
+                clienteActualizado.clientUser(),
+                clienteActualizado.clientPassword(),
+                clienteActualizado.clientFirstName(),
+                clienteActualizado.clientLastName(),
+                clienteActualizado.clientEmail(),
+                clienteActualizado.clientPhone()
         );
         return ResponseEntity.ok(r);
     }

@@ -36,7 +36,7 @@ public class ClienteService {
         return convierteDatos(clienteRepository.findAll());
     }
 
-    public List<ClienteDTO> obtenerPorLogin(String login) {
+    public ClienteDTO obtenerPorLogin(String login) {
         return convierteDatos(clienteRepository.findByClientUser(login));
     }
 
@@ -59,14 +59,8 @@ public class ClienteService {
 
 
     @Transactional
-    public boolean eliminarClientePorLogin(String login) {
-        List<Cliente> clientes = clienteRepository.findByClientUser(login);
-        if (!clientes.isEmpty()) {
-            clienteRepository.deleteAll(clientes);
-            return true;
-        } else {
-            return false;
-        }
+    public void eliminarClientePorLogin(String login) {
+        clienteRepository.deleteByClientUser(login);
     }
 
     //ADITIONAL SERVICE
@@ -74,12 +68,11 @@ public class ClienteService {
 
 //Mejorar este método
     @Transactional
-    public Cliente actualizarPassword(String login, String Oldpassword, String Newpassword) {
-        List<Cliente> cliente = clienteRepository.findByClientUser(login);
-        if (!cliente.isEmpty()) {
-            if (cliente.get(cliente.size() - 1).getClientPassword().equals(Oldpassword)) {
-                cliente.get(cliente.size() - 1).setClientPassword(Newpassword);
-                return clienteRepository.save(cliente.get(cliente.size() - 1));
+    public void actualizarPassword(String login, String Oldpassword, String Newpassword) {
+        Cliente cliente = clienteRepository.findByClientUser(login);
+        if (cliente!=null) {
+            if (cliente.getClientPassword().equals(Oldpassword)) {
+                clienteRepository.updatePassword(Newpassword, login);
             }
             else {
                 throw new RuntimeException("Contraseña incorrecta de " + login);
