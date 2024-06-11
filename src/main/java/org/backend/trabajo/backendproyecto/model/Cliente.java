@@ -1,7 +1,9 @@
 package org.backend.trabajo.backendproyecto.model;
 
 import jakarta.persistence.*;
+
 import org.backend.trabajo.backendproyecto.dto.DatosRegistroClienteDTO;
+
 import java.util.List;
 
 @Entity
