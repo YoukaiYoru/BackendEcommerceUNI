@@ -30,3 +30,9 @@ VALUES ('2024-03-27', '2024-03-25 16:45:00', 177.00, 15, 1, 2);
 
 INSERT INTO dbo.orden (date_delivery, orden_date, orden_monto, id_cliente, id_metodo_pago, id_orden_estado)
 VALUES ('2024-04-28', '2024-04-26 18:00:00', 180.00, 15, 1, 1);
+
+INSERT INTO dbo.orden (date_delivery, orden_date, orden_monto, id_cliente, id_metodo_pago, id_orden_estado)
+VALUES ('2024-04-28', '2024-04-26 18:00:00', 180.00, 15, 1, 1);
+
+SELECT * FROM dbo.orden
+

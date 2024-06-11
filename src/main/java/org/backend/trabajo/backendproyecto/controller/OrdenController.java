@@ -1,8 +1,10 @@
 package org.backend.trabajo.backendproyecto.controller;
 
 import org.backend.trabajo.backendproyecto.dto.OrdenDTO;
+import org.backend.trabajo.backendproyecto.dto.TodasLasOrdenesDTO;
 import org.backend.trabajo.backendproyecto.service.OrdenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,14 +25,19 @@ public class OrdenController {
         return ordenService.obtenerTodasLasOrdenes();
     }
 
-
-    @GetMapping("/orden/user/{id}")
-    public List<OrdenDTO> obtenerOrdenPorUsr(@PathVariable String usr) {
-        return ordenService.obtenerPorClientUsr((usr));
+    @GetMapping("/user/{login}")
+    public List<OrdenDTO> obtenerOrdenPorUsr(@PathVariable String login ) {
+        return ordenService.obtenerPorClientUsr(login);
     }
 
-    @GetMapping("/orden/{id}")
+    @GetMapping("/{id}")
     public List<OrdenDTO> obtenerOrdenPorId(@PathVariable Long id) {
         return Collections.singletonList(ordenService.obtenerPorId(id));
+    }
+
+    @GetMapping("/todas")
+    public ResponseEntity<List<TodasLasOrdenesDTO>> getDetailedOrdenInfoAsJson() {
+        List<TodasLasOrdenesDTO> r = ordenService.getDetailedOrdenInfo();
+        return ResponseEntity.ok(r);
     }
 }

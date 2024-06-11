@@ -10,6 +10,6 @@ public record OrdenDTO(
         float orderAmount,
         LocalDate orderDate,
         LocalDate dateDelivery,
-        Cliente idClient,
-        OrdenEstado idOrderStatus) {
+        Long idClient,
+        String idOrderStatus) {
 }

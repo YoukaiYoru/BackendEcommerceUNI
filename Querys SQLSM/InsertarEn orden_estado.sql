@@ -3,3 +3,5 @@ VALUES
     (1, 'pedido'),
     (2, 'pagado'),
     (3, 'recibido');
+
+SELECT * FROM dbo.orden_estado

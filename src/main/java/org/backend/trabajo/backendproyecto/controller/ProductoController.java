@@ -1,15 +1,22 @@
 package org.backend.trabajo.backendproyecto.controller;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.backend.trabajo.backendproyecto.dto.DatosProductoDTO;
+import org.backend.trabajo.backendproyecto.dto.DatosRespuestaProductoDTO;
 import org.backend.trabajo.backendproyecto.dto.ProductoDTO;
+import org.backend.trabajo.backendproyecto.model.Producto;
 import org.backend.trabajo.backendproyecto.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.math.BigDecimal;
+import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/producto")
@@ -42,14 +49,34 @@ public class ProductoController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> agregarProducto(@Valid @RequestBody DatosProductoDTO datosProducto) {
-        try {
-            productoService.agregarProducto(datosProducto);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Producto agregado exitosamente");
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al agregar el producto: " + e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno al procesar la solicitud");
-        }
+    public ResponseEntity<DatosRespuestaProductoDTO> agregarProducto(@Valid @RequestBody DatosProductoDTO datosProducto,
+                                                                     UriComponentsBuilder uriBuilder) {
+        Long productoId = productoService.agregarProducto(datosProducto);
+        DatosRespuestaProductoDTO r = new DatosRespuestaProductoDTO(datosProducto.product_name(), datosProducto.product_description(),
+                datosProducto.product_price(), datosProducto.product_stock(), datosProducto.product_img_url(), datosProducto.categoria_producto());
+        URI url = uriBuilder.path("/producto/id/{id}").buildAndExpand(productoId).toUri();
+        return ResponseEntity.created(url).body(r);
+
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity eliminarProductoPorId(@PathVariable Long id) {
+        productoService.eliminarPorId(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Transactional
+    @PutMapping("/change/{id}/{precio}")
+    public ResponseEntity actualizarPrecioPorId(@PathVariable Long id, @PathVariable Float precio) {
+        Producto productoActualizado = productoService.actualizarPrecioPorId(id, precio);
+        DatosRespuestaProductoDTO r = new DatosRespuestaProductoDTO(productoActualizado.getProductName(),
+                productoActualizado.getProductDescription(),
+                productoActualizado.getProductPrice(),
+                productoActualizado.getProductStock(),
+                productoActualizado.getProductImgUrl(),
+                productoActualizado.getCategoria().getCategoriaDescripcion()
+                );
+        return ResponseEntity.ok(r);
+    }
+
 }

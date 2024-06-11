@@ -4,10 +4,12 @@ import jakarta.transaction.Transactional;
 import org.backend.trabajo.backendproyecto.dto.DatosProductoDTO;
 import org.backend.trabajo.backendproyecto.dto.ProductoDTO;
 import org.backend.trabajo.backendproyecto.model.Categoria;
+import org.backend.trabajo.backendproyecto.model.Cliente;
 import org.backend.trabajo.backendproyecto.model.Producto;
 import org.backend.trabajo.backendproyecto.repository.CategoriaRepository;
 import org.backend.trabajo.backendproyecto.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,33 +43,51 @@ public class ProductoService {
         return null;
     }
 
+
     public List<ProductoDTO> obtenerProductosPorCategoria(String categoriaDescripcion) {
         Optional<Categoria> categoria = categoriaRepository.findCategoriaByCategoriaDescripcion(categoriaDescripcion);
         if (categoria.isPresent()) {
             List<Producto> productos = productoRepository.findByCategoria(categoria.get());
             return convierteDatos(productos);
         }
-        return List.of(); // Devuelve una lista vacía si no se encuentra la categoría
+        return List.of();
     }
 
     //Agrega producto y suma un contador a la categoria
     @Transactional
-    public void agregarProducto(DatosProductoDTO datosProductoDTO) {
+    public Long agregarProducto(DatosProductoDTO datosProductoDTO) {
         Optional<Categoria> categoria = categoriaRepository.findCategoriaByCategoriaDescripcion(datosProductoDTO.categoria_producto());
         if (categoria.isPresent()){
             Producto producto = new Producto(datosProductoDTO);
             producto.setCategoria(categoria.get());
-            productoRepository.save(producto);
+            Producto productoGuardado = productoRepository.save(producto);
 
             Categoria c = categoria.get();
             c.setCategoriaContador(c.getCategoriaContador() + 1);
             categoriaRepository.save(c);
+            return productoGuardado.getIdProducto();
         }
-
+        return null;
     }
 
 
+    public void eliminarPorId(Long id) {
+        Optional<Producto> producto = productoRepository.findById(id);
+        producto.ifPresent(p -> productoRepository.delete(p));
+    }
 
+
+    public Producto actualizarPrecioPorId(Long id,Float precio) {
+        Optional<Producto> producto = productoRepository.findById(id);
+        if (producto.isPresent()) {
+            Producto productoActualizado = producto.get();
+            productoActualizado.setProductPrice(precio);
+            return productoRepository.save(productoActualizado);
+        }
+        else{
+            throw new RuntimeException("Producto no encontrado");
+        }
+    }
 
 
 }
