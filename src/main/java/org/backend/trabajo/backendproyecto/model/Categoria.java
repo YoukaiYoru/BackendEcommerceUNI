@@ -9,10 +9,10 @@ import java.util.List;
 public class Categoria {
 
     @Id
-    private int idCategory;
-    private String categoryType;
-    private String categoryDescription;
-    private int categoryCount;
+    private int idCategoria;
+    private String categoriaTipo;
+    private String categoriaDescripcion;
+    private int categoriaContador;
 
         //RELATIONS
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -21,36 +21,36 @@ public class Categoria {
         //GETTERS AND SETTERS
     public Categoria() {}
 
-    public int getIdCategory() {
-        return idCategory;
+    public int getIdCategoria() {
+        return idCategoria;
     }
 
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
-    public String getCategoryType() {
-        return categoryType;
+    public String getCategoriaTipo() {
+        return categoriaTipo;
     }
 
-    public void setCategoryType(String categoryType) {
-        this.categoryType = categoryType;
+    public void setCategoriaTipo(String categoriaTipo) {
+        this.categoriaTipo = categoriaTipo;
     }
 
-    public String getCategoryDescription() {
-        return categoryDescription;
+    public String getCategoriaDescripcion() {
+        return categoriaDescripcion;
     }
 
-    public void setCategoryDescription(String categoryDescription) {
-        this.categoryDescription = categoryDescription;
+    public void setCategoriaDescripcion(String categoriaDescripcion) {
+        this.categoriaDescripcion = categoriaDescripcion;
     }
 
-    public int getCategoryCount() {
-        return categoryCount;
+    public int getCategoriaContador() {
+        return categoriaContador;
     }
 
-    public void setCategoryCount(int categoryCount) {
-        this.categoryCount = categoryCount;
+    public void setCategoriaContador(int categoriaContador) {
+        this.categoriaContador = categoriaContador;
     }
 
     public List<Producto> getListProductos() {

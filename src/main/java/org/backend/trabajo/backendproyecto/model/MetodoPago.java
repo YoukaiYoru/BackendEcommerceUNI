@@ -10,8 +10,8 @@ public class MetodoPago {
 
     @Id
     @GeneratedValue
-    private int id_payment_method;
-    private String payment_method;
+    private int id_metodo_pago;
+    private String metodo_pago;
 
     @OneToMany(mappedBy = "metodoPago")
     private List<Orden> orden;
@@ -19,20 +19,20 @@ public class MetodoPago {
      //GETTERS AND SETTERS
     public MetodoPago() {}
 
-    public int getId_payment_method() {
-        return id_payment_method;
+    public int getId_metodo_pago() {
+        return id_metodo_pago;
     }
 
-    public void setId_payment_method(int id_payment_method) {
-        this.id_payment_method = id_payment_method;
+    public void setId_metodo_pago(int id_metodo_pago) {
+        this.id_metodo_pago = id_metodo_pago;
     }
 
-    public String getPayment_method() {
-        return payment_method;
+    public String getMetodo_pago() {
+        return metodo_pago;
     }
 
-    public void setPayment_method(String payment_method) {
-        this.payment_method = payment_method;
+    public void setMetodo_pago(String metodo_pago) {
+        this.metodo_pago = metodo_pago;
     }
 
     public List<Orden> getOrden() {

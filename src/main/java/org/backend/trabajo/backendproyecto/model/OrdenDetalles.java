@@ -7,9 +7,9 @@ import jakarta.persistence.*;
 public class OrdenDetalles {
 
     @Id
-    private int idOrderDetails;
-    private int productPrice;
-    private int qtyProduct;
+    private int idOrdenDetalles;
+    private int productoPrecio;
+    private int cantidadProducto;
     //ORDERS
 
     @ManyToOne
@@ -23,28 +23,28 @@ public class OrdenDetalles {
     //GETTERS AND SETTERS
     public OrdenDetalles() {}
 
-    public int getIdOrderDetails() {
-        return idOrderDetails;
+    public int getIdOrdenDetalles() {
+        return idOrdenDetalles;
     }
 
-    public void setIdOrderDetails(int idOrderDetails) {
-        this.idOrderDetails = idOrderDetails;
+    public void setIdOrdenDetalles(int idOrdenDetalles) {
+        this.idOrdenDetalles = idOrdenDetalles;
     }
 
-    public int getProductPrice() {
-        return productPrice;
+    public int getProductoPrecio() {
+        return productoPrecio;
     }
 
-    public void setProductPrice(int productPrice) {
-        this.productPrice = productPrice;
+    public void setProductoPrecio(int productoPrecio) {
+        this.productoPrecio = productoPrecio;
     }
 
-    public int getQtyProduct() {
-        return qtyProduct;
+    public int getCantidadProducto() {
+        return cantidadProducto;
     }
 
-    public void setQtyProduct(int qtyProduct) {
-        this.qtyProduct = qtyProduct;
+    public void setCantidadProducto(int cantidadProducto) {
+        this.cantidadProducto = cantidadProducto;
     }
 
     public Orden getOrden() {

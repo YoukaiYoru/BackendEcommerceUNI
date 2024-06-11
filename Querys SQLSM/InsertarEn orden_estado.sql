@@ -1,4 +1,4 @@
-INSERT INTO dbo.orden_estado(id_order_status, order_status_name)
+INSERT INTO dbo.orden_estado(id_orden_estado, orden_estado_nombre)
 VALUES 
     (1, 'pedido'),
     (2, 'pagado'),

@@ -23,7 +23,7 @@ public class Producto {
     //RELATIONS
 
     @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_category")
+    @JoinColumn(name = "id_categoria")
     private Categoria categoria;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "producto")

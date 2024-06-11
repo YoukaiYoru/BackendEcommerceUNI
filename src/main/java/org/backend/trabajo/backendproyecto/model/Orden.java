@@ -1,6 +1,5 @@
 package org.backend.trabajo.backendproyecto.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -13,8 +12,8 @@ public class Orden {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idOrden;
-    private float orderAmount;
-    private LocalDate orderDate;
+    private float ordenMonto;
+    private LocalDate ordenDate;
     private LocalDate dateDelivery;
 
 
@@ -43,8 +42,8 @@ public class Orden {
     public String toString() {
         return "Orden{" +
                 "idOrden=" + idOrden +
-                ", orderAmount=" + orderAmount +
-                ", orderDate=" + orderDate +
+                ", ordenMonto=" + ordenMonto +
+                ", ordenDate=" + ordenDate +
                 ", dateDelivery=" + dateDelivery +
                 ", cliente=" + cliente +
                 ", metodoPago=" + metodoPago +
@@ -80,20 +79,20 @@ public class Orden {
         this.idOrden = idOrden;
     }
 
-    public float getOrderAmount() {
-        return orderAmount;
+    public float getOrdenMonto() {
+        return ordenMonto;
     }
 
-    public void setOrderAmount(float orderAmount) {
-        this.orderAmount = orderAmount;
+    public void setOrdenMonto(float ordenMonto) {
+        this.ordenMonto = ordenMonto;
     }
 
-    public LocalDate getOrderDate() {
-        return orderDate;
+    public LocalDate getOrdenDate() {
+        return ordenDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
-        this.orderDate = orderDate;
+    public void setOrdenDate(LocalDate ordenDate) {
+        this.ordenDate = ordenDate;
     }
 
     public LocalDate getDateDelivery() {

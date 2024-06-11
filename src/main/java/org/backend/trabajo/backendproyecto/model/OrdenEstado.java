@@ -9,8 +9,8 @@ import java.util.List;
 public class OrdenEstado {
 
     @Id
-    private int idOrderStatus;
-    private String orderStatusName;
+    private int idOrdenEstado;
+    private String ordenEstadoNombre;
 
     //RELATIONS
 
@@ -22,20 +22,20 @@ public class OrdenEstado {
 
     public OrdenEstado() {}
 
-    public int getIdOrderStatus() {
-        return idOrderStatus;
+    public int getIdOrdenEstado() {
+        return idOrdenEstado;
     }
 
-    public void setIdOrderStatus(int idOrderStatus) {
-        this.idOrderStatus = idOrderStatus;
+    public void setIdOrdenEstado(int idOrdenEstado) {
+        this.idOrdenEstado = idOrdenEstado;
     }
 
-    public String getOrderStatusName() {
-        return orderStatusName;
+    public String getOrdenEstadoNombre() {
+        return ordenEstadoNombre;
     }
 
-    public void setOrderStatusName(String orderStatusName) {
-        this.orderStatusName = orderStatusName;
+    public void setOrdenEstadoNombre(String ordenEstadoNombre) {
+        this.ordenEstadoNombre = ordenEstadoNombre;
     }
 
     public List<Orden> getOrden() {
