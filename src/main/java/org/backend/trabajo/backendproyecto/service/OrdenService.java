@@ -8,7 +8,6 @@ import org.backend.trabajo.backendproyecto.dto.OrdenDTO;
 import org.backend.trabajo.backendproyecto.model.Orden;
 import org.backend.trabajo.backendproyecto.repository.OrdenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -44,7 +43,7 @@ public class OrdenService {
         return convierteDatos(ordenRepository.findByClientUser(clientUsr));
     }
 
-    public List<TodasLasOrdenesDTO> getDetailedOrdenInfo() {
+    public List<TodasLasOrdenesDTO> obtenerOrdenesDetallasDeClientes() {
         List<Object[]> results = ordenRepository.findDetailedOrdenInfo();
 
         return results.stream()
@@ -89,5 +88,10 @@ public class OrdenService {
                 ))
                 .values().stream().collect(Collectors.toList());
     }
+
+
+
+
+
 
 }

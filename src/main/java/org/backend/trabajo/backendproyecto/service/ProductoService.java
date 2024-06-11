@@ -4,16 +4,19 @@ import jakarta.transaction.Transactional;
 import org.backend.trabajo.backendproyecto.dto.DatosProductoDTO;
 import org.backend.trabajo.backendproyecto.dto.ProductoDTO;
 import org.backend.trabajo.backendproyecto.model.Categoria;
-import org.backend.trabajo.backendproyecto.model.Cliente;
 import org.backend.trabajo.backendproyecto.model.Producto;
 import org.backend.trabajo.backendproyecto.repository.CategoriaRepository;
 import org.backend.trabajo.backendproyecto.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.*;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -90,4 +93,34 @@ public class ProductoService {
     }
 
 
+
+    //GuardarImagenDelUsuario
+    private static final String DIRECTORIO_IMAGENES = "src//main//resources//static//img"; // Assuming resources folder is on classpath
+
+    public String guardarImagen(MultipartFile file){
+        String nombreArchivo = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+
+        // Validate filename to prevent potential security vulnerabilities
+        if (nombreArchivo.contains("..")) {
+            throw new IllegalArgumentException("Filename contains invalid characters");
+        }
+        File directorio = new File(DIRECTORIO_IMAGENES);
+        if (!directorio.exists()) {
+            directorio.mkdirs();
+        }
+
+        if(!file.isEmpty()) {
+            Path path = Paths.get(DIRECTORIO_IMAGENES);
+            String rutaAbsoluta =path.toFile().getAbsolutePath();
+            try {
+                byte[] bytes = file.getBytes();
+                Path rutaCompleta = Paths.get(rutaAbsoluta, nombreArchivo);
+                Files.write(rutaCompleta, bytes);
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return DIRECTORIO_IMAGENES + "/" + nombreArchivo;
+    }
 }

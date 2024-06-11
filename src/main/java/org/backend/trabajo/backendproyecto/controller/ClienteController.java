@@ -1,10 +1,13 @@
 package org.backend.trabajo.backendproyecto.controller;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.backend.trabajo.backendproyecto.RuntimeExceptionCustom.ClienteAlreadyExistsException;
+import org.backend.trabajo.backendproyecto.dto.ChangePasswordDTO;
 import org.backend.trabajo.backendproyecto.dto.ClienteDTO;
 import org.backend.trabajo.backendproyecto.dto.DatosRegistroClienteDTO;
 import org.backend.trabajo.backendproyecto.dto.DatosRespuestaClienteDTO;
+import org.backend.trabajo.backendproyecto.model.Cliente;
 import org.backend.trabajo.backendproyecto.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -65,6 +68,22 @@ public class ClienteController {
         clienteService.eliminarClientePorLogin(login);
         return ResponseEntity.noContent().build();
     }
+
+    @Transactional
+    @PutMapping("/changePassword")
+    public ResponseEntity cambiarPassword(@RequestBody @Valid ChangePasswordDTO password){
+        Cliente clienteActualizado = clienteService.actualizarPassword(password.login(), password.oldPassword(), password.newPassword());
+        DatosRespuestaClienteDTO r = new DatosRespuestaClienteDTO(
+                clienteActualizado.getClientUser(),
+                clienteActualizado.getClientPassword(),
+                clienteActualizado.getClientFirstName(),
+                clienteActualizado.getClientLastName(),
+                clienteActualizado.getClientEmail(),
+                clienteActualizado.getClientPhone()
+        );
+        return ResponseEntity.ok(r);
+    }
+
 
 
 }

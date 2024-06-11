@@ -37,7 +37,9 @@ public class OrdenController {
 
     @GetMapping("/todas")
     public ResponseEntity<List<TodasLasOrdenesDTO>> getDetailedOrdenInfoAsJson() {
-        List<TodasLasOrdenesDTO> r = ordenService.getDetailedOrdenInfo();
+        List<TodasLasOrdenesDTO> r = ordenService.obtenerOrdenesDetallasDeClientes();
         return ResponseEntity.ok(r);
     }
+
+
 }

@@ -72,5 +72,22 @@ public class ClienteService {
     //ADITIONAL SERVICE
 
 
+//Mejorar este método
+    @Transactional
+    public Cliente actualizarPassword(String login, String Oldpassword, String Newpassword) {
+        List<Cliente> cliente = clienteRepository.findByClientUser(login);
+        if (!cliente.isEmpty()) {
+            if (cliente.get(cliente.size() - 1).getClientPassword().equals(Oldpassword)) {
+                cliente.get(cliente.size() - 1).setClientPassword(Newpassword);
+                return clienteRepository.save(cliente.get(cliente.size() - 1));
+            }
+            else {
+                throw new RuntimeException("Contraseña incorrecta de " + login);
+            }
+        }else {
+            throw new RuntimeException("No existe el cliente con el login " + login);
+        }
+    }
+
 
 }
