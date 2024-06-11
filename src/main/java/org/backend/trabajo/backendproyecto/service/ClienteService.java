@@ -1,6 +1,7 @@
 package org.backend.trabajo.backendproyecto.service;
 
 import ch.qos.logback.core.net.server.Client;
+import org.backend.trabajo.backendproyecto.RuntimeExceptionCustom.ClienteAlreadyExistsException;
 import org.backend.trabajo.backendproyecto.dto.ClienteDTO;
 import org.backend.trabajo.backendproyecto.dto.DatosRegistroClienteDTO;
 import org.backend.trabajo.backendproyecto.model.Cliente;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,7 +44,16 @@ public class ClienteService {
     }
 
     public void guardarUsuario(DatosRegistroClienteDTO datosRegistroClienteDTO) {
-        clienteRepository.save(new Cliente(datosRegistroClienteDTO));
+        String clientEmail = datosRegistroClienteDTO.getClientEmail();
+        String clientUser = datosRegistroClienteDTO.getClientUser();
+        Optional<Cliente> clienteExistente= clienteRepository.findByClientUserAndClientEmail(clientUser, clientEmail);
+         if(clienteExistente.isPresent()){
+             throw new ClienteAlreadyExistsException("El cliente con el email " + clientEmail + " y nombre de usuario "
+                     + clientUser + " ya está registrado.");
+         }else{
+             clienteRepository.save(new Cliente(datosRegistroClienteDTO));
+         }
+
     }
 
 

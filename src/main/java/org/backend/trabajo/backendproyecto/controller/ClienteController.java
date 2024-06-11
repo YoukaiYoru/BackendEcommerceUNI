@@ -1,12 +1,13 @@
 package org.backend.trabajo.backendproyecto.controller;
 
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import org.backend.trabajo.backendproyecto.RuntimeExceptionCustom.ClienteAlreadyExistsException;
 import org.backend.trabajo.backendproyecto.dto.ClienteDTO;
 import org.backend.trabajo.backendproyecto.dto.DatosRegistroClienteDTO;
 import org.backend.trabajo.backendproyecto.dto.DatosRespuestaClienteDTO;
 import org.backend.trabajo.backendproyecto.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -18,32 +19,45 @@ import java.util.List;
 @RequestMapping("/user")
 public class ClienteController {
     @Autowired
-    private ClienteService ClienteService;
-
+    private ClienteService clienteService;
 
     @GetMapping()
-    public List<ClienteDTO> obtenerUsuarios() {
-        return ClienteService.obtenerTodosClientes();
+    public ResponseEntity<List<ClienteDTO>> obtenerUsuarios() {
+        List<ClienteDTO> clientes = clienteService.obtenerTodosClientes();
+        if (clientes.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(clientes);
     }
 
     @GetMapping("/login/{login}")
-    public List<ClienteDTO> obtenerUsrPorLogin(@PathVariable String login) {
-        return ClienteService.obtenerPorLogin(login);
+    public ResponseEntity<List<ClienteDTO>> obtenerUsrPorLogin(@PathVariable String login) {
+        List<ClienteDTO> cliente = clienteService.obtenerPorLogin(login);
+        if (cliente.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        return ResponseEntity.ok(cliente);
     }
 
     @GetMapping("/{id}")
-    public ClienteDTO obtenerPorId(@PathVariable Long id){
-        return ClienteService.obtenerPorID(id);
+    public ResponseEntity obtenerPorId(@PathVariable Long id){
+        ClienteDTO clientbyId = clienteService.obtenerPorID(id);
+        return ResponseEntity.ok(clientbyId);
     }
 
     @PostMapping("/register")
     public ResponseEntity<DatosRespuestaClienteDTO> registrarCliente(@RequestBody @Valid DatosRegistroClienteDTO datosCliente,
                                            UriComponentsBuilder uriComponentsBuilder) {
-        ClienteService.guardarUsuario(datosCliente);
-        DatosRespuestaClienteDTO r = new DatosRespuestaClienteDTO(datosCliente.clientUser(),datosCliente.clientPassword(),
-                datosCliente.clientFirstName(),datosCliente.clientLastName(),datosCliente.clientEmail(),datosCliente.clientPhone());
-        URI url = uriComponentsBuilder.path("/register").build().toUri();
-        return ResponseEntity.created(url).body(r);
+        try {
+            clienteService.guardarUsuario(datosCliente);
+            DatosRespuestaClienteDTO r = new DatosRespuestaClienteDTO(datosCliente.getClientUser(), datosCliente.getClientPassword(),
+                    datosCliente.getClientFirstName(), datosCliente.getClientLastName(), datosCliente.getClientEmail(), datosCliente.getClientPhone());
+            URI url = uriComponentsBuilder.path("/user/login/{login}").buildAndExpand(datosCliente.getClientUser()).toUri();
+            return ResponseEntity.created(url).body(r);
+        } catch (ClienteAlreadyExistsException e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+        }
     }
 
 
@@ -52,7 +66,7 @@ public class ClienteController {
 
     @DeleteMapping("/{login}")
     public ResponseEntity eliminarClientePorLogin(@PathVariable String login) {
-        ClienteService.eliminarClientePorLogin(login);
+        clienteService.eliminarClientePorLogin(login);
         return ResponseEntity.noContent().build();
     }
 
