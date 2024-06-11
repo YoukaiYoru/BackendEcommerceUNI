@@ -1,10 +1,17 @@
 package org.backend.trabajo.backendproyecto.controller;
 
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.backend.trabajo.backendproyecto.dto.ClienteDTO;
 import org.backend.trabajo.backendproyecto.dto.DatosRegistroClienteDTO;
+import org.backend.trabajo.backendproyecto.dto.DatosRespuestaClienteDTO;
 import org.backend.trabajo.backendproyecto.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -19,7 +26,7 @@ public class ClienteController {
         return ClienteService.obtenerTodosClientes();
     }
 
-    @GetMapping("/{login}")
+    @GetMapping("/login/{login}")
     public List<ClienteDTO> obtenerUsrPorLogin(@PathVariable String login) {
         return ClienteService.obtenerPorLogin(login);
     }
@@ -30,15 +37,23 @@ public class ClienteController {
     }
 
     @PostMapping("/register")
-    public void registrarCliente(@RequestBody DatosRegistroClienteDTO datosCliente) {
+    public ResponseEntity<DatosRespuestaClienteDTO> registrarCliente(@RequestBody @Valid DatosRegistroClienteDTO datosCliente,
+                                           UriComponentsBuilder uriComponentsBuilder) {
         ClienteService.guardarUsuario(datosCliente);
+        DatosRespuestaClienteDTO r = new DatosRespuestaClienteDTO(datosCliente.clientUser(),datosCliente.clientPassword(),
+                datosCliente.clientFirstName(),datosCliente.clientLastName(),datosCliente.clientEmail(),datosCliente.clientPhone());
+        URI url = uriComponentsBuilder.path("/register").build().toUri();
+        return ResponseEntity.created(url).body(r);
     }
 
 
 
+
+
     @DeleteMapping("/{login}")
-    public void eliminarClientePorLogin(@PathVariable String login) {
+    public ResponseEntity eliminarClientePorLogin(@PathVariable String login) {
         ClienteService.eliminarClientePorLogin(login);
+        return ResponseEntity.noContent().build();
     }
 
 }
