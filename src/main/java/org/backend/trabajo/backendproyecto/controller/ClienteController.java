@@ -31,7 +31,7 @@ public class ClienteController {
     }
 
     @GetMapping("/login/{login}")
-    public ResponseEntity<List<ClienteDTO>> obtenerUsrPorLogin(@PathVariable String login) {
+    public ResponseEntity<List<ClienteDTO>> obtenerClientePorLogin(@PathVariable String login) {
         List<ClienteDTO> cliente = clienteService.obtenerPorLogin(login);
         if (cliente.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -39,8 +39,8 @@ public class ClienteController {
         return ResponseEntity.ok(cliente);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity obtenerPorId(@PathVariable Long id){
+    @GetMapping("/id/{id}")
+    public ResponseEntity obtenerClientePorId(@PathVariable Long id){
         ClienteDTO clientbyId = clienteService.obtenerPorID(id);
         return ResponseEntity.ok(clientbyId);
     }
@@ -60,14 +60,11 @@ public class ClienteController {
         }
     }
 
-
-
-
-
     @DeleteMapping("/{login}")
     public ResponseEntity eliminarClientePorLogin(@PathVariable String login) {
         clienteService.eliminarClientePorLogin(login);
         return ResponseEntity.noContent().build();
     }
+
 
 }
