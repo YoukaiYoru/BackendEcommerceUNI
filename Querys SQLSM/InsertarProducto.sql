@@ -309,3 +309,570 @@ VALUES(76,'Autor: José Luis Beingolea Del Carpio - Año de publicación: 2015 -
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_category)
 VALUES(77,'Autor: Carlos Bazán Cabanillas - Año de publicación: 2018 - N° de Paginas: 210','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-77.png','Yo Entiendo y Aprendo Inglés',45.00,0,1);
 
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Llavero ligero y duradero, confeccionado con material microporoso de alta calidad. Presenta el logo de la UNI impreso con precisión, mostrando tu orgullo por la institución de manera clara y nítida. Ideal para asegurar tus llaves de forma segura y agregar un toque de estilo universitario a tu día a día. El diseño microporoso proporciona una sensación suave al tacto y una apariencia moderna. Dimensiones: Largo: 6 cm Ancho: 5 cm',
+           'nohay',
+           'Llavero Microporoso',
+           8.00,
+           stock,
+           2
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Confeccionado en dril de alta calidad, en un elegante color granate. Presenta el escudo UNI bordado en la parte frontal de la gorra para un estilo distintivo. Diseño con 6 hélices para una apariencia moderna y aerodinámica.',
+           'nohay',
+           'Gorro de Dril',
+           30.00,
+           stock,
+           7
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Llavero de alta calidad, fabricado en metal resistente. Incluye pantografía del escudo UNI, agregando un toque de elegancia y orgullo institucional. Viene acompañado de una caja de cartón a medida, ideal para regalo o almacenamiento seguro. Dimensiones: Largo: 4 cm / Ancho: 3 cm Estuche: Largo: 11 cm / Ancho: 5 cm',
+           'nohay',
+           'Llavero Metálico',
+           20.00,
+           stock,
+           2
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Elegante pin bañado en oro, diseñado para destacar. Presenta el escudo de la UNI en alto relieve, reflejando orgullo institucional. Un accesorio que añade un toque de distinción a cualquier atuendo o accesorio.',
+           'nohay',
+           'Pin Logo UNI',
+           16.00,
+           stock,
+           2
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Polo confeccionado en suave algodón piqué de color blanco, que ofrece una apariencia fresca y pulcra. El logo de la UNI, bordado con precisión, adorna el pecho, añadiendo un toque de distinción y orgullo universitario. Cuello camisero que brinda un estilo refinado y versátil, perfecto para ocasiones formales o informales. Fabricado con materiales de alta calidad para garantizar durabilidad, comodidad y una sensación agradable en la piel. Tallas: S, M, L y XL',
+           'nohay',
+           'Polo Piqué Blanco',
+           70.00,
+           stock,
+           7
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Fabricada con lona resistente para una durabilidad excepcional. Equipada con tres bolsillos con cierre para mantener tus pertenencias organizadas y seguras. Incluye un portalaptop acolchado para proteger tu dispositivo electrónico en todo momento. Con entrada para audífonos, podrás disfrutar de tu música favorita mientras mantienes tu dispositivo seguro en la mochila. Colores disponibles: Gris claro y negro. (Consultar stock) Dimensiones: Alto: 45 cm Ancho:  32 cm Fuelle: 15 cm',
+           'nohay',
+           'Mochila de Lona Negro',
+           85.00,
+           stock,
+           6
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Libreta ecológica con tapas de cartón reciclado y hojas de papel reciclado, perfecta para anotar tus ideas de manera sostenible. El logo de la UNI está impreso en la portada, mostrando tu compromiso con el medio ambiente y tu orgullo institucional. Ideal para uso diario, estudios o como regalo para compañeros comprometidos con la preservación del entorno. Dimensiones: Alto: 21 cm / Ancho: 14 cm',
+           'nohay',
+           'Libreta Ecológica',
+           12.00,
+           stock,
+           3
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Tarjeta de crédito USB con capacidad de 16 GB, ideal para transportar y almacenar datos de forma segura y conveniente. El diseño elegante y delgado se adapta perfectamente a tu billetera o bolsillo, brindando portabilidad sin sacrificar espacio. La tarjeta presenta el logo de la UNI, mostrando tu orgullo institucional en cada uso. Compatible con una amplia gama de dispositivos y sistemas operativos. Dimensiones: Largo: 8.5 cm / Ancho: 5.5 cm / Grosor: 0.2 cm',
+           'nohay',
+           'Tarjeta de Crédito USB',
+           25.00,
+           stock,
+           5
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Mousepad de alta calidad con base antideslizante y superficie de tela suave para un desplazamiento preciso del ratón. Presenta el escudo de la UNI impreso en alta resolución, agregando un toque de estilo institucional a tu espacio de trabajo. El borde cosido evita el deshilachado y garantiza una mayor durabilidad. Dimensiones: Largo: 25 cm / Ancho: 20 cm / Grosor: 0.3 cm',
+           'nohay',
+           'Mousepad UNI',
+           15.00,
+           stock,
+           4
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Bolígrafo de metal de alta calidad con acabado cromado y detalles dorados, diseñado para un rendimiento suave y duradero. El logo de la UNI está grabado con precisión en el cuerpo del bolígrafo, mostrando tu orgullo institucional en cada firma. Equipado con tinta de calidad que garantiza trazos limpios y nítidos en cada uso. Presentado en una elegante caja de regalo, perfecta para obsequiar a estudiantes, graduados o colegas. Longitud: 14 cm',
+           'nohay',
+           'Bolígrafo de Metal',
+           18.00,
+           stock,
+           3
+       );
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Gorro de lanilla de alta calidad con diseño clásico y cómodo ajuste. Presenta el escudo de la UNI bordado en la parte frontal, añadiendo un toque de estilo universitario a tu vestimenta diaria. Ideal para protegerte del frío con estilo durante tus actividades al aire libre o simplemente para lucir tu orgullo institucional en cualquier ocasión. Disponible en varios colores.',
+           'nohay',
+           'Gorro de Lanilla',
+           25.00,
+           stock,
+           7
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Sudadera con capucha fabricada en algodón suave y cálido para una comodidad duradera. Presenta el logo de la UNI impreso en la parte frontal, mostrando tu orgullo institucional con estilo. Diseño moderno con bolsillo canguro y capucha ajustable con cordón. Ideal para mantenerte abrigado y cómodo durante el clima frío o como una declaración de estilo casual en cualquier ocasión. Tallas disponibles: S, M, L y XL.',
+           'nohay',
+           'Sudadera con Capucha',
+           90.00,
+           stock,
+           7
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Mochila para laptop resistente y funcional, diseñada para transportar y proteger tu computadora portátil y otros dispositivos electrónicos de manera segura y conveniente. Fabricada en material impermeable de alta calidad, ofrece una excelente protección contra la lluvia y la humedad. Dispone de compartimentos acolchados y ajustables para organizar tus pertenencias de forma eficiente. Ideal para estudiantes, profesionales y viajeros. Dimensiones: Alto: 45 cm / Ancho: 30 cm / Profundidad: 15 cm.',
+           'nohay',
+           'Mochila para Laptop',
+           120.00,
+           stock,
+           6
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Polo de algodón suave y transpirable con diseño clásico y confortable ajuste. Presenta el logo de la UNI bordado en el pecho, agregando un toque de estilo institucional a tu vestimenta diaria. Ideal para uso casual, deportivo o como parte de tu atuendo universitario. Disponible en varios colores y tallas. Material: 100% Algodón.',
+           'nohay',
+           'Polo de Algodón UNI',
+           35.00,
+           stock,
+           7
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Llavero metálico resistente y duradero con diseño elegante y funcional. Presenta el logo de la UNI grabado con precisión en relieve, añadiendo un toque de estilo institucional a tus llaves. Equipado con un resistente anillo dividido para sujetar tus llaves de forma segura. Ideal como accesorio personal o como regalo para compañeros y amigos. Dimensiones: Largo: 8 cm / Ancho: 3 cm (sin incluir el anillo).',
+           'nohay',
+           'Llavero Metálico UNI',
+           15.50,
+           stock,
+           2
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Paraguas plegable de alta calidad con diseño elegante y funcional. Presenta el escudo de la UNI impreso en alta resolución en una de las secciones, añadiendo un toque de estilo institucional a tus accesorios personales. Fabricado en material resistente al agua y al viento, con varillas de fibra de vidrio para una mayor durabilidad. Incluye una funda de tela para un almacenamiento conveniente. Diámetro abierto: 100 cm / Longitud cerrado: 28 cm.',
+           'nohay',
+           'Paraguas Plegable UNI',
+           42.00,
+           stock,
+           2
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Cámara web HD con resolución de 1080p para videoconferencias y transmisiones en vivo de alta calidad. Ofrece una excelente claridad de imagen y reproducción de colores, perfecta para reuniones virtuales, clases en línea, streaming de videojuegos y más. Cuenta con micrófono integrado para una captura de audio nítida y sin interferencias. Compatible con una amplia gama de plataformas de comunicación y sistemas operativos. Conexión USB plug-and-play para una configuración rápida y sencilla.',
+           'nohay',
+           'Cámara Web HD',
+           85.00,
+           stock,
+           5
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Térmico de acero inoxidable con diseño elegante y funcional. Presenta el logo de la UNI grabado con precisión en la superficie, agregando un toque de estilo institucional a tu vaso de bebida favorito. Aislamiento al vacío de doble pared para mantener tus bebidas calientes o frías durante horas. Tapa a prueba de derrames con cierre hermético para un transporte seguro. Capacidad: 500 ml.',
+           'nohay',
+           'Térmico UNI',
+           28.00,
+           stock,
+           2
+       );
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Power bank portátil con capacidad de 10000 mAh para cargar tus dispositivos electrónicos sobre la marcha. Presenta el logo de la UNI impreso en la carcasa, mostrando tu orgullo institucional en cada carga. Equipado con múltiples puertos de salida para cargar varios dispositivos simultáneamente. Diseño compacto y ligero, ideal para viajes, excursiones y situaciones de emergencia. Incluye cable de carga USB para mayor comodidad.',
+           'nohay',
+           'Power Bank UNI',
+           60.00,
+           stock,
+           5
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Memoria USB de 32GB con diseño exclusivo de la UNI. Almacena y transporta tus archivos digitales de forma segura y conveniente. Presenta el logo de la UNI impreso en la carcasa, mostrando tu orgullo institucional en cada transferencia de datos. Compatible con dispositivos equipados con puertos USB 2.0 y 3.0. Ideal para estudiantes, profesionales y entusiastas de la tecnología.',
+           'nohay',
+           'USB UNI 32GB',
+           25.00,
+           stock,
+           5
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Gorra de béisbol con diseño clásico y elegante. Presenta el logo de la UNI bordado en la parte frontal, añadiendo un toque de estilo institucional a tu atuendo diario. Construida en material resistente y transpirable, con cierre ajustable para un ajuste cómodo y seguro. Disponible en varios colores. Talla única.',
+           'nohay',
+           'Gorra UNI',
+           18.00,
+           stock,
+           7
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Cargador portátil solar con capacidad de 20000 mAh para cargar tus dispositivos electrónicos con energía solar. Equipado con paneles solares de alta eficiencia para una carga rápida y sostenible. Presenta el logo de la UNI impreso en la carcasa, mostrando tu orgullo institucional en cada carga. Resistente al agua y al polvo, ideal para actividades al aire libre y viajes. Incluye puerto USB-C y puertos USB estándar para una compatibilidad versátil.',
+           'nohay',
+           'Cargador Portátil Solar',
+           95.00,
+           stock,
+           5
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Tarjeta de visita personalizada con diseño exclusivo y acabado profesional. Presenta tus datos de contacto de manera elegante y memorable. Impresa en papel de alta calidad con opciones de acabado mate o brillante. Personalizable con tu nombre, título, empresa y detalles de contacto. Ideal para profesionales, empresarios y emprendedores que desean destacarse en redes de networking y eventos empresariales.',
+           'nohay',
+           'Tarjeta de Visita Personalizada',
+           30.00,
+           stock,
+           2
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Libreta ecológica con tapas de cartón reciclado y hojas de papel reciclado, perfecta para anotar tus ideas de manera sostenible. El logo de la UNI está impreso en la portada, mostrando tu compromiso con el medio ambiente y tu orgullo institucional. Ideal para uso diario, estudios o como regalo para compañeros comprometidos con la preservación del entorno. Dimensiones: Alto: 21 cm / Ancho: 14 cm.',
+           'nohay',
+           'Libreta Ecológica',
+           12.00,
+           stock,
+           3
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Tarjeta de crédito USB con capacidad de 16 GB, ideal para transportar y almacenar datos de forma segura y conveniente. El diseño elegante y delgado se adapta perfectamente a tu billetera o bolsillo, brindando portabilidad sin sacrificar espacio. La tarjeta presenta el logo de la UNI, mostrando tu orgullo institucional en cada uso. Compatible con una amplia gama de dispositivos y sistemas operativos. Dimensiones: Largo: 8.5 cm / Ancho: 5.5 cm / Grosor: 0.2 cm.',
+           'nohay',
+           'Tarjeta de Crédito USB',
+           25.00,
+           stock,
+           5
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Mousepad de alta calidad con base antideslizante y superficie de tela suave para un desplazamiento preciso del ratón. Presenta el escudo de la UNI impreso en alta resolución, agregando un toque de estilo institucional a tu espacio de trabajo. El borde cosido evita el deshilachado y garantiza una mayor durabilidad. Dimensiones: Largo: 25 cm / Ancho: 20 cm / Grosor: 0.3 cm.',
+           'nohay',
+           'Mousepad UNI',
+           15.00,
+           stock,
+           4
+       );
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Bolígrafo de metal de alta calidad con acabado cromado y detalles dorados, diseñado para un rendimiento suave y duradero. El logo de la UNI está grabado con precisión en el cuerpo del bolígrafo, mostrando tu orgullo institucional en cada firma. Equipado con tinta de calidad que garantiza trazos limpios y nítidos en cada uso. Presentado en una elegante caja de regalo, perfecta para obsequiar a estudiantes, graduados o colegas. Longitud: 14 cm.',
+           'nohay',
+           'Bolígrafo de Metal',
+           18.00,
+           stock,
+           3
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Gorro de lanilla de alta calidad con diseño clásico y cómodo ajuste. Presenta el escudo de la UNI bordado en la parte frontal, añadiendo un toque de estilo universitario a tu vestimenta diaria. Ideal para protegerte del frío con estilo durante tus actividades al aire libre o simplemente para lucir tu orgullo institucional en cualquier ocasión. Disponible en varios colores.',
+           'nohay',
+           'Gorro de Lanilla',
+           25.00,
+           stock,
+           7
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Sudadera con capucha fabricada en algodón suave y cálido para una comodidad duradera. Presenta el logo de la UNI impreso en la parte frontal, mostrando tu orgullo institucional con estilo. Diseño moderno con bolsillo canguro y capucha ajustable con cordón. Ideal para mantenerte abrigado y cómodo durante el clima frío o como una declaración de estilo casual en cualquier ocasión. Tallas disponibles: S, M, L y XL.',
+           'nohay',
+           'Sudadera con Capucha',
+           90.00,
+           stock,
+           7
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Mochila para laptop resistente y funcional, diseñada para transportar y proteger tu computadora portátil y otros dispositivos electrónicos de manera segura y conveniente. Fabricada en material impermeable de alta calidad, ofrece una excelente protección contra la lluvia y la humedad. Dispone de compartimentos acolchados y ajustables para organizar tus pertenencias de forma eficiente. Ideal para estudiantes, profesionales y viajeros. Dimensiones: Alto: 45 cm / Ancho: 30 cm / Profundidad: 15 cm.',
+           'nohay',
+           'Mochila para Laptop',
+           120.00,
+           stock,
+           6
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Polo de algodón suave y transpirable con diseño clásico y confortable ajuste. Presenta el logo de la UNI bordado en el pecho, agregando un toque de estilo institucional a tu vestimenta diaria. Ideal para uso casual, deportivo o como parte de tu atuendo universitario. Disponible en varios colores y tallas. Material: 100% Algodón.',
+           'nohay',
+           'Polo de Algodón UNI',
+           35.00,
+           stock,
+           7
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Llavero metálico resistente y duradero con diseño elegante y funcional. Presenta el logo de la UNI grabado con precisión en relieve, añadiendo un toque de estilo institucional a tus llaves. Equipado con un resistente anillo dividido para sujetar tus llaves de forma segura. Ideal como accesorio personal o como regalo para compañeros y amigos. Dimensiones: Largo: 8 cm / Ancho: 3 cm (sin incluir el anillo).',
+           'nohay',
+           'Llavero Metálico UNI',
+           15.50,
+           stock,
+           2
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Paraguas plegable de alta calidad con diseño elegante y funcional. Presenta el escudo de la UNI impreso en alta resolución en una de las secciones, añadiendo un toque de estilo institucional a tus accesorios personales. Fabricado en material resistente al agua y al viento, con varillas de fibra de vidrio para una mayor durabilidad. Incluye una funda de tela para un almacenamiento conveniente. Diámetro abierto: 100 cm / Longitud cerrado: 28 cm.',
+           'nohay',
+           'Paraguas Plegable UNI',
+           42.00,
+           stock,
+           2
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Cámara web HD con resolución de 1080p para videoconferencias y transmisiones en vivo de alta calidad. Ofrece una excelente claridad de imagen y reproducción de colores, perfecta para reuniones virtuales, clases en línea, streaming de videojuegos y más. Cuenta con micrófono integrado para una captura de audio nítida y sin interferencias. Compatible con una amplia gama de plataformas de comunicación y sistemas operativos. Conexión USB plug-and-play para una configuración rápida y sencilla.',
+           'nohay',
+           'Cámara Web HD',
+           85.00,
+           stock,
+           5
+       );
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Térmico de acero inoxidable con diseño elegante y funcional. Presenta el logo de la UNI grabado con precisión en la superficie, agregando un toque de estilo institucional a tu vaso de bebida favorito. Aislamiento al vacío de doble pared para mantener tus bebidas calientes o frías durante horas. Tapa a prueba de derrames con cierre hermético para un transporte seguro. Capacidad: 500 ml.',
+           'nohay',
+           'Térmico UNI',
+           28.00,
+           stock,
+           2
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Power bank portátil con capacidad de 10000 mAh para cargar tus dispositivos electrónicos sobre la marcha. Presenta el logo de la UNI impreso en la carcasa, mostrando tu orgullo institucional en cada carga. Equipado con múltiples puertos de salida para cargar varios dispositivos simultáneamente. Diseño compacto y ligero, ideal para viajes, excursiones y situaciones de emergencia. Incluye cable de carga USB para mayor comodidad.',
+           'nohay',
+           'Power Bank UNI',
+           60.00,
+           stock,
+           5
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Memoria USB de 32GB con diseño exclusivo de la UNI. Almacena y transporta tus archivos digitales de forma segura y conveniente. Presenta el logo de la UNI impreso en la carcasa, mostrando tu orgullo institucional en cada transferencia de datos. Compatible con dispositivos equipados con puertos USB 2.0 y 3.0. Ideal para estudiantes, profesionales y entusiastas de la tecnología.',
+           'nohay',
+           'USB UNI 32GB',
+           25.00,
+           stock,
+           5
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Gorra de béisbol con diseño clásico y elegante. Presenta el logo de la UNI bordado en la parte frontal, añadiendo un toque de estilo institucional a tu atuendo diario. Construida en material resistente y transpirable, con cierre ajustable para un ajuste cómodo y seguro. Disponible en varios colores. Talla única.',
+           'nohay',
+           'Gorra UNI',
+           18.00,
+           stock,
+           7
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Cargador portátil solar con capacidad de 20000 mAh para cargar tus dispositivos electrónicos con energía solar. Equipado con paneles solares de alta eficiencia para una carga rápida y sostenible. Presenta el logo de la UNI impreso en la carcasa, mostrando tu orgullo institucional en cada carga. Resistente al agua y al polvo, ideal para actividades al aire libre y viajes. Incluye puerto USB-C y puertos USB estándar para una compatibilidad versátil.',
+           'nohay',
+           'Cargador Portátil Solar',
+           95.00,
+           stock,
+           5
+       );
+
+INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES (
+           'Tarjeta de visita personalizada con diseño exclusivo y acabado profesional. Presenta tus datos de contacto de manera elegante y memorable. Impresa en papel de alta calidad con opciones de acabado mate o brillante. Personalizable con tu nombre, título, empresa y detalles de contacto. Ideal para profesionales, empresarios y emprendedores que desean destacarse en redes de networking y eventos empresariales.',
+           'nohay',
+           'Tarjeta de Visita Personalizada',
+           30.00,
+           stock,
+           2
+       );
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES(
+          'Pluma ejecutiva de alta calidad con diseño elegante y ergonómico. Presenta el logo de la UNI grabado con precisión en el cuerpo, añadiendo un toque de estilo institucional a tu escritura diaria. Fabricada en metal resistente y duradero, con punta retráctil para una protección segura. Tinta de alta fluidez para una escritura suave y sin manchas. Ideal para uso personal, regalos corporativos y reconocimientos institucionales.',
+          'nohay',
+          'Pluma Ejecutiva UNI',
+          22.50,
+          stock,
+          3
+      );
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES(
+          'Cuaderno universitario de alta calidad con diseño funcional y duradero. Presenta el logo de la UNI impreso en la portada, añadiendo un toque de estilo institucional a tus apuntes y trabajos académicos. Construido con tapas duras y papel de alta gramaje para una mayor resistencia y durabilidad. Disponible en varios tamaños y diseños. Ideal para estudiantes, profesionales y aficionados a la escritura.',
+          'nohay',
+          'Cuaderno Universitario',
+          12.00,
+          stock,
+          3
+      );
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES(
+          'Parche bordado con el logo de la UNI para personalizar tus prendas y accesorios. Fabricado en material resistente y duradero, con detalles intrincados y colores vibrantes. Presenta un adhesivo termofusible en la parte posterior para una fácil aplicación en una amplia variedad de tejidos. Ideal para customizar chaquetas, mochilas, gorras y más. Tamaño: 7 cm de diámetro.',
+          'nohay',
+          'Parche Bordado UNI',
+          8.50,
+          stock,
+          2
+      );
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES(
+          'Polo de algodón de alta calidad con diseño moderno y confortable. Presenta el logo de la UNI impreso en el pecho, mostrando tu orgullo institucional con estilo. Construido en tejido transpirable y suave al tacto para una comodidad duradera. Disponible en varios colores y tallas. Ideal para uso diario, eventos institucionales y actividades deportivas.',
+          'nohay',
+          'Polo UNI',
+          28.00,
+          stock,
+          7
+      );
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES(
+          'Mochila para portátil con diseño ergonómico y funcional. Presenta el logo de la UNI bordado en el bolsillo frontal, añadiendo un toque de estilo institucional a tu equipaje diario. Construida en material resistente y repelente al agua, con compartimentos acolchados para portátil y tablet. Correas ajustables y acolchadas para un transporte cómodo y seguro. Ideal para estudiantes, profesionales y viajeros.',
+          'nohay',
+          'Mochila para Portátil UNI',
+          45.00,
+          stock,
+          6
+      );
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES(
+          'Lámpara LED USB portátil y ajustable con diseño moderno y funcional. Conecta la lámpara a cualquier puerto USB para disfrutar de iluminación adicional en tu escritorio, dormitorio o área de lectura. Presenta un cuello flexible que se puede ajustar en múltiples direcciones para dirigir la luz según tus necesidades. Bajo consumo de energía y sin parpadeos, ideal para estudiar, trabajar o relajarse.',
+          'nohay',
+          'Lámpara LED USB',
+          15.00,
+          stock,
+          5
+      );
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES(
+          'Portafolio ejecutivo de alta calidad con diseño elegante y funcional. Presenta el logo de la UNI grabado en la tapa, añadiendo un toque de estilo institucional a tus reuniones y presentaciones. Construido en cuero sintético resistente y duradero, con compartimentos internos para documentos, tarjetas y bolígrafos. Cierre de cremallera para una protección segura. Incluye bloc de notas A4 y calculadora solar. Ideal para profesionales, ejecutivos y estudiantes universitarios.',
+          'nohay',
+          'Portafolio Ejecutivo UNI',
+          38.00,
+          stock,
+          3
+      );
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES(
+          'Pendrive de 16GB con diseño exclusivo de la UNI. Almacena y transporta tus archivos digitales de forma segura y conveniente. Presenta el logo de la UNI impreso en la carcasa, mostrando tu orgullo institucional en cada transferencia de datos. Compatible con dispositivos equipados con puertos USB 2.0 y 3.0. Ideal para estudiantes, profesionales y entusiastas de la tecnología.',
+          'nohay',
+          'Pendrive UNI 16GB',
+          20.00,
+          stock,
+          5
+      );
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Pendrive de 16GB con diseño exclusivo de la UNI. Almacena y transporta tus archivos digitales con estilo y seguridad.','nohay','Pendrive UNI 16GB',20.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Gorra de béisbol con diseño clásico y elegante.','nohay','Gorra bordada UNI',16.00,stock,7);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Memoria externa de 1TB con diseño compacto y elegante.','nohay','Memoria externa 1TB',120.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Sudadera con capucha y diseño moderno.','nohay','Sudadera UNI',35.00,stock,7);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Toma corriente múltiple con diseño compacto y funcional.','nohay','Toma corriente múltiple',18.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Mouse inalámbrico con diseño ergonómico y funcional.','nohay','Mouse inalámbrico UNI',25.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Almohadilla de enfriamiento para portátil con diseño ergonómico y funcional.','nohay','Almohadilla de enfriamiento para portátil',22.00,stock,4);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Termo de acero inoxidable con diseño exclusivo de la UNI.','nohay','Termo UNI 500ML',12.00,stock,2);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Cable HDMI de 2 metros con diseño exclusivo de la UNI.','nohay','Cable HDMI UNI 2M',8.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('USB flash drive con capacidad de 16GB y diseño exclusivo de la UNI.','nohay','USB Flash Drive UNI 16GB',10.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Cuaderno universitario con diseño exclusivo de la UNI.','nohay','Cuaderno universitario UNI',5.00,stock,3);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Pack de 6 marcadores fluorescentes con diseño exclusivo de la UNI.','nohay','Marcadores Fluorescentes UNI (Pack de 6)',8.00,stock,3);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Lámpara de escritorio LED con diseño moderno y funcional.','nohay','Lámpara de escritorio LED',30.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Memoria RAM DDR4 de 8GB con diseño exclusivo de la UNI.','nohay','Memoria RAM DDR4 8GB UNI',60.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Enchufe inteligente WiFi con diseño compacto y funcional.','nohay','Enchufe inteligente WiFi',25.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Teclado inalámbrico Bluetooth con diseño exclusivo de la UNI.','nohay','Teclado inalámbrico Bluetooth UNI',35.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Mouse inalámbrico con diseño exclusivo de la UNI.','nohay','Mouse inalámbrico UNI',20.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Altavoces Bluetooth con diseño exclusivo de la UNI.','nohay','Altavoces Bluetooth UNI (Par)',45.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Cámara de seguridad WiFi con diseño compacto y funcional.','nohay','Cámara de seguridad WiFi',55.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Auriculares inalámbricos con diseño exclusivo de la UNI.','nohay','Auriculares inalámbricos UNI',40.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Impresora multifuncional con diseño compacto y versátil.','nohay','Impresora multifuncional',120.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Cargador portátil con diseño exclusivo de la UNI.','nohay','Cargador portátil UNI',30.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Teclado inalámbrico con diseño exclusivo de la UNI.','nohay','Teclado inalámbrico UNI',25.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Memoria USB con diseño exclusivo de la UNI.','nohay','Memoria USB UNI 16GB',10.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Mochila portanotebook con diseño exclusivo de la UNI.','nohay','Mochila portanotebook UNI',35.00,stock,6);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Cuaderno con diseño exclusivo de la UNI.','nohay','Cuaderno UNI RAYADO',5.00,stock,3);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Termo de acero inoxidable con diseño exclusivo de la UNI.','nohay','Termos UNI 500ML',12.00,stock,2);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Cable HDMI de 2 metros con diseño exclusivo de la UNI.','nohay','Cable HDMI UNI 2M',8.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Marcadores fluorescentes con diseño exclusivo de la UNI.','nohay','Marcadores fluorescentes UNI (Pack de 6)',8.00,stock,3);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Lámpara de escritorio LED con diseño moderno y funcional.','nohay','Lámpara de escritorio LED',30.00,stock,5);
+
+INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
+VALUES('Memoria RAM DDR4 de 8GB con diseño exclusivo de la UNI.','nohay','Memoria RAM DDR4 8GB UNI',60.00,stock,5);
+
