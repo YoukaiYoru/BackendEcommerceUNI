@@ -46,7 +46,7 @@ public class ClienteService {
     public void guardarUsuario(DatosRegistroClienteDTO datosRegistroClienteDTO) {
         String clientEmail = datosRegistroClienteDTO.getClientEmail();
         String clientUser = datosRegistroClienteDTO.getClientUser();
-        List<Cliente> clienteExistente= clienteRepository.findByClientUserOrClientEmail(clientUser, clientEmail);
+        List<Cliente> clienteExistente= clienteRepository.findByClientUserAndClientEmail(clientUser, clientEmail);
          if(!clienteExistente.isEmpty()){
              throw new ClienteAlreadyExistsException("El cliente con el email " + clientEmail +
                      " y nombre de usuario " + clientUser + " ya está registrado.");
