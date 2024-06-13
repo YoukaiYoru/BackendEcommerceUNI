@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -83,6 +82,15 @@ public class ClienteService {
     }
 
 
-
+    public List<ClienteDTO> verificacionDeUsuario(String login, String password){
+        List<ClienteDTO> cliente = convierteDatos(clienteRepository.findByClientUser(login));
+        if(cliente.isEmpty()){
+            throw new RuntimeException("No existe el cliente con el login " + login);
+        }else if(password.equals(cliente.getFirst().clientPassword())){
+            return cliente;
+        }else{
+            throw new RuntimeException("Contraseña incorrecta");
+        }
+    }
 
 }

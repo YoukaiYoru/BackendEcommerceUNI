@@ -227,87 +227,87 @@ VALUES ('Autor: Iván Quiroz Núñez- Año de publicación: 2017- N° de Paginas
 
 -- Libro 57
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(57,'Autor: David Aranaga Manrique - Año de publicación: 2010 - N° de Paginas: 264','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-57.png','Política Económica y Desarrollo Nacional Regional',30.00,10,1);
+VALUES('Autor: David Aranaga Manrique - Año de publicación: 2010 - N° de Paginas: 264','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-57.png','Política Económica y Desarrollo Nacional Regional',30.00,10,1);
 
 -- Libro 58
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(58,'Autor: Humberto Chirif Rivera - Año de publicación: 2016 - N° de Paginas: 146','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-58.png','Preparación de Tesis e Informes Técnicos',45.00,10,1);
+VALUES('Autor: Humberto Chirif Rivera - Año de publicación: 2016 - N° de Paginas: 146','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-58.png','Preparación de Tesis e Informes Técnicos',45.00,10,1);
 
 -- Libro 59
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(59,'Autor: Aldo Max Delgado Acevedo - Año de publicación: 2018 - N° de Paginas: 250','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-59.png','Procesos Industriales en Ingeniería',52.00,10,1);
+VALUES('Autor: Aldo Max Delgado Acevedo - Año de publicación: 2018 - N° de Paginas: 250','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-59.png','Procesos Industriales en Ingeniería',52.00,10,1);
 
 -- Libro 60
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(60,'Autor: Jorge Butler Blacker - Mauricio Galvez Legua - Año de publicación: 2021 - N° de Paginas: 549','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-60.png','Programación Estructurada en C',96.00,10,1);
+VALUES('Autor: Jorge Butler Blacker - Mauricio Galvez Legua - Año de publicación: 2021 - N° de Paginas: 549','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-60.png','Programación Estructurada en C',96.00,10,1);
 
 -- Libro 61
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(61,'Autor: Jorge Luis Breña Ore - Enrique F. Neira - Año de publicación: 2008 - N° de Paginas: 484','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-61.png','Química Orgánica I',40.00,10,1);
+VALUES('Autor: Jorge Luis Breña Ore - Enrique F. Neira - Año de publicación: 2008 - N° de Paginas: 484','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-61.png','Química Orgánica I',40.00,10,1);
 
 -- Libro 62
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(62,'Autor: Jorge Luis Breña Ore - Enrique F. Neira - Cristina Viza Llanque - Año de publicación: 2011 - N° de Paginas: 416','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-62.png','Química Orgánica III',40.00,10,1);
+VALUES('Autor: Jorge Luis Breña Ore - Enrique F. Neira - Cristina Viza Llanque - Año de publicación: 2011 - N° de Paginas: 416','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-62.png','Química Orgánica III',40.00,10,1);
 
 -- Libro 63
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(63,'Autor: José Correa Orbegoso y José Hayakawa Casas - Año de publicación: 2019 - N° de Paginas: 340','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-63.png','Rilievo - UNI - Relevamiento Arquitectónico en el Curso "Restauración de Monumentos" (2011-2010)',85.00,10,1);
+VALUES('Autor: José Correa Orbegoso y José Hayakawa Casas - Año de publicación: 2019 - N° de Paginas: 340','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-63.png','Rilievo - UNI - Relevamiento Arquitectónico en el Curso "Restauración de Monumentos" (2011-2010)',85.00,10,1);
 
 -- Libro 64
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(64,'Autor: Ronald Cueva Pacheco - Año de publicación: 2019 - N° de Paginas: 376','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-64.png','Resistencia de Materiales para Ingeniería Mecánica II',96.00,10,1);
+VALUES('Autor: Ronald Cueva Pacheco - Año de publicación: 2019 - N° de Paginas: 376','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-64.png','Resistencia de Materiales para Ingeniería Mecánica II',96.00,10,1);
 
 -- Libro 65
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(65,'Autor: José Hayakawa Casas - Año de publicación: 2012 - N° de Paginas: 215','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-65.png','Restauro UNI Breve Antología de Textos de Restauración del Patrimonio Monumental Edificado',35.00,10,1);
+VALUES('Autor: José Hayakawa Casas - Año de publicación: 2012 - N° de Paginas: 215','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-65.png','Restauro UNI Breve Antología de Textos de Restauración del Patrimonio Monumental Edificado',35.00,10,1);
 
 -- Libro 66
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(66,'Autor: Martín Soto Guevara - Año de publicación: 2022 - N° de Paginas: 300','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-66.png','Revolución Ciudadana',70.00,10,1);
+VALUES('Autor: Martín Soto Guevara - Año de publicación: 2022 - N° de Paginas: 300','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-66.png','Revolución Ciudadana',70.00,10,1);
 
 -- Libro 67
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(67,'Autor: Edilberto Huamaní Huamaní - Año de publicación: 2013 - N° de Paginas: 162','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-67.png','Samamé',35.00,10,1);
+VALUES('Autor: Edilberto Huamaní Huamaní - Año de publicación: 2013 - N° de Paginas: 162','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-67.png','Samamé',35.00,10,1);
 
 -- Libro 68
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(68,'Autor: Edith Aranda Dioses - Año de publicación: 2015 - N° de Paginas: 88','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-68.png','Sociedad y Universidad',25.00,10,1);
+VALUES('Autor: Edith Aranda Dioses - Año de publicación: 2015 - N° de Paginas: 88','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-68.png','Sociedad y Universidad',25.00,10,1);
 
 -- Libro 69
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(69,'Autor: Carlos César Munares Tapia - Año de publicación: 2019 - N° de Paginas: 200','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-69.png','Teoría Aplicada del Automóvil',59.00,10,1);
+VALUES('Autor: Carlos César Munares Tapia - Año de publicación: 2019 - N° de Paginas: 200','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-69.png','Teoría Aplicada del Automóvil',59.00,10,1);
 
 -- Libro 70
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(70,'Autor: José Cerda - Hernández - Anna Sikov - Año de publicación: 2021 - N° de Paginas: 164','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-70.png','Teoría de Riesgo para Seguros',45.00,10,1);
+VALUES('Autor: José Cerda - Hernández - Anna Sikov - Año de publicación: 2021 - N° de Paginas: 164','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-70.png','Teoría de Riesgo para Seguros',45.00,10,1);
 
 -- Libro 71
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(71,'Autor: Pedro Canales García - Año de publicación: 2018 - N° de Paginas: 228','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-71.png','Teoría y Aplicaciones de Optimización',48.00,10,1);
+VALUES('Autor: Pedro Canales García - Año de publicación: 2018 - N° de Paginas: 228','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-71.png','Teoría y Aplicaciones de Optimización',48.00,10,1);
 
 -- Libro 72
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(72,'Autor: Kenneth R. Wright, P.E., L.S. - Año de publicación: 2020 - N° de Paginas: 174','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-72.png','Tipón',75.00,10,1);
+VALUES('Autor: Kenneth R. Wright, P.E., L.S. - Año de publicación: 2020 - N° de Paginas: 174','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-72.png','Tipón',75.00,10,1);
 
 -- Libro 73
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(73,'Autor: Leonor Carmen Méndes Quinchu - Luis Fernando Guevara Durand - Joshep Alexander Salazar Torres - Frank Jhony Mendez Rojas - José Antonio Salazar - Año de publicación: 2020 - N° de Paginas: 270','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-73.png','Uso del Agua',48.00,10,1);
+VALUES('Autor: Leonor Carmen Méndes Quinchu - Luis Fernando Guevara Durand - Joshep Alexander Salazar Torres - Frank Jhony Mendez Rojas - José Antonio Salazar - Año de publicación: 2020 - N° de Paginas: 270','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-73.png','Uso del Agua',48.00,10,1);
 
 -- Libro 74
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(74,'Autor: José Ignacio López Soria - Año de publicación: 2007 - N° de Paginas: 96','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-74.png','Valdelomar en la Escuela de Ingenieros',30.00,10,1);
+VALUES('Autor: José Ignacio López Soria - Año de publicación: 2007 - N° de Paginas: 96','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-74.png','Valdelomar en la Escuela de Ingenieros',30.00,10,1);
 
 -- Libro 75
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(75,'Autor: Kely Alfaro Montoya - Año de publicación: 2019 - N° de Paginas: 130','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-75.png','Valoración Económica de Impactos Ambientales',45.00,10,1);
+VALUES('Autor: Kely Alfaro Montoya - Año de publicación: 2019 - N° de Paginas: 130','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-75.png','Valoración Económica de Impactos Ambientales',45.00,10,1);
 
 -- Libro 76
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(76,'Autor: José Luis Beingolea Del Carpio - Año de publicación: 2015 - N° de Paginas: 230','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-76.png','Víctor Pimentel Gurmendi y el Patrimonio Monumental',70.00,10,1);
+VALUES('Autor: José Luis Beingolea Del Carpio - Año de publicación: 2015 - N° de Paginas: 230','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-76.png','Víctor Pimentel Gurmendi y el Patrimonio Monumental',70.00,10,1);
 
 -- Libro 77
 INSERT INTO dbo.producto(product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
-VALUES(77,'Autor: Carlos Bazán Cabanillas - Año de publicación: 2018 - N° de Paginas: 210','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-77.png','Yo Entiendo y Aprendo Inglés',45.00,10,1);
+VALUES('Autor: Carlos Bazán Cabanillas - Año de publicación: 2018 - N° de Paginas: 210','https://www.pruebas-edunionline.uni.edu.pe/img/libros/libro-77.png','Yo Entiendo y Aprendo Inglés',45.00,10,1);
 
 INSERT INTO dbo.producto (product_description, product_img_url, product_name, product_price, product_stock, id_categoria)
 VALUES (

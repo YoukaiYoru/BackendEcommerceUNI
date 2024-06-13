@@ -1,4 +1,4 @@
-INSERT INTO dbo.orden_detalles (cantidad_producto, producto_precio,  ,id_orden, id_producto)
+INSERT INTO dbo.orden_detalles (cantidad_producto, producto_precio,  id_orden, id_producto)
 VALUES ( 3, 61.00, 2, 3)
 
 INSERT INTO dbo.orden_detalles (cantidad_producto, producto_precio, id_orden, id_producto)
@@ -30,6 +30,25 @@ VALUES (3, 59.00, 10, 69)
 
 INSERT INTO dbo.orden_detalles (cantidad_producto, producto_precio, id_orden, id_producto)
 VALUES (4, 45.00, 11, 77)
+
+DECLARE @ProductoPrecio FLOAT;
+DECLARE @CantidadProducto INT;
+DECLARE @OrdenID INT;
+DECLARE @ProductoID INT;
+
+-- Asigna valores a las variables
+SET @ProductoPrecio = 10.5; -- Precio del producto
+SET @CantidadProducto = 3;  -- Cantidad de productos
+SET @OrdenID = 22;           -- ID de la orden
+SET @ProductoID = 2;        -- ID del producto
+
+-- Calcula el subtotal
+DECLARE @SubTotal FLOAT;
+SET @SubTotal = @ProductoPrecio * @CantidadProducto;
+
+-- Inserta datos en la tabla OrdenDetalles
+INSERT INTO dbo.orden_detalles(producto_precio,cantidad_producto,sub_total_precio,id_orden,id_producto)
+VALUES (@ProductoPrecio, @CantidadProducto, @SubTotal, @OrdenID, @ProductoID);
 
 
 SELECT * FROM dbo.orden_detalles

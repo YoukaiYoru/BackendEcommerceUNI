@@ -1,3 +1,5 @@
+package org.backend.trabajo.backendproyecto.service;
+
 import org.backend.trabajo.backendproyecto.dto.ProductoDTO.ProductoDTO;
 import org.backend.trabajo.backendproyecto.dto.ProductoDTO.DatosProductoDTO;
 import org.backend.trabajo.backendproyecto.model.Categoria;
@@ -36,8 +38,8 @@ public class ProductoServiceTest {
     public void testObtenerTodosLosProductos() {
         // Given
         List<Producto> productos = new ArrayList<>();
-        productos.add(new Producto(), new Categoria()));
-        productos.add(new Producto(), new Categoria()))
+        productos.add(new Producto());
+        productos.add(new Producto());
 
 
         Mockito.when(productoRepository.findAll()).thenReturn(productos);

@@ -3,10 +3,8 @@ package org.backend.trabajo.backendproyecto.controller;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.backend.trabajo.backendproyecto.RuntimeExceptionCustom.ClienteAlreadyExistsException;
-import org.backend.trabajo.backendproyecto.dto.ClienteDTO.ChangePasswordDTO;
-import org.backend.trabajo.backendproyecto.dto.ClienteDTO.ClienteDTO;
-import org.backend.trabajo.backendproyecto.dto.ClienteDTO.DatosRegistroClienteDTO;
-import org.backend.trabajo.backendproyecto.dto.ClienteDTO.DatosRespuestaClienteDTO;
+import org.backend.trabajo.backendproyecto.dto.ClienteDTO.*;
+import org.backend.trabajo.backendproyecto.model.Cliente;
 import org.backend.trabajo.backendproyecto.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -88,5 +86,18 @@ public class ClienteController {
     }
 
 
-
+    @GetMapping("/acceder")
+    public ResponseEntity<List<DatosRespuestaClienteDTO>> acceder(@RequestBody @Valid DatosAccesoDTO accesoDTO) {
+        List<ClienteDTO> verificacion = clienteService.verificacionDeUsuario(accesoDTO.username(), accesoDTO.password());
+        List<DatosRespuestaClienteDTO> r = verificacion.stream()
+                .map(c -> new DatosRespuestaClienteDTO(
+                        c.clientUser(),
+                        c.clientPassword(),
+                        c.clientFirstName(),
+                        c.clientLastName(),
+                        c.clientEmail(),
+                        c.clientPhone()
+                )).collect(Collectors.toList());
+        return ResponseEntity.ok(r);
+    }
 }
