@@ -19,7 +19,7 @@ public class OrdenDetalles {
     private Orden orden;
 
     @JoinColumn(name ="id_producto")
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Producto producto;
 
     //GETTERS AND SETTERS
@@ -29,7 +29,7 @@ public class OrdenDetalles {
         return subTotalPrecio;
     }
 
-    public void setSubTotalPrecio(Producto producto) {
+    public void setSubTotalPrecio(float producto) {
         this.subTotalPrecio = producto.getProductPrice() * cantidadProducto;
     }
 
@@ -45,9 +45,10 @@ public class OrdenDetalles {
         return productoPrecio;
     }
 
-    public void setProductoPrecio(Long productoPrecio) {
+    public void setProductoPrecio(float productoPrecio) {
         this.productoPrecio = productoPrecio;
     }
+
 
     public int getCantidadProducto() {
         return cantidadProducto;

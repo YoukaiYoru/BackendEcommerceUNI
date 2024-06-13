@@ -36,7 +36,7 @@ public class ClienteController {
     @GetMapping("/login/{login}")
     public ResponseEntity<List<ClienteDTO>> obtenerClientePorLogin(@PathVariable String login) {
         List<ClienteDTO> cliente = clienteService.obtenerPorLogin(login);
-        if (cliente!=null) {
+        if (cliente.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
         return ResponseEntity.ok(cliente);

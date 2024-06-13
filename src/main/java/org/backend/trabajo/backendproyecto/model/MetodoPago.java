@@ -18,27 +18,27 @@ public class MetodoPago {
 //GETTERS AND SETTERS
 public MetodoPago() {}
 
-public int getId_metodo_pago() {
-    return id_metodo_pago;
-}
+    public int getId_metodo_pago() {
+        return id_metodo_pago;
+    }
 
-public void setId_metodo_pago(int id_metodo_pago) {
-    this.id_metodo_pago = id_metodo_pago;
-}
+    public void setId_metodo_pago(int id_metodo_pago) {
+        this.id_metodo_pago = id_metodo_pago;
+    }
 
-public String getMetodo_pago() {
-    return metodo_pago;
-}
+    public String getMetodo_pago() {
+        return metodo_pago;
+    }
 
-public void setMetodo_pago(String metodo_pago) {
-    this.metodo_pago = metodo_pago;
-}
+    public void setMetodo_pago(String metodo_pago) {
+        this.metodo_pago = metodo_pago;
+    }
 
-public List<Orden> getOrden() {
-    return orden;
-}
+    public List<Orden> getOrden() {
+        return orden;
+    }
 
-public void setOrden(List<Orden> orden) {
-    this.orden = orden;
-}
+    public void setOrden(List<Orden> orden) {
+        this.orden = orden;
+    }
 }

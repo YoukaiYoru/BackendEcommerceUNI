@@ -59,7 +59,8 @@ public class ClienteService {
 
     @Transactional
     public void eliminarClientePorLogin(String login) {
-        clienteRepository.deleteByClientUser(login);
+       List<Cliente> cliente = clienteRepository.findByClientUser(login);
+       clienteRepository.delete(cliente.getFirst());
     }
 
     //ADITIONAL SERVICE

@@ -25,7 +25,7 @@ public class Cliente {
 
 
     //RELATIONS
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
     private List<Orden> listOrden;
 
 

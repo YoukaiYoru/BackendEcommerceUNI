@@ -1,4 +1,5 @@
 -- Insertar Cliente
+INSERT INTO dbo.cliente VALUES ('edward.oliva.l@uni.pe','Edward','Oliva','1234','990123979','admin')
 INSERT INTO dbo.cliente(client_email,client_first_name,client_last_name,client_password,client_phone,client_user)
 VALUES ('Rolando.sotomayor.b@uni.pe','Rolando','Sotomayor','abc123','902115126','Zhery');
 INSERT INTO dbo.cliente(client_email,client_first_name,client_last_name,client_password,client_phone,client_user)
@@ -63,3 +64,5 @@ INSERT INTO dbo.cliente(client_email,client_first_name,client_last_name,client_p
 VALUES ('victor.rojas.y@uni.pe', 'Victor', 'Rojas', 'pi5253', '932145156', 'VictorR');
 INSERT INTO dbo.cliente(client_email,client_first_name,client_last_name,client_password,client_phone,client_user)
 VALUES ('soledad.paredes.z@uni.pe', 'Soledad', 'Paredes', 'rho5455', '933146157', 'SoledadP');
+
+SELECT * FROM DBO.cliente

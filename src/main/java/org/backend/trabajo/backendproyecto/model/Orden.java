@@ -24,7 +24,7 @@ public class Orden {
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "id_metodo_pago")
     private MetodoPago metodoPago;
 

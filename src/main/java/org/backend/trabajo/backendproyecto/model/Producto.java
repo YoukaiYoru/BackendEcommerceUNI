@@ -14,6 +14,7 @@ public class Producto {
     private Long idProducto;
 
     private String productName;
+    @Column(length = 2500)
     private String productDescription;
     private float productPrice;
     private int productStock;
