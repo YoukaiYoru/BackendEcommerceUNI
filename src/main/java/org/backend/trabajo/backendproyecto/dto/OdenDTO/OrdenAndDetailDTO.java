@@ -1,7 +1,6 @@
-package org.backend.trabajo.backendproyecto.dto;
+package org.backend.trabajo.backendproyecto.dto.OdenDTO;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public record OrdenAndDetailDTO(

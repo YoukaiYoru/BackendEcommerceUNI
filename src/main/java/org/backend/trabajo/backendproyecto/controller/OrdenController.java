@@ -1,8 +1,8 @@
 package org.backend.trabajo.backendproyecto.controller;
 
 import jakarta.transaction.Transactional;
-import org.backend.trabajo.backendproyecto.dto.OrdenDTO;
-import org.backend.trabajo.backendproyecto.dto.TodasLasOrdenesDTO;
+import org.backend.trabajo.backendproyecto.dto.OdenDTO.OrdenDTO;
+import org.backend.trabajo.backendproyecto.dto.OdenDTO.TodasLasOrdenesDTO;
 import org.backend.trabajo.backendproyecto.service.OrdenDetalleService;
 import org.backend.trabajo.backendproyecto.service.OrdenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +37,6 @@ public class OrdenController {
         return Collections.singletonList(ordenService.obtenerPorId(id));
     }
 
-    @GetMapping("/todas")
-    public ResponseEntity<List<TodasLasOrdenesDTO>> getDetailedOrdenInfoAsJson() {
-        List<TodasLasOrdenesDTO> r = ordenService.obtenerOrdenesDetallasDeClientes();
-        return ResponseEntity.ok(r);
-    }
 
     @Transactional
     @DeleteMapping("/{userId}/{orderId}/detalles/{orderDetailsId}")

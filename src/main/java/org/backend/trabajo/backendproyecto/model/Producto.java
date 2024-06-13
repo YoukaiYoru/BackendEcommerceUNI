@@ -1,7 +1,7 @@
 package org.backend.trabajo.backendproyecto.model;
 
 import jakarta.persistence.*;
-import org.backend.trabajo.backendproyecto.dto.DatosProductoDTO;
+import org.backend.trabajo.backendproyecto.dto.ProductoDTO.DatosProductoDTO;
 
 import java.util.List;
 
@@ -26,9 +26,8 @@ public class Producto {
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "producto")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "producto", orphanRemoval = true)
     private List<OrdenDetalles> ordenDetalles;
-
     // TO STRING
 
     @Override

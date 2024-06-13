@@ -1,9 +1,8 @@
 package org.backend.trabajo.backendproyecto.service;
 
 import org.backend.trabajo.backendproyecto.RuntimeExceptionCustom.ClienteAlreadyExistsException;
-import org.backend.trabajo.backendproyecto.dto.ClienteDTO;
-import org.backend.trabajo.backendproyecto.dto.DatosRegistroClienteDTO;
-import org.backend.trabajo.backendproyecto.dto.OrdenDTO;
+import org.backend.trabajo.backendproyecto.dto.ClienteDTO.ClienteDTO;
+import org.backend.trabajo.backendproyecto.dto.ClienteDTO.DatosRegistroClienteDTO;
 import org.backend.trabajo.backendproyecto.model.Cliente;
 import org.backend.trabajo.backendproyecto.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,19 +35,19 @@ public class ClienteService {
         return convierteDatos(clienteRepository.findAll());
     }
 
-    public ClienteDTO obtenerPorLogin(String login) {
+    public List<ClienteDTO> obtenerPorLogin(String login) {
         return convierteDatos(clienteRepository.findByClientUser(login));
     }
 
-    public ClienteDTO obtenerPorID(Long idClient) {
+    public List<ClienteDTO> obtenerPorID(Long idClient) {
         return convierteDatos(clienteRepository.findByIdClient(idClient));
     }
 
     public void guardarUsuario(DatosRegistroClienteDTO datosRegistroClienteDTO) {
         String clientEmail = datosRegistroClienteDTO.getClientEmail();
         String clientUser = datosRegistroClienteDTO.getClientUser();
-        Optional<Cliente> clienteExistente= clienteRepository.findByClientUserAndClientEmail(clientUser, clientEmail);
-         if(clienteExistente.isPresent()){
+        List<Cliente> clienteExistente= clienteRepository.findByClientUserAndClientEmail(clientUser, clientEmail);
+         if(!clienteExistente.isEmpty()){
              throw new ClienteAlreadyExistsException("El cliente con el email " + clientEmail +
                      " y nombre de usuario " + clientUser + " ya está registrado.");
          }else{
@@ -68,17 +67,17 @@ public class ClienteService {
 
 //Mejorar este método
     @Transactional
-    public void actualizarPassword(String login, String Oldpassword, String Newpassword) {
-        Cliente cliente = clienteRepository.findByClientUser(login);
-        if (cliente!=null) {
-            if (cliente.getClientPassword().equals(Oldpassword)) {
-                clienteRepository.updatePassword(Newpassword, login);
-            }
-            else {
-                throw new RuntimeException("Contraseña incorrecta de " + login);
-            }
-        }else {
+    public void actualizarPassword(String login, String oldPassword, String newPassword) {
+        List<Cliente> cliente = clienteRepository.findByClientUser(login);
+        if (cliente.isEmpty()) {
             throw new RuntimeException("No existe el cliente con el login " + login);
+        }
+
+        Cliente clienteActualizado = cliente.get(0); // Obtener el primer (y se supone único) cliente de la lista
+        if (clienteActualizado.getClientPassword().equals(oldPassword)) {
+            clienteRepository.updatePassword(newPassword, login);
+        } else {
+            throw new RuntimeException("Contraseña incorrecta de " + login);
         }
     }
 

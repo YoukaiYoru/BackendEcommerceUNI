@@ -1,7 +1,4 @@
-package org.backend.trabajo.backendproyecto.dto;
-
-import org.backend.trabajo.backendproyecto.model.OrdenEstado;
-import org.backend.trabajo.backendproyecto.model.Cliente;
+package org.backend.trabajo.backendproyecto.dto.OdenDTO;
 
 import java.time.LocalDate;
 

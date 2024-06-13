@@ -1,4 +1,4 @@
-package org.backend.trabajo.backendproyecto.dto;
+package org.backend.trabajo.backendproyecto.dto.ClienteDTO;
 
 public record ClienteDTO(
         Long idClient,

@@ -1,4 +1,4 @@
-package org.backend.trabajo.backendproyecto.dto;
+package org.backend.trabajo.backendproyecto.dto.ProductoDTO;
 
 public record CategoriaDTO(
         int idCategoria,

@@ -9,12 +9,11 @@ import java.util.List;
 public class MetodoPago {
 
     @Id
-    @GeneratedValue
     private int id_metodo_pago;
     private String metodo_pago;
 
-    @OneToMany(mappedBy = "metodoPago")
-private List<Orden> orden;
+    @OneToMany(mappedBy = "metodoPago", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<Orden> orden;
 
 //GETTERS AND SETTERS
 public MetodoPago() {}

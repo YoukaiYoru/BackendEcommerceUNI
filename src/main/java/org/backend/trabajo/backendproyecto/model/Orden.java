@@ -20,11 +20,11 @@ public class Orden {
 
     //ORDERS
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_metodo_pago")
     private MetodoPago metodoPago;
 
@@ -32,7 +32,7 @@ public class Orden {
     @JoinColumn(name = "id_orden_estado")
     private OrdenEstado ordenEstado;
 
-    @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "orden",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<OrdenDetalles> ordenDetalles;
 
 

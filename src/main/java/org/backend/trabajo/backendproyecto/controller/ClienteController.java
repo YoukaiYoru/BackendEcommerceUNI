@@ -3,11 +3,10 @@ package org.backend.trabajo.backendproyecto.controller;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.backend.trabajo.backendproyecto.RuntimeExceptionCustom.ClienteAlreadyExistsException;
-import org.backend.trabajo.backendproyecto.dto.ChangePasswordDTO;
-import org.backend.trabajo.backendproyecto.dto.ClienteDTO;
-import org.backend.trabajo.backendproyecto.dto.DatosRegistroClienteDTO;
-import org.backend.trabajo.backendproyecto.dto.DatosRespuestaClienteDTO;
-import org.backend.trabajo.backendproyecto.model.Cliente;
+import org.backend.trabajo.backendproyecto.dto.ClienteDTO.ChangePasswordDTO;
+import org.backend.trabajo.backendproyecto.dto.ClienteDTO.ClienteDTO;
+import org.backend.trabajo.backendproyecto.dto.ClienteDTO.DatosRegistroClienteDTO;
+import org.backend.trabajo.backendproyecto.dto.ClienteDTO.DatosRespuestaClienteDTO;
 import org.backend.trabajo.backendproyecto.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/user")
@@ -34,8 +34,8 @@ public class ClienteController {
     }
 
     @GetMapping("/login/{login}")
-    public ResponseEntity<ClienteDTO> obtenerClientePorLogin(@PathVariable String login) {
-        ClienteDTO cliente = clienteService.obtenerPorLogin(login);
+    public ResponseEntity<List<ClienteDTO>> obtenerClientePorLogin(@PathVariable String login) {
+        List<ClienteDTO> cliente = clienteService.obtenerPorLogin(login);
         if (cliente!=null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
@@ -44,7 +44,7 @@ public class ClienteController {
 
     @GetMapping("/id/{id}")
     public ResponseEntity obtenerClientePorId(@PathVariable Long id){
-        ClienteDTO clientbyId = clienteService.obtenerPorID(id);
+        List<ClienteDTO> clientbyId = clienteService.obtenerPorID(id);
         return ResponseEntity.ok(clientbyId);
     }
 
@@ -63,6 +63,7 @@ public class ClienteController {
         }
     }
 
+    @Transactional
     @DeleteMapping("/{login}")
     public ResponseEntity eliminarClientePorLogin(@PathVariable String login) {
         clienteService.eliminarClientePorLogin(login);
@@ -73,15 +74,16 @@ public class ClienteController {
     @PutMapping("/changePassword")
     public ResponseEntity cambiarPassword(@RequestBody @Valid ChangePasswordDTO password){
         clienteService.actualizarPassword(password.login(), password.oldPassword(), password.newPassword());
-        ClienteDTO clienteActualizado = clienteService.obtenerPorLogin(password.login());
-        DatosRespuestaClienteDTO r = new DatosRespuestaClienteDTO(
-                clienteActualizado.clientUser(),
-                clienteActualizado.clientPassword(),
-                clienteActualizado.clientFirstName(),
-                clienteActualizado.clientLastName(),
-                clienteActualizado.clientEmail(),
-                clienteActualizado.clientPhone()
-        );
+        List<ClienteDTO> clienteActualizado = clienteService.obtenerPorLogin(password.login());
+        List<DatosRespuestaClienteDTO> r = clienteActualizado.stream()
+                .map(c->new DatosRespuestaClienteDTO(
+                        c.clientUser(),
+                        c.clientPassword(),
+                        c.clientFirstName(),
+                        c.clientLastName(),
+                        c.clientEmail(),
+                        c.clientPhone()))
+                .collect(Collectors.toList());
         return ResponseEntity.ok(r);
     }
 

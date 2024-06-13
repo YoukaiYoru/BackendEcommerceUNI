@@ -14,7 +14,7 @@ public class OrdenEstado {
 
     //RELATIONS
 
-    @OneToMany(mappedBy = "ordenEstado")
+    @OneToMany(mappedBy = "ordenEstado", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Orden> orden;
 
 

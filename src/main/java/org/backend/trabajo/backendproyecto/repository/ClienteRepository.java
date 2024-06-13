@@ -5,16 +5,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.Optional;
+import java.util.List;
+
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-    Cliente findByClientUser(String usr);
-    Cliente findByIdClient(Long idCliente);
-    Optional<Cliente> findByClientUserAndClientEmail(String usr, String email);
+    List<Cliente> findByClientUser(String usr);
+    List<Cliente> findByIdClient(Long idCliente);
+    List<Cliente> findByClientUserAndClientEmail(String usr, String email);
 
-    @Modifying
-    @Query("delete from Cliente c where c.clientUser =:usr")
     void deleteByClientUser(String usr);
+
 
     @Modifying(clearAutomatically = true)
     @Query("update Cliente c set c.clientPassword =:newPassword where c.clientUser=:login")

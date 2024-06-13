@@ -1,8 +1,8 @@
 package org.backend.trabajo.backendproyecto.service;
 
 import jakarta.transaction.Transactional;
-import org.backend.trabajo.backendproyecto.dto.DatosProductoDTO;
-import org.backend.trabajo.backendproyecto.dto.ProductoDTO;
+import org.backend.trabajo.backendproyecto.dto.ProductoDTO.DatosProductoDTO;
+import org.backend.trabajo.backendproyecto.dto.ProductoDTO.ProductoDTO;
 import org.backend.trabajo.backendproyecto.model.Categoria;
 import org.backend.trabajo.backendproyecto.model.Producto;
 import org.backend.trabajo.backendproyecto.repository.CategoriaRepository;

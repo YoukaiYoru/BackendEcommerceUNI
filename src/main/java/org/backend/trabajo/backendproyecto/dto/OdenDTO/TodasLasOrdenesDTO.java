@@ -1,4 +1,4 @@
-package org.backend.trabajo.backendproyecto.dto;
+package org.backend.trabajo.backendproyecto.dto.OdenDTO;
 
 import java.util.List;
 

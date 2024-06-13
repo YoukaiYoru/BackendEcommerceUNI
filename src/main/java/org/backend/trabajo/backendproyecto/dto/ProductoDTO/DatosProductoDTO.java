@@ -1,9 +1,8 @@
-package org.backend.trabajo.backendproyecto.dto;
+package org.backend.trabajo.backendproyecto.dto.ProductoDTO;
 
 import jakarta.validation.constraints.NotBlank;
-import org.springframework.web.multipart.MultipartFile;
 
-public record DatosRespuestaProductoDTO(
+public record DatosProductoDTO(
         @NotBlank
         String product_name,
         @NotBlank

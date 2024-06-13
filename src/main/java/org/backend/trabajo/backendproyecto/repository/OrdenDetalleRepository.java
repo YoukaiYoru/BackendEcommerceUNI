@@ -11,4 +11,5 @@ public interface OrdenDetalleRepository extends JpaRepository<OrdenDetalles, Int
     @Query("DELETE from OrdenDetalles where producto.idProducto=:idProducto")
     void deleteByIdProductInOrder(Long idProducto);
 
+
 }

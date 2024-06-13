@@ -1,6 +1,4 @@
-package org.backend.trabajo.backendproyecto.dto;
-
-import org.backend.trabajo.backendproyecto.model.Categoria;
+package org.backend.trabajo.backendproyecto.dto.ProductoDTO;
 
 public record ProductoDTO(
         Long id_product,

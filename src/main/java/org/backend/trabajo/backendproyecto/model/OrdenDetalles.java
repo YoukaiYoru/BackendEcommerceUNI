@@ -7,21 +7,31 @@ import jakarta.persistence.*;
 public class OrdenDetalles {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idOrdenDetalles;
-    private int productoPrecio;
+    private float productoPrecio;
     private int cantidadProducto;
+    private float subTotalPrecio;
     //ORDERS
 
-    @ManyToOne
     @JoinColumn(name = "id_orden")
+    @ManyToOne(targetEntity = Orden.class)
     private Orden orden;
 
-    @ManyToOne
     @JoinColumn(name ="id_producto")
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Producto producto;
 
     //GETTERS AND SETTERS
     public OrdenDetalles() {}
+
+    public float getSubTotalPrecio() {
+        return subTotalPrecio;
+    }
+
+    public void setSubTotalPrecio(Producto producto) {
+        this.subTotalPrecio = producto.getProductPrice() * cantidadProducto;
+    }
 
     public int getIdOrdenDetalles() {
         return idOrdenDetalles;
@@ -31,11 +41,11 @@ public class OrdenDetalles {
         this.idOrdenDetalles = idOrdenDetalles;
     }
 
-    public int getProductoPrecio() {
+    public float getProductoPrecio() {
         return productoPrecio;
     }
 
-    public void setProductoPrecio(int productoPrecio) {
+    public void setProductoPrecio(Long productoPrecio) {
         this.productoPrecio = productoPrecio;
     }
 

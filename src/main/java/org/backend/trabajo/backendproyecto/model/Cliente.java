@@ -2,7 +2,7 @@ package org.backend.trabajo.backendproyecto.model;
 
 import jakarta.persistence.*;
 
-import org.backend.trabajo.backendproyecto.dto.DatosRegistroClienteDTO;
+import org.backend.trabajo.backendproyecto.dto.ClienteDTO.DatosRegistroClienteDTO;
 
 import java.util.List;
 
@@ -13,12 +13,15 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idClient;
+
+
     private String clientUser;
     private String clientPassword;
     private String clientFirstName;
     private String clientLastName;
     private String clientEmail;
     private String clientPhone;
+
 
 
     //RELATIONS
