@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrdenDetalleService {
@@ -44,17 +45,17 @@ public class OrdenDetalleService {
 
         // Validar si el detalle de orden existe para la orden
         OrdenDetalles ordenDetalles = orden.getOrdenDetalles().stream()
-                .filter(detalle -> !Objects.equals(detalle.getProducto().getIdProducto(), productoId))
+                .filter(detalle -> Objects.equals(detalle.getProducto().getIdProducto(), productoId))
                 .findFirst()
                 .orElseThrow(() -> new EntityNotFoundException("Detalle de orden no encontrado para la orden con ID: " + orderId));
+
+
 
         // Calcular el nuevo monto de la orden restando el precio del producto eliminado
         float nuevoOrdenMonto = orden.getOrdenMonto() - (ordenDetalles.getProductoPrecio() * ordenDetalles.getCantidadProducto());
         orden.setOrdenMonto(nuevoOrdenMonto);
-
-        // Eliminar el detalle de orden de la lista de detalles de la orden
-        orden.getOrdenDetalles().remove(ordenDetalles);
-
+        OrdenDetalles detallesEliminar = (OrdenDetalles) ordenDetalleRepository.findByOrden_IdOrdenAndProducto_IdProductoAndOrden_Cliente_IdClient(orderId, productoId, userId);
+        ordenDetalleRepository.delete(detallesEliminar);
         // Guardar los cambios en la base de datos
         ordenRepository.save(orden);
     }

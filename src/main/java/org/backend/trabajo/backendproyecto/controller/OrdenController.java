@@ -50,7 +50,7 @@ public class OrdenController {
     }
 
 
-
+    @Transactional
     @DeleteMapping("/{userId}/{orderId}/detalles/{productoId}")
     public ResponseEntity<String> eliminarProductoDeOrdenDetalles(@PathVariable Long userId,
                                                                   @PathVariable Long orderId,
@@ -62,6 +62,7 @@ public class OrdenController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
+
 
 
     @PostMapping("/{usr}/productos")

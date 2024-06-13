@@ -1,6 +1,7 @@
 package org.backend.trabajo.backendproyecto.model;
 
 import jakarta.persistence.*;
+import org.jetbrains.annotations.NotNull;
 
 @Entity
 @Table(name = "orden_detalles")
@@ -15,7 +16,7 @@ public class OrdenDetalles {
     //ORDERS
 
     @JoinColumn(name = "id_orden")
-    @ManyToOne(targetEntity = Orden.class)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Orden orden;
 
     @JoinColumn(name ="id_producto")
@@ -29,7 +30,7 @@ public class OrdenDetalles {
         return subTotalPrecio;
     }
 
-    public void setSubTotalPrecio(float producto) {
+    public void setSubTotalPrecio(@NotNull Producto producto) {
         this.subTotalPrecio = producto.getProductPrice() * cantidadProducto;
     }
 

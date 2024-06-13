@@ -130,7 +130,7 @@ public class OrdenService {
             }
 
             producto.setProductStock(producto.getProductStock() - detalle.getCantidadProducto());
-            productoRepository.save(producto); // Guardar el producto con el nuevo stock
+            productoRepository.save(producto);
         }
 
         return ordenRepository.save(orden);

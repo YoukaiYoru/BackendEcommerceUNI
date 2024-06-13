@@ -59,7 +59,7 @@ class OrdenDetalleServiceTest {
         ordenDetalles.setProducto(producto);
         ordenDetalles.setCantidadProducto(2);
         ordenDetalles.setProductoPrecio(25.0f);
-        ordenDetalles.setSubTotalPrecio(50.0f);
+        ordenDetalles.setSubTotalPrecio(producto);
 
         orden.setOrdenDetalles(Collections.singletonList(ordenDetalles));
         cliente.setListOrden(Collections.singletonList(orden));
