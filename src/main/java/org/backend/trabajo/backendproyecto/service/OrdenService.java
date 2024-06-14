@@ -2,10 +2,10 @@ package org.backend.trabajo.backendproyecto.service;
 
 
 import jakarta.transaction.Transactional;
-import org.backend.trabajo.backendproyecto.dto.OdenDTO.DetallesDTO;
-import org.backend.trabajo.backendproyecto.dto.OdenDTO.OrdenAndDetailDTO;
-import org.backend.trabajo.backendproyecto.dto.OdenDTO.TodasLasOrdenesDTO;
-import org.backend.trabajo.backendproyecto.dto.OdenDTO.OrdenDTO;
+import org.backend.trabajo.backendproyecto.dto.OrdenDTO.DetallesDTO;
+import org.backend.trabajo.backendproyecto.dto.OrdenDTO.OrdenAndDetailDTO;
+import org.backend.trabajo.backendproyecto.dto.OrdenDTO.TodasLasOrdenesDTO;
+import org.backend.trabajo.backendproyecto.dto.OrdenDTO.OrdenDTO;
 import org.backend.trabajo.backendproyecto.model.*;
 import org.backend.trabajo.backendproyecto.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class OrdenService {
 
     public List<OrdenDTO> convierteDatos(List<Orden> ordenList){
         return ordenList.stream()
-                .map(o -> new OrdenDTO(o.getIdOrden(),o.getOrdenMonto(),o.getOrdenDate(),o.getDateDelivery(),o.getCliente().getIdClient(),o.getOrdenEstado().getOrdenEstadoNombre()))
+                .map(o -> new OrdenDTO(o.getIdOrden(),o.getOrdenMonto(),o.getOrdenDate(),o.getDateDelivery(),o.getCliente().getIdClient(),o.getOrdenDetalles(),o.getOrdenEstado().getOrdenEstadoNombre()))
                 .collect(Collectors.toList());
     }
 
@@ -83,7 +83,7 @@ public class OrdenService {
         Optional<Orden> orden = ordenRepository.findById(id_order);
         if (orden.isPresent()){
             Orden o = orden.get();
-            return new OrdenDTO(o.getIdOrden(),o.getOrdenMonto(),o.getOrdenDate(),o.getDateDelivery(),o.getCliente().getIdClient(),o.getOrdenEstado().getOrdenEstadoNombre());
+            return new OrdenDTO(o.getIdOrden(),o.getOrdenMonto(),o.getOrdenDate(),o.getDateDelivery(),o.getCliente().getIdClient(),o.getOrdenDetalles(),o.getOrdenEstado().getOrdenEstadoNombre());
         }
         return null;
     }

@@ -45,7 +45,7 @@ public class ClienteService {
     public void guardarUsuario(DatosRegistroClienteDTO datosRegistroClienteDTO) {
         String clientEmail = datosRegistroClienteDTO.getClientEmail();
         String clientUser = datosRegistroClienteDTO.getClientUser();
-        List<Cliente> clienteExistente= clienteRepository.findByClientUserAndClientEmail(clientUser, clientEmail);
+        List<Cliente> clienteExistente= clienteRepository.findByClientUserOrClientEmail(clientUser, clientEmail);
          if(!clienteExistente.isEmpty()){
              throw new ClienteAlreadyExistsException("El cliente con el email " + clientEmail +
                      " y nombre de usuario " + clientUser + " ya está registrado.");
@@ -82,12 +82,12 @@ public class ClienteService {
     }
 
 
-    public List<ClienteDTO> verificacionDeUsuario(String login, String password){
+    public boolean verificacionDeUsuario(String login, String password){
         List<ClienteDTO> cliente = convierteDatos(clienteRepository.findByClientUser(login));
         if(cliente.isEmpty()){
             throw new RuntimeException("No existe el cliente con el login " + login);
         }else if(password.equals(cliente.getFirst().clientPassword())){
-            return cliente;
+            return true;
         }else{
             throw new RuntimeException("Contraseña incorrecta");
         }

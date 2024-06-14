@@ -19,4 +19,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     @Modifying(clearAutomatically = true)
     @Query("update Cliente c set c.clientPassword =:newPassword where c.clientUser=:login")
     void updatePassword(String newPassword,String login);
+
+    List<Cliente> findByClientUserOrClientEmail(String clientUser, String clientEmail);
 }

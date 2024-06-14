@@ -10,7 +10,6 @@ public class OrdenDetalles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idOrdenDetalles;
-    private float productoPrecio;
     private int cantidadProducto;
     private float subTotalPrecio;
     //ORDERS
@@ -40,14 +39,6 @@ public class OrdenDetalles {
 
     public void setIdOrdenDetalles(int idOrdenDetalles) {
         this.idOrdenDetalles = idOrdenDetalles;
-    }
-
-    public float getProductoPrecio() {
-        return productoPrecio;
-    }
-
-    public void setProductoPrecio(float productoPrecio) {
-        this.productoPrecio = productoPrecio;
     }
 
 

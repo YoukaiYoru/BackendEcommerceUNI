@@ -1,10 +1,10 @@
 package org.backend.trabajo.backendproyecto.controller;
 
 import jakarta.transaction.Transactional;
-import org.backend.trabajo.backendproyecto.dto.OdenDTO.DetallesDTO;
-import org.backend.trabajo.backendproyecto.dto.OdenDTO.OrdenAndDetailDTO;
-import org.backend.trabajo.backendproyecto.dto.OdenDTO.OrdenDTO;
-import org.backend.trabajo.backendproyecto.dto.OdenDTO.TodasLasOrdenesDTO;
+import org.backend.trabajo.backendproyecto.dto.OrdenDTO.DetallesDTO;
+import org.backend.trabajo.backendproyecto.dto.OrdenDTO.OrdenAndDetailDTO;
+import org.backend.trabajo.backendproyecto.dto.OrdenDTO.OrdenDTO;
+import org.backend.trabajo.backendproyecto.dto.OrdenDTO.TodasLasOrdenesDTO;
 import org.backend.trabajo.backendproyecto.model.Orden;
 import org.backend.trabajo.backendproyecto.model.OrdenDetalles;
 import org.backend.trabajo.backendproyecto.service.OrdenDetalleService;
@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -101,6 +102,26 @@ public class OrdenController {
         return ResponseEntity.ok(r);
     }
 
+
+    @DeleteMapping(value = "/orden/{id}/add/{login}/{password}")
+    public ResponseEntity<OrdenDTO> eliminarProductoDeOrden(@RequestBody DetallesDTO detallesDTO,
+                                                         @PathVariable Long idOrden ,
+                                                         @PathVariable String login, String password){
+
+
+        Orden orden = ordenDetalleService.eliminarProductoDeOrdenDetalles(detallesDTO,idOrden,login,password);
+        OrdenDTO r = new OrdenDTO(
+                orden.getIdOrden(),
+                orden.getOrdenMonto(),
+                orden.getOrdenDate(),
+                orden.getDateDelivery(),
+                orden.getCliente().getIdClient(),
+                orden.getOrdenDetalles(),
+                orden.getOrdenEstado().getOrdenEstadoNombre()
+        );
+
+        return ResponseEntity.ok(r);
+    }
 
 
 }
