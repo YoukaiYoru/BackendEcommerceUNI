@@ -87,7 +87,7 @@ public class OrdenController {
         return ResponseEntity.ok(r);
     }
 
-
+    @Transactional
     @DeleteMapping(value = "/orden/{id}/add/{login}/{password}")
     public ResponseEntity<OrdenDTO> eliminarProductoDeOrden(@RequestBody DetallesDTO detallesDTO,
                                                          @PathVariable Long idOrden ,
