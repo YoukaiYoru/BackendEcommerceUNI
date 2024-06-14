@@ -1,9 +1,11 @@
 package org.backend.trabajo.backendproyecto.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "orden_estado")
 public class OrdenEstado {
@@ -17,33 +19,5 @@ public class OrdenEstado {
     @OneToMany(mappedBy = "ordenEstado", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Orden> orden;
 
-
-    //GETTERS AND SETTERS
-
-    public OrdenEstado() {}
-
-    public int getIdOrdenEstado() {
-        return idOrdenEstado;
-    }
-
-    public void setIdOrdenEstado(int idOrdenEstado) {
-        this.idOrdenEstado = idOrdenEstado;
-    }
-
-    public String getOrdenEstadoNombre() {
-        return ordenEstadoNombre;
-    }
-
-    public void setOrdenEstadoNombre(String ordenEstadoNombre) {
-        this.ordenEstadoNombre = ordenEstadoNombre;
-    }
-
-    public List<Orden> getOrden() {
-        return orden;
-    }
-
-    public void setOrden(List<Orden> orden) {
-        this.orden = orden;
-    }
 
 }
