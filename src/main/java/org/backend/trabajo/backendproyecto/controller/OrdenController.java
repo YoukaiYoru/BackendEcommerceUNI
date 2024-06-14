@@ -51,21 +51,6 @@ public class OrdenController {
     }
 
 
-    @Transactional
-    @DeleteMapping("/{userId}/{orderId}/detalles/{productoId}")
-    public ResponseEntity<String> eliminarProductoDeOrdenDetalles(@PathVariable Long userId,
-                                                                  @PathVariable Long orderId,
-                                                                  @PathVariable Long productoId) {
-        try {
-            ordenDetalleService.eliminarProductoDeOrdenDetalles(userId, orderId, productoId);
-            return ResponseEntity.ok("Producto eliminado de la orden exitosamente");
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
-    }
-
-
-
     @PostMapping("/{usr}/productos")
     public ResponseEntity<OrdenDetalles> agregarProductoAOrdenDetalles(
             @PathVariable String usr,
