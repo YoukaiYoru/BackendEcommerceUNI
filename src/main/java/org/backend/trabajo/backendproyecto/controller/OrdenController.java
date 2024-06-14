@@ -1,10 +1,7 @@
 package org.backend.trabajo.backendproyecto.controller;
 
 import jakarta.transaction.Transactional;
-import org.backend.trabajo.backendproyecto.dto.OrdenDTO.DetallesDTO;
-import org.backend.trabajo.backendproyecto.dto.OrdenDTO.OrdenAndDetailDTO;
-import org.backend.trabajo.backendproyecto.dto.OrdenDTO.OrdenDTO;
-import org.backend.trabajo.backendproyecto.dto.OrdenDTO.TodasLasOrdenesDTO;
+import org.backend.trabajo.backendproyecto.dto.OrdenDTO.*;
 import org.backend.trabajo.backendproyecto.model.Orden;
 import org.backend.trabajo.backendproyecto.model.OrdenDetalles;
 import org.backend.trabajo.backendproyecto.service.OrdenDetalleService;
@@ -88,23 +85,26 @@ public class OrdenController {
     }
 
     @Transactional
-    @DeleteMapping(value = "/orden/{id}/add/{login}/{password}")
-    public ResponseEntity<OrdenDTO> eliminarProductoDeOrden(@RequestBody DetallesDTO detallesDTO,
+    @DeleteMapping(value = "/{idOrden}/del/{login}/{password}")
+    public ResponseEntity<RespuestaDetalleDTO> eliminarProductoDeOrden(@RequestBody DetallesDTO detallesDTO,
                                                          @PathVariable Long idOrden ,
-                                                         @PathVariable String login, String password){
+                                                         @PathVariable String login,
+                                                            @PathVariable String password){
 
 
         Orden orden = ordenDetalleService.eliminarProductoDeOrdenDetalles(detallesDTO,idOrden,login,password);
-        OrdenDTO r = new OrdenDTO(
+        RespuestaDetalleDTO r = new RespuestaDetalleDTO(
                 orden.getIdOrden(),
                 orden.getOrdenMonto(),
                 orden.getOrdenDate(),
-                orden.getDateDelivery(),
-                orden.getCliente().getIdClient(),
-                orden.getOrdenDetalles(),
-                orden.getOrdenEstado().getOrdenEstadoNombre()
+                orden.getOrdenDetalles().stream()
+                        .map(d -> new DetallesDTO(
+                                d.getProducto().getIdProducto(),
+                                d.getProducto().getProductName(),
+                                d.getCantidadProducto(),
+                                d.getSubTotalPrecio()
+                        )).collect(Collectors.toList())
         );
-
         return ResponseEntity.ok(r);
     }
 

@@ -82,10 +82,11 @@ public class OrdenDetalleService {
 
     @Transactional
     public Orden eliminarProductoDeOrdenDetalles(DetallesDTO ordenDTO,Long idOrden, String login, String password){
-        if (clienteService.verificacionDeUsuario(login,password)){
-            List<Cliente> cliente = clienteRepository.findByClientUser(login);
+        List<Cliente> cliente = clienteRepository.findByClientUser(login);
+        Optional<Orden> orden = ordenRepository.findById(idOrden);
 
-            Optional<Orden> orden = ordenRepository.findById(idOrden);
+        if (clienteService.verificacionDeUsuario(login,password)){
+
             List<OrdenDetalles> ordenDetallesList = orden.get().getOrdenDetalles();
             if (ordenDetallesList.isEmpty()){
                 throw new OrdenTimeException("No hay detalles en la orden");
@@ -116,10 +117,9 @@ public class OrdenDetalleService {
                 throw new DetalleNotFound("Ya no hay ese producto");
             }
 
-            return ordenRepository.save(orden.get());
-        }
 
-        return null;
+        }
+        return ordenRepository.save(orden.get());
     }
 
 }

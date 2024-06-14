@@ -1,5 +1,6 @@
 package org.backend.trabajo.backendproyecto.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;
 

@@ -1,5 +1,6 @@
 package org.backend.trabajo.backendproyecto.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class Categoria {
     private int categoriaContador;
 
         //RELATIONS
+
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
     private List<Producto> listProductos;
 
