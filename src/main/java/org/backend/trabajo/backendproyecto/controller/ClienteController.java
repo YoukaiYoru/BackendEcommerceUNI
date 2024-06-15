@@ -89,7 +89,7 @@ public class ClienteController {
     @GetMapping("/acceder")
     public ResponseEntity<List<DatosRespuestaClienteDTO>> acceder(@RequestBody @Valid DatosAccesoDTO accesoDTO) {
         boolean verificacion = clienteService.verificacionDeUsuario(accesoDTO.username(), accesoDTO.password());
-        if(verificacion) {
+        if (verificacion){
             List<DatosRespuestaClienteDTO> r = clienteService.obtenerPorLogin(accesoDTO.username()).stream()
                     .map(c -> new DatosRespuestaClienteDTO(
                             c.clientUser(),
@@ -100,7 +100,8 @@ public class ClienteController {
                             c.clientPhone()
                     )).collect(Collectors.toList());
             return ResponseEntity.ok(r);
+        }else{
+            return (ResponseEntity<List<DatosRespuestaClienteDTO>>) ResponseEntity.badRequest();
         }
-        return ResponseEntity.badRequest().build();
     }
 }
