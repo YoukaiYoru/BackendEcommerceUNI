@@ -1,5 +1,7 @@
 package org.backend.trabajo.backendproyecto.controller;
 
+import org.backend.trabajo.backendproyecto.dto.OrdenDTO.OrdenDTO;
+import org.backend.trabajo.backendproyecto.dto.OrdenDTO.TodasLasOrdenesDTO;
 import jakarta.transaction.Transactional;
 import org.backend.trabajo.backendproyecto.dto.OrdenDTO.*;
 import org.backend.trabajo.backendproyecto.model.Orden;
@@ -31,12 +33,12 @@ public class OrdenController {
     }
 
     @GetMapping("/user/{login}")
-    public List<OrdenDTO> obtenerOrdenPorUsr(@PathVariable String login ) {
+    public List<OrdenDTO> obtenerOrdenPorUsr(@RequestParam String login ) {
         return ordenService.obtenerPorClientUsr(login);
     }
 
     @GetMapping("/{id}")
-    public List<OrdenDTO> obtenerOrdenPorId(@PathVariable Long id) {
+    public List<OrdenDTO> obtenerOrdenPorId(@RequestParam Long id) {
         return Collections.singletonList(ordenService.obtenerPorId(id));
     }
 
@@ -47,41 +49,54 @@ public class OrdenController {
         return ResponseEntity.ok(r);
     }
 
-
-    @PostMapping("/{usr}/productos")
-    public ResponseEntity<OrdenDetalles> agregarProductoAOrdenDetalles(
-            @PathVariable String usr,
-            @RequestParam Long idProducto,
-            @RequestParam int cantidad) {
-        OrdenDetalles ordenDetalles = ordenDetalleService.agregarProductoAOrdenDetalles(usr, idProducto, cantidad);
-        return ResponseEntity.ok(ordenDetalles);
+    @PostMapping("/crear")
+    public ResponseEntity<Orden> crearOrdenInicial(@RequestParam Long idCliente) {
+        try {
+            Orden orden = ordenService.crearOrdenInicial(idCliente);
+            return ResponseEntity.status(HttpStatus.CREATED).body(orden);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
     }
 
-    @PostMapping("/{idCliente}/finalizar")
-    public ResponseEntity<OrdenAndDetailDTO> finalizarOrden(
-            @PathVariable Long idCliente,
-            @RequestBody List<OrdenDetalles> detallesOrden,
-            @RequestParam int idMetodoPago,
-            @RequestParam int idOrdenEstado) {
-        Orden orden = ordenService.crearOrden(idCliente, detallesOrden, idMetodoPago, idOrdenEstado);
+    @PostMapping("/finalizar")
+    public ResponseEntity<Orden> finalizarOrden(@RequestParam Long idOrden, @RequestParam int idMetodoPago) {
+        try {
+            Orden orden = ordenService.finalizarOrden(idOrden, idMetodoPago);
+            return ResponseEntity.ok(orden);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
 
-        OrdenAndDetailDTO r = new OrdenAndDetailDTO(
-                orden.getIdOrden(),
-                orden.getOrdenMonto(),
-                orden.getOrdenEstado().getOrdenEstadoNombre(),
-                orden.getMetodoPago().getMetodo_pago(),
-                orden.getOrdenDate(),
-                orden.getDateDelivery(),
-                orden.getOrdenDetalles().stream()
-                        .map(d ->new DetallesDTO(
-                                d.getProducto().getIdProducto(),
-                                d.getProducto().getProductName(),
-                                d.getCantidadProducto(),
-                                d.getSubTotalPrecio()
-                        ))
-                        .collect(Collectors.toList())
-        );
-        return ResponseEntity.ok(r);
+    @PostMapping("/editarEstado")
+    public ResponseEntity<Orden> editarEstadoOrden(@RequestParam Long idOrden, @RequestParam String ordenEstado) {
+        try {
+            Orden orden = ordenService.editarEstadoOrden(idOrden, ordenEstado);
+            return ResponseEntity.ok(orden);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
+    @PostMapping("/agregarProducto")
+    public ResponseEntity<OrdenDetalles> agregarProductosAOrdenDetalles(@RequestParam Long idProducto, @RequestParam Long idOrden, @RequestParam int cantidadPedidaProducto) {
+        try {
+            OrdenDetalles ordenDetalles = ordenDetalleService.agregarProductosAOrdenDetalles(idProducto, idOrden, cantidadPedidaProducto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(ordenDetalles);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
+    @PostMapping("/modificarCantidadProducto")
+    public ResponseEntity<OrdenDetalles> modificarCantidadDeProductosAOrdenDetalles(@RequestParam Long idOrden, @RequestParam Long idProducto, @RequestParam int nuevaCantidadPedidaProducto) {
+        try {
+            OrdenDetalles ordenDetalles = ordenDetalleService.modificarCantidadDeProductosAOrdenDetalles(idOrden, idProducto, nuevaCantidadPedidaProducto);
+            return ResponseEntity.ok(ordenDetalles);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
     }
 
     @Transactional

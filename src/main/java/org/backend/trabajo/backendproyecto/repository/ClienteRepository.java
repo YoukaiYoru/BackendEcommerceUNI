@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
-
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     List<Cliente> findByClientUser(String usr);
     List<Cliente> findByIdClient(Long idCliente);
@@ -20,10 +19,9 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     void deleteByClientUser(String usr);
 
-
     @Modifying(clearAutomatically = true)
     @Query("update Cliente c set c.clientPassword =:newPassword where c.clientUser=:login")
-    void updatePassword(String newPassword,String login);
+    void updatePassword(String newPassword, String login);
 
     List<Cliente> findByClientUserOrClientEmail(String clientUser, String clientEmail);
 }

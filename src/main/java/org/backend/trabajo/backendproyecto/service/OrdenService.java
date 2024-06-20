@@ -1,6 +1,6 @@
 package org.backend.trabajo.backendproyecto.service;
 
-
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.backend.trabajo.backendproyecto.dto.OrdenDTO.DetallesDTO;
 import org.backend.trabajo.backendproyecto.dto.OrdenDTO.OrdenAndDetailDTO;
@@ -22,14 +22,11 @@ public class OrdenService {
     @Autowired
     private ClienteRepository clienteRepository;
     @Autowired
-    private ProductoRepository productoRepository;
-    @Autowired
     private OrdenDetalleRepository ordenDetalleRepository;
     @Autowired
     private MetodoPagoRepository metodoPagoRepository;
     @Autowired
     private OrdenEstadoRepository ordenEstadoRepository;
-
 
     public List<OrdenDTO> convierteDatos(List<Orden> ordenList){
         return ordenList.stream()
@@ -116,49 +113,71 @@ public class OrdenService {
     }
 
     @Transactional
-    public Orden crearOrden(Long idCliente, List<OrdenDetalles> detallesOrden, int idMetodoPago, int idOrdenEstado) {
+    public Orden crearOrdenInicial (Long idCliente){
         // Buscar al cliente
         Cliente cliente = clienteRepository.findById(idCliente)
-                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
-
-        // Buscar el método de pago
-        MetodoPago metodoPago = metodoPagoRepository.findById(idMetodoPago)
-                .orElseThrow(() -> new RuntimeException("Método de pago no encontrado"));
-
-        // Buscar el estado de la orden
-        OrdenEstado ordenEstado = ordenEstadoRepository.findById(idOrdenEstado)
-                .orElseThrow(() -> new RuntimeException("Estado de orden no encontrado"));
+                .orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado con ID: " + idCliente));
 
         // Crear la orden
         Orden orden = new Orden();
         orden.setCliente(cliente);
-        orden.setMetodoPago(metodoPago);
-        orden.setOrdenEstado(ordenEstado);
-        orden.setOrdenDate(LocalDate.now());
-        orden.setDateDelivery(LocalDate.now().plusDays(5)); // Ejemplo de fecha de entrega
-        orden.setOrdenDetalles(detallesOrden);
-
-        // Calcular el monto total de la orden
-        float montoTotal = (float) detallesOrden.stream().mapToDouble(OrdenDetalles::getSubTotalPrecio).sum();
-        orden.setOrdenMonto(montoTotal);
-
-        for (OrdenDetalles detalle : detallesOrden) {
-            detalle.setOrden(orden);
-            Producto producto = productoRepository.findById(detalle.getProducto().getIdProducto())
-                    .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
-
-            // Verificar y restar la cantidad del producto del stock
-            if (producto.getProductStock() < detalle.getCantidadProducto()) {
-                throw new RuntimeException("Stock insuficiente para el producto: " + producto.getProductName());
-            }
-
-            producto.setProductStock(producto.getProductStock() - detalle.getCantidadProducto());
-            productoRepository.save(producto);
-        }
+        orden.setMetodoPago(null);
+        orden.setOrdenEstado(null);
+        orden.setOrdenDate(null);
+        orden.setDateDelivery(null);
+        orden.setOrdenMonto(0);
 
         return ordenRepository.save(orden);
     }
 
+    @Transactional
+    public Orden finalizarOrden(Long idOrden, int idMetodoPago){
+
+        // Buscar la orden por ID
+        Orden orden = ordenRepository.findById(idOrden)
+                .orElseThrow(() -> new EntityNotFoundException("Orden no encontrada con ID: " + idOrden));
+
+        // Buscar el método de pago
+        MetodoPago metodoPago = metodoPagoRepository.findById(idMetodoPago)
+                .orElseThrow(() -> new EntityNotFoundException("Método de pago no encontrado con ID: " + idMetodoPago));
+
+        // Obtener los detalles de la orden
+        List<OrdenDetalles> ordenDetalles = ordenDetalleRepository.findByOrden(orden);
+
+        // Obtener el valor de pedido
+        OrdenEstado estadoFinalizada = ordenEstadoRepository.findByOrdenEstadoNombre("pedido")
+                .orElseThrow(() -> new EntityNotFoundException("Estado de orden 'pedido' no encontrado"));
+
+        // Calcular el monto total
+        float montoTotal = 0;
+        for (OrdenDetalles detalle : ordenDetalles) {
+            detalle.setOrden(orden);
+
+            montoTotal += detalle.getSubTotalPrecio();
+        }
+
+        orden.setOrdenMonto(montoTotal);
+        orden.setOrdenDate(LocalDate.now());
+        orden.setMetodoPago(metodoPago);
+        orden.setOrdenEstado(estadoFinalizada); //
+        return ordenRepository.save(orden);
+    }
+
+    @Transactional
+    public Orden editarEstadoOrden(Long idOrden, String ordenEstado) {
+        // Buscar la orden por ID
+        Orden orden = ordenRepository.findById(idOrden)
+                .orElseThrow(() -> new EntityNotFoundException("Orden no encontrada con ID: " + idOrden));
+
+        // Buscar el ordenEstado por Name
+        OrdenEstado estadoOrden = ordenEstadoRepository.findByOrdenEstadoNombre(ordenEstado)
+                .orElseThrow(() -> new EntityNotFoundException("OrdenEstado no encontrada con el nombre: " + ordenEstado));
+
+        orden.setOrdenEstado(estadoOrden);
+        orden.setDateDelivery(LocalDate.now());
+
+        return ordenRepository.save(orden);
+    }
 
 }
 

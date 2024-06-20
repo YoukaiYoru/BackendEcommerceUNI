@@ -34,7 +34,7 @@ public class Producto {
     private List<OrdenDetalles> ordenDetalles;
     // TO STRING
 
-
+    public Producto(){};
     public Producto(DatosProductoDTO datosProductoDTO){
         this.productName = datosProductoDTO.product_name();
         this.productDescription = datosProductoDTO.product_description();

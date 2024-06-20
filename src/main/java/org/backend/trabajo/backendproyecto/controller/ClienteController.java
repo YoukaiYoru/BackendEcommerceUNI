@@ -61,7 +61,7 @@ public class ClienteController {
     }
 
     @Transactional
-    @DeleteMapping("/{login}")
+    @DeleteMapping("/deleteUsuario/{login}")
     public ResponseEntity eliminarClientePorLogin(@PathVariable String login) {
         clienteService.eliminarClientePorLogin(login);
         return ResponseEntity.noContent().build();

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,14 +45,13 @@ public class ClienteService {
     public void guardarUsuario(DatosRegistroClienteDTO datosRegistroClienteDTO) {
         String clientEmail = datosRegistroClienteDTO.getClientEmail();
         String clientUser = datosRegistroClienteDTO.getClientUser();
-        List<Cliente> clienteExistente= clienteRepository.findByClientUserAndClientEmail(clientUser, clientEmail);
-         if(!clienteExistente.isEmpty()){
-             throw new ClienteAlreadyExistsException("El cliente con el email " + clientEmail +
-                     " y nombre de usuario " + clientUser + " ya está registrado.");
-         }else{
-             clienteRepository.save(new Cliente(datosRegistroClienteDTO));
-         }
-
+        List<Cliente> clienteExistente = clienteRepository.findByClientUserOrClientEmail(clientUser, clientEmail);
+        if (!clienteExistente.isEmpty()) {
+            throw new ClienteAlreadyExistsException("El cliente con el email " + clientEmail +
+                    " y nombre de usuario " + clientUser + " ya está registrado.");
+        } else {
+            clienteRepository.save(new Cliente());
+        }
     }
 
 
@@ -82,18 +80,15 @@ public class ClienteService {
         }
     }
 
-
-    public boolean verificacionDeUsuario(String login, String password) {
+    public boolean verificacionDeUsuario(String login, String password){
         List<ClienteDTO> cliente = convierteDatos(clienteRepository.findByClientUser(login));
-        if (cliente.isEmpty()) {
+        if(cliente.isEmpty()){
             throw new RuntimeException("No existe el cliente con el login " + login);
-        }
-        ClienteDTO clientValidado = cliente.get(0);
-        if (clientValidado.clientPassword() == password) {
+        }else if(password.equals(cliente.get(0).clientPassword())){
             return true;
-        }
-        else {
-            return false;
+        }else{
+            throw new RuntimeException("Contraseña incorrecta");
         }
     }
+
 }

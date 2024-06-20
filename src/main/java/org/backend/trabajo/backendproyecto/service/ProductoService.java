@@ -46,7 +46,6 @@ public class ProductoService {
         return null;
     }
 
-
     public List<ProductoDTO> obtenerProductosPorCategoria(String categoriaTipo) {
         Optional<Categoria> categoria = categoriaRepository.findCategoriaByCategoriaTipo(categoriaTipo);
         if (categoria.isPresent()) {
@@ -73,12 +72,10 @@ public class ProductoService {
         return null;
     }
 
-
     public void eliminarPorId(Long id) {
         Optional<Producto> producto = productoRepository.findById(id);
         producto.ifPresent(p -> productoRepository.delete(p));
     }
-
 
     public Producto actualizarPrecioPorId(Long id,Float precio) {
         Optional<Producto> producto = productoRepository.findById(id);
@@ -91,8 +88,6 @@ public class ProductoService {
             throw new RuntimeException("Producto no encontrado");
         }
     }
-
-
 
     //GuardarImagenDelUsuario
     private static final String DIRECTORIO_IMAGENES = "src//main//resources//static//img"; // Assuming resources folder is on classpath
