@@ -1,6 +1,6 @@
 package org.backend.trabajo.backendproyecto.dto.OrdenDTO;
 
-import org.backend.trabajo.backendproyecto.model.OrdenDetalles;
+import org.backend.trabajo.backendproyecto.dto.OrdenDTO.DetallesDTO;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,6 +11,7 @@ public record OrdenDTO(
         LocalDate orderDate,
         LocalDate dateDelivery,
         Long idClient,
-        List<OrdenDetalles> ordenDetallesList,
-        String idOrderStatus) {
+        String idOrderStatus,
+        List<DetallesDTO> ordenDetallesList
+        ) {
 }

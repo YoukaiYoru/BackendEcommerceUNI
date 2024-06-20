@@ -1,5 +1,6 @@
 package org.backend.trabajo.backendproyecto.service.Security;
 
+import org.backend.trabajo.backendproyecto.model.Admin;
 import org.backend.trabajo.backendproyecto.repository.AdminRepository;
 import org.backend.trabajo.backendproyecto.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +10,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AutentificaciónUsuario implements UserDetailsService {
+public class AutentificacionUsuario implements UserDetailsService {
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private AdminRepository adminRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return clienteRepository.findByCredentials(username);
+        return adminRepository.findByUsuario(username);
     }
 }

@@ -33,7 +33,19 @@ public class OrdenService {
 
     public List<OrdenDTO> convierteDatos(List<Orden> ordenList){
         return ordenList.stream()
-                .map(o -> new OrdenDTO(o.getIdOrden(),o.getOrdenMonto(),o.getOrdenDate(),o.getDateDelivery(),o.getCliente().getIdClient(),o.getOrdenDetalles(),o.getOrdenEstado().getOrdenEstadoNombre()))
+                .map(o -> new OrdenDTO(o.getIdOrden(),
+                        o.getOrdenMonto(),
+                        o.getOrdenDate(),
+                        o.getDateDelivery(),
+                        o.getCliente().getIdClient(),
+                        o.getOrdenEstado().getOrdenEstadoNombre(),
+                        o.getOrdenDetalles().stream()
+                                .map(d-> new DetallesDTO(
+                                        d.getProducto().getIdProducto(),
+                                        d.getProducto().getProductName(),
+                                        d.getCantidadProducto(),
+                                        d.getSubTotalPrecio()
+                                )).collect(Collectors.toList())))
                 .collect(Collectors.toList());
     }
 
@@ -83,7 +95,18 @@ public class OrdenService {
         Optional<Orden> orden = ordenRepository.findById(id_order);
         if (orden.isPresent()){
             Orden o = orden.get();
-            return new OrdenDTO(o.getIdOrden(),o.getOrdenMonto(),o.getOrdenDate(),o.getDateDelivery(),o.getCliente().getIdClient(),o.getOrdenDetalles(),o.getOrdenEstado().getOrdenEstadoNombre());
+            return new OrdenDTO(o.getIdOrden(),o.getOrdenMonto(),
+                    o.getOrdenDate(),
+                    o.getDateDelivery(),
+                    o.getCliente().getIdClient(),
+                    o.getOrdenEstado().getOrdenEstadoNombre(),
+                    o.getOrdenDetalles().stream()
+                            .map(d -> new DetallesDTO(
+                                    d.getProducto().getIdProducto(),
+                                    d.getProducto().getProductName(),
+                                    d.getCantidadProducto(),
+                                    d.getSubTotalPrecio()
+                            )).collect(Collectors.toList()));
         }
         return null;
     }

@@ -22,7 +22,7 @@ public class ProductoController {
     @Autowired
     private ProductoService productoService;
 
-    @GetMapping()
+    @GetMapping("/get/productos")
     public ResponseEntity<List<ProductoDTO>> obtenerProductos() {
         List<ProductoDTO> productos = productoService.obtenerTodosLosProductos();
         if (productos.isEmpty()) {

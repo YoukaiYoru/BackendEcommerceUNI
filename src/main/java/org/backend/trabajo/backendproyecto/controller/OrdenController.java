@@ -88,8 +88,7 @@ public class OrdenController {
     @DeleteMapping(value = "/{idOrden}/del/{login}/{password}")
     public ResponseEntity<RespuestaDetalleDTO> eliminarProductoDeOrden(@RequestBody DetallesDTO detallesDTO,
                                                          @PathVariable Long idOrden ,
-                                                         @PathVariable String login,
-                                                            @PathVariable String password){
+                                                         @PathVariable String login, @PathVariable String password){
 
 
         Orden orden = ordenDetalleService.eliminarProductoDeOrdenDetalles(detallesDTO,idOrden,login,password);

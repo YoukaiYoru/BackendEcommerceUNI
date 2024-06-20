@@ -10,6 +10,6 @@ public record OrdenAndDetailDTO(
         String metodoPago,
         LocalDate fechaOrden,
         LocalDate fechaDelivery,
-        List<DetallesDTO> detallesDTOList
+        List<DetallesDTO> detallesList
 ) {
 }

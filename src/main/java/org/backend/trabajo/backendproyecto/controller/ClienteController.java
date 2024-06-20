@@ -3,10 +3,7 @@ package org.backend.trabajo.backendproyecto.controller;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.backend.trabajo.backendproyecto.RuntimeExceptionCustom.ClienteAlreadyExistsException;
-import org.backend.trabajo.backendproyecto.dto.ClienteDTO.ChangePasswordDTO;
-import org.backend.trabajo.backendproyecto.dto.ClienteDTO.ClienteDTO;
-import org.backend.trabajo.backendproyecto.dto.ClienteDTO.DatosRegistroClienteDTO;
-import org.backend.trabajo.backendproyecto.dto.ClienteDTO.DatosRespuestaClienteDTO;
+import org.backend.trabajo.backendproyecto.dto.ClienteDTO.*;
 import org.backend.trabajo.backendproyecto.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,7 +30,7 @@ public class ClienteController {
         return ResponseEntity.ok(clientes);
     }
 
-    @GetMapping("/login/{login}")
+    @GetMapping("/name/{login}")
     public ResponseEntity<List<ClienteDTO>> obtenerClientePorLogin(@PathVariable String login) {
         List<ClienteDTO> cliente = clienteService.obtenerPorLogin(login);
         if (cliente.isEmpty()) {

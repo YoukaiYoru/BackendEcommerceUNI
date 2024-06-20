@@ -4,6 +4,7 @@ import org.backend.trabajo.backendproyecto.model.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
@@ -14,8 +15,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     List<Cliente> findByIdClient(Long idCliente);
     List<Cliente> findByClientUserAndClientEmail(String usr, String email);
 
-    @Query("select c from Cliente c where c.clientUser =:usr")
-    UserDetails findByCredentials(String usr);
+    @Query("Select c from Cliente c where c.clientUser = :usr")
+    UserDetails credentialFind(@Param("usr") String usr);
 
     void deleteByClientUser(String usr);
 
