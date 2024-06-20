@@ -4,7 +4,6 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.backend.trabajo.backendproyecto.RuntimeExceptionCustom.ClienteAlreadyExistsException;
 import org.backend.trabajo.backendproyecto.dto.ClienteDTO.*;
-import org.backend.trabajo.backendproyecto.model.Cliente;
 import org.backend.trabajo.backendproyecto.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -62,7 +61,7 @@ public class ClienteController {
     }
 
     @Transactional
-    @DeleteMapping("/{login}")
+    @DeleteMapping("/deleteUsuario/{login}")
     public ResponseEntity eliminarClientePorLogin(@PathVariable String login) {
         clienteService.eliminarClientePorLogin(login);
         return ResponseEntity.noContent().build();

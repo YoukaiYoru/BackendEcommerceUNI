@@ -1,6 +1,7 @@
 package org.backend.trabajo.backendproyecto.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.backend.trabajo.backendproyecto.dto.OrdenDTO.DetallesDTO;
 import org.backend.trabajo.backendproyecto.model.Cliente;
 import org.backend.trabajo.backendproyecto.model.Orden;
 import org.backend.trabajo.backendproyecto.model.OrdenDetalles;
@@ -22,7 +23,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 class OrdenDetalleServiceTest {
 
-
     @Mock
     private OrdenDetalleRepository ordenDetalleRepository;
 
@@ -35,6 +35,9 @@ class OrdenDetalleServiceTest {
     @Mock
     private ProductoRepository productoRepository;
 
+    @Mock
+    private ClienteService clienteService;
+
     @InjectMocks
     private OrdenDetalleService ordenDetalleService;
 
@@ -42,14 +45,11 @@ class OrdenDetalleServiceTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
     @Test
     void eliminarProductoDeOrdenDetallesTest() {
         Cliente cliente = new Cliente();
         cliente.setIdClient(1L);
-        Orden orden = new Orden();
-        orden.setIdOrden(1L);
-        orden.setOrdenMonto(100.0f);
+        cliente.setClientUser("user1");
 
         Producto producto = new Producto();
         producto.setIdProducto(1L);
@@ -58,16 +58,24 @@ class OrdenDetalleServiceTest {
         OrdenDetalles ordenDetalles = new OrdenDetalles();
         ordenDetalles.setProducto(producto);
         ordenDetalles.setCantidadProducto(2);
-        ordenDetalles.setProductoPrecio(25.0f);
-        ordenDetalles.setSubTotalPrecio(producto);
+        ordenDetalles.setSubTotalPrecio(50.0f);
 
+        Orden orden = new Orden();
+        orden.setIdOrden(1L);
+        orden.setOrdenMonto(100.0f);
         orden.setOrdenDetalles(Collections.singletonList(ordenDetalles));
+
         cliente.setListOrden(Collections.singletonList(orden));
 
-        when(clienteRepository.findById(1L)).thenReturn(Optional.of(cliente));
+        when(clienteService.verificacionDeUsuario("user1", "password")).thenReturn(true);
+        when(clienteRepository.findByClientUser("user1")).thenReturn(Collections.singletonList(cliente));
+        when(ordenRepository.findById(1L)).thenReturn(Optional.of(orden));
         when(ordenRepository.save(any(Orden.class))).thenReturn(orden);
 
-        ordenDetalleService.eliminarProductoDeOrdenDetalles(1L, 1L, 1L);
+        DetallesDTO detallesDTO = new DetallesDTO();
+        detallesDTO.setIdProducto(1L);
+
+        Orden result = ordenDetalleService.eliminarProductoDeOrdenDetalles(detallesDTO, 1L, "user1", "password");
 
         verify(ordenRepository, times(1)).save(any(Orden.class));
         assertEquals(50.0f, orden.getOrdenMonto());
@@ -76,7 +84,7 @@ class OrdenDetalleServiceTest {
 
     @Test
     void agregarProductoAOrdenDetallesTest() {
-        Cliente cliente = new Cliente();
+        Cliente cliente = new Cliente(datosRegistroClienteDTO);
         cliente.setClientUser("user1");
 
         Producto producto = new Producto();
@@ -111,7 +119,7 @@ class OrdenDetalleServiceTest {
 
     @Test
     void eliminarProductoDeOrdenDetalles_OrdenNoEncontradaTest() {
-        Cliente cliente = new Cliente();
+        Cliente cliente = new Cliente(datosRegistroClienteDTO);
         cliente.setIdClient(1L);
         cliente.setListOrden(Collections.emptyList());
 
@@ -127,7 +135,7 @@ class OrdenDetalleServiceTest {
 
     @Test
     void eliminarProductoDeOrdenDetalles_DetalleNoEncontradoTest() {
-        Cliente cliente = new Cliente();
+        Cliente cliente = new Cliente(datosRegistroClienteDTO);
         cliente.setIdClient(1L);
         Orden orden = new Orden();
         orden.setIdOrden(1L);

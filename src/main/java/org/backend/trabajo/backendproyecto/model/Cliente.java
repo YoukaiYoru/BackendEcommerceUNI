@@ -3,7 +3,6 @@ package org.backend.trabajo.backendproyecto.model;
 import jakarta.persistence.*;
 
 import lombok.Data;
-import org.backend.trabajo.backendproyecto.dto.ClienteDTO.DatosRegistroClienteDTO;
 
 import java.util.List;
 @Data

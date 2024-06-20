@@ -6,14 +6,12 @@ import static org.mockito.Mockito.*;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import org.backend.trabajo.backendproyecto.RuntimeExceptionCustom.ClienteAlreadyExistsException;
 import org.backend.trabajo.backendproyecto.dto.ClienteDTO.ClienteDTO;
 import org.backend.trabajo.backendproyecto.dto.ClienteDTO.DatosRegistroClienteDTO;
 import org.backend.trabajo.backendproyecto.model.Cliente;
 import org.backend.trabajo.backendproyecto.repository.ClienteRepository;
-import org.backend.trabajo.backendproyecto.service.ClienteService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -35,7 +33,7 @@ public class ClienteServiceTest {
 
     @Test
     void obtenerTodosClientesTest() {
-        Cliente cliente = new Cliente();
+        Cliente cliente = new Cliente(datosRegistroClienteDTO);
         cliente.setIdClient(1L);
         cliente.setClientUser("user1");
 
@@ -48,7 +46,7 @@ public class ClienteServiceTest {
 
     @Test
     void obtenerPorLoginTest() {
-        Cliente cliente = new Cliente();
+        Cliente cliente = new Cliente(datosRegistroClienteDTO);
         cliente.setIdClient(1L);
         cliente.setClientUser("user1");
 
@@ -61,7 +59,7 @@ public class ClienteServiceTest {
 
     @Test
     void obtenerPorIDTest() {
-        Cliente cliente = new Cliente();
+        Cliente cliente = new Cliente(datosRegistroClienteDTO);
         cliente.setIdClient(1L);
         cliente.setClientUser("user1");
 
@@ -101,7 +99,7 @@ public class ClienteServiceTest {
                 "123456789"
         );
 
-        Cliente clienteExistente = new Cliente();
+        Cliente clienteExistente = new Cliente(datosRegistroClienteDTO);
         clienteExistente.setClientEmail("test@example.com");
         clienteExistente.setClientUser("user1");
 
@@ -112,7 +110,7 @@ public class ClienteServiceTest {
 
     @Test
     void eliminarClientePorLoginTest() {
-        Cliente cliente = new Cliente();
+        Cliente cliente = new Cliente(datosRegistroClienteDTO);
         cliente.setClientUser("user1");
 
         when(clienteRepository.findByClientUser("user1")).thenReturn(Collections.singletonList(cliente));
@@ -124,7 +122,7 @@ public class ClienteServiceTest {
 
     @Test
     void actualizarPasswordTest() {
-        Cliente cliente = new Cliente();
+        Cliente cliente = new Cliente(datosRegistroClienteDTO);
         cliente.setClientUser("user1");
         cliente.setClientPassword("oldPassword");
 
@@ -137,7 +135,7 @@ public class ClienteServiceTest {
 
     @Test
     void actualizarPasswordIncorrectaTest() {
-        Cliente cliente = new Cliente();
+        Cliente cliente = new Cliente(datosRegistroClienteDTO);
         cliente.setClientUser("user1");
         cliente.setClientPassword("wrongPassword");
 

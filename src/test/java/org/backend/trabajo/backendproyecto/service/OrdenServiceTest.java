@@ -145,7 +145,7 @@ class OrdenServiceTest {
         );
         int idMetodoPago = 1;
         int idOrdenEstado = 1;
-        when(clienteRepository.findById(idCliente)).thenReturn(Optional.of(new Cliente(/* Datos de prueba para el cliente */)));
+        when(clienteRepository.findById(idCliente)).thenReturn(Optional.of(new Cliente(/* Datos de prueba para el cliente */datosRegistroClienteDTO)));
         when(metodoPagoRepository.findById(idMetodoPago)).thenReturn(Optional.of(new MetodoPago(/* Datos de prueba para el método de pago */)));
         when(ordenEstadoRepository.findById(idOrdenEstado)).thenReturn(Optional.of(new OrdenEstado(/* Datos de prueba para el estado de la orden */)));
         when(productoRepository.findById(anyLong())).thenReturn(Optional.of(new Producto(/* Datos de prueba para el producto */)));

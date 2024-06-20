@@ -14,10 +14,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class ClienteService {
+
     @Autowired
     private ClienteRepository clienteRepository;
 
-    //CONVERTIR DATOS A JSON
+    /* CONVERTIR DATOS A JSON */
 
     public List<ClienteDTO> convierteDatos(List<Cliente> clienteList){
         return clienteList.stream()
@@ -28,7 +29,8 @@ public class ClienteService {
     public ClienteDTO convierteDatos(Cliente c){
         return new ClienteDTO(c.getIdClient(),c.getClientUser(),c.getClientPassword(),c.getClientFirstName(),c.getClientLastName(),c.getClientEmail(),c.getClientPhone());
     }
-    //METODOS CRUD
+
+    /* METODOS CRUD */
 
     public List<ClienteDTO> obtenerTodosClientes() {
         return convierteDatos(clienteRepository.findAll());
@@ -45,27 +47,27 @@ public class ClienteService {
     public void guardarUsuario(DatosRegistroClienteDTO datosRegistroClienteDTO) {
         String clientEmail = datosRegistroClienteDTO.getClientEmail();
         String clientUser = datosRegistroClienteDTO.getClientUser();
-        List<Cliente> clienteExistente= clienteRepository.findByClientUserOrClientEmail(clientUser, clientEmail);
-         if(!clienteExistente.isEmpty()){
-             throw new ClienteAlreadyExistsException("El cliente con el email " + clientEmail +
-                     " y nombre de usuario " + clientUser + " ya está registrado.");
-         }else{
-             clienteRepository.save(new Cliente(datosRegistroClienteDTO));
-         }
-
+        List<Cliente> clienteExistente = clienteRepository.findByClientUserOrClientEmail(clientUser, clientEmail);
+        if (!clienteExistente.isEmpty()) {
+            throw new ClienteAlreadyExistsException("El cliente con el email " + clientEmail +
+                    " y nombre de usuario " + clientUser + " ya está registrado.");
+        } else {
+            clienteRepository.save(new Cliente());
+        }
     }
-
 
     @Transactional
     public void eliminarClientePorLogin(String login) {
-       List<Cliente> cliente = clienteRepository.findByClientUser(login);
-       clienteRepository.delete(cliente.getFirst());
+        List<Cliente> cliente = clienteRepository.findByClientUser(login);
+        if (!cliente.isEmpty()) {
+            clienteRepository.delete(cliente.get(0));
+        } else {
+            throw new RuntimeException("No existe el cliente con el login " + login);
+        }
     }
 
-    //ADITIONAL SERVICE
+    /* ADDITIONAL SERVICE */
 
-
-//Mejorar este método
     @Transactional
     public void actualizarPassword(String login, String oldPassword, String newPassword) {
         List<Cliente> cliente = clienteRepository.findByClientUser(login);
@@ -81,12 +83,11 @@ public class ClienteService {
         }
     }
 
-
     public boolean verificacionDeUsuario(String login, String password){
         List<ClienteDTO> cliente = convierteDatos(clienteRepository.findByClientUser(login));
         if(cliente.isEmpty()){
             throw new RuntimeException("No existe el cliente con el login " + login);
-        }else if(password.equals(cliente.getFirst().clientPassword())){
+        }else if(password.equals(cliente.get(0).clientPassword())){
             return true;
         }else{
             throw new RuntimeException("Contraseña incorrecta");
