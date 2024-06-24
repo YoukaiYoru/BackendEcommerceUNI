@@ -6,10 +6,24 @@
  */
 
 // Composables
-import { createRouter, createWebHistory } from 'vue-router/auto'
+import { createRouter, createWebHistory } from 'vue-router'
+
+const routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: ()=> import('@/pages/landingPage.vue')
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: ()=> import('@/pages/cartPage.vue')
+  },
+]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  routes
 })
 
 export default router
