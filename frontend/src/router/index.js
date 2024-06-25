@@ -24,6 +24,11 @@ const routes = [
     name: 'login',
     component: ()=> import('@/pages/SesionPage.vue')
   },
+  {
+    path: '/productos',
+    name: 'productos',
+    component: ()=> import('@/pages/productosPage.vue')
+  },
 ]
 
 const router = createRouter({
