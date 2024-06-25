@@ -12,9 +12,11 @@ import App from './App.vue'
 
 // Composables
 import { createApp } from 'vue'
+import { createPinia	 } from 'pinia'
+import router from './router'
 
 const app = createApp(App)
-
+const pinia = createPinia()
 registerPlugins(app)
 
-app.mount('#app')
+app.use(router).use(pinia).mount('#app')
