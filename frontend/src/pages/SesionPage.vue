@@ -22,6 +22,23 @@
         </div>
     </div>
     </template>
+    <script>
+export default {
+  data() {
+    return {
+      email: '',
+      password: ''
+    };
+  },
+  methods: {
+    submitForm() {
+      // Lógica para manejar el envío del formulario
+      console.log('Email:', this.email);
+      console.log('Password:', this.password);
+    }
+  }
+};
+</script>
     
     
     
