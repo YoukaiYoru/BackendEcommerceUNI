@@ -5,9 +5,12 @@ position-fixed
 >
 <v-row align="center" justify="center">
    <img
+   
+   @click="goHome()"
    style="object-fit: contain;"
    height="80"
-   src="/src/assets/logoMarket.png" class="mr-2" alt="Logo"></img>
+   src="/src/assets/logoMarket.png" class="mr-2 cursor-pointer" alt="Logo"/>
+   
 
    <v-btn 
    prepend-icon="mdi-menu"
@@ -28,6 +31,7 @@ position-fixed
    
    <v-btn
    :ripple="false"
+   to="/login"
    class="mx-5"
    variant="plain">
       ¡Hola! <br> Inicia sesión
@@ -43,3 +47,18 @@ position-fixed
 
 
 </template>
+
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+const search = ref('')
+const router = useRouter()
+
+
+const goHome = () => {
+   router.push('/')
+}
+
+</script>
+
+
