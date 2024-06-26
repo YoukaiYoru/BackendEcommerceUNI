@@ -39,7 +39,8 @@ position-fixed
 
    <v-btn icon="mdi-cart-outline"
    size="large"
-   class="mx-10">
+   class="mx-10"
+   to="/cart">
    </v-btn>
 </v-row>
 

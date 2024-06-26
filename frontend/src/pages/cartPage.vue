@@ -11,7 +11,7 @@
                <v-container>
                   <v-card-title> Carrito</v-card-title>
                   <v-container>
-                  <itemsCart v-for="product in cartItems" 
+                  <itemsCart v-for="product in productos" 
                   :key="product.id" 
                   :name="product.name"
                   :price="product.price"
@@ -55,15 +55,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+
 import itemsCart from '@/components/itemsCart.vue';
+import { useProductosStore } from '@/stores/productosStore';
 
-const cartItems = ref([
-   { id: 1, name: 'Producto 1', price: 10, quantity: 2 },
-   { id: 2, name: 'Producto 2', price: 15, quantity: 1 },
-   { id: 3, name: 'Producto 3', price: 20, quantity: 3 }
-])
-
+const store = useProductosStore();
+const productos = store.productosCarrito;
 
 
 

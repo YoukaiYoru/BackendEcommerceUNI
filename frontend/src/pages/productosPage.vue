@@ -49,7 +49,7 @@
          v-model="currentPage"
          :length="15"
          :total-visible="5"
-         @input="fetchData"
+         @input="store.fetchProductos"
       ></v-pagination>
 
 
@@ -60,12 +60,11 @@
 
 <script setup>
 
-import { ref,onMounted,getCurrentInstance } from 'vue'
+import { ref,onMounted, computed } from 'vue'
+import { useProductosStore } from '@/stores/productosStore';
 import productosCard from '@/components/productosCard.vue'
 
 const categoria = 'Cálculo Diferencial'
-
-const { proxy } = getCurrentInstance()
 
 const filtro = ref([
    { id:'1',title: 'Defecto'},
@@ -75,28 +74,22 @@ const filtro = ref([
    { id:'5',title: 'Mejor valorados' },
 ])
 
-const orden = ref() 
-
-const items = ref(null)
+const store = useProductosStore()
+const items = computed(() => {
+   return store.getProductos
+})
+const orden = ref()
 const currentPage = ref(1);
 const error = ref(null);
 const loading = ref(false);
 
-const fetchData = async() =>{
-   loading.value = true
-   try{
-      const response = await proxy.$axios.get('products')
-      items.value = response.data
-      console.log(items.value)
-   } catch (err){
-      console.log(err)
-   } finally {
-      loading.value = false
+
+
+onMounted(
+   () => {
+      store.fetchProductos();
    }
-}
-
-
-onMounted(fetchData)
+)
 
 
 
