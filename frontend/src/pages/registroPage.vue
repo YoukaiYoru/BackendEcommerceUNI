@@ -48,7 +48,7 @@
     },
     methods: {
       register() {
-        // Lógica para registrar usuario
+        
         console.log(`Usuario: ${this.username}`);
         console.log(`Contraseña: ${this.password}`);
         console.log(`Nombres: ${this.firstName}`);
@@ -106,14 +106,14 @@
     
     input {
     padding: 10px;
-    border: 2px solid #800000;
+    border: 2px solid rgb(254, 0, 0);
     border-radius: 15px;
     background-color:#ffffff;
     }
     
     button {
     padding: 10px;
-    background-color: #800000;
+    background-color: #991c1c;
     color: white;
     border: none;
     border-radius: 15px;

@@ -112,7 +112,7 @@ export default {
     .input-group input {
     width: 100%;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 15px;
     border: 1px solid #333;
     background-color: #303030;
     color: #fff;
@@ -132,20 +132,29 @@ export default {
     width: 100%;
     padding: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     margin-top: 10px;
     cursor: pointer;
-    border-color: rgb(199, 21, 21);
+    border-color: rgb(107, 52, 52);
     }
     
     .login-button {
-    background-color: #904a4a;
+    background-color: #a42222;
     color: #fff;
     }
     
     .register-button {
-    background-color: #883838;
+    background-color: #991c1c;
     color: #fff;
+    }
+
+    .login-button:hover,
+    .register-button:hover {
+      background-color: #6c535c;
+    }
+    .login-button:active,
+    .register-button:active {
+      background-color: #f70303;
     }
     </style>
     
