@@ -36,7 +36,7 @@
       <template v-slot:top>
    
       <v-card-title class="d-flex align-center pe-2">
-         <v-icon icon="mdi-package-variant-closed"></v-icon> &nbsp;
+         <v-icon icon="mdi-shopping-outline"></v-icon> &nbsp;
          Productos
          <v-spacer></v-spacer>
 

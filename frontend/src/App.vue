@@ -33,7 +33,8 @@
 </template>
 
 <script setup>
-  import { ref,provide } from 'vue';  
+  import { ref,provide} from 'vue';
+  
   import NavBar from '@/components/NavBar.vue';
   import AppFooter from '@/components/AppFooter.vue';
   const drawer = ref(false)
@@ -44,28 +45,37 @@
   provide('toggleDrawer', toggleDrawer);
 const items = ref([
   {title: 'Libros', 
-    props: {prependIcon: "mdi-book-open-page-variant", to: "/productos"},
+    props: {prependIcon: "mdi-book-open-page-variant", to: "/productos", },
+    categoria: "Libros",
   },
   {title: 'Accesorios', 
-    props: {prependIcon: "mdi-necklace", to: "/productos"},
+    props: {prependIcon: "mdi-necklace", to: "/productos",},
+    categoria: "Accesorios",
   },
   {title: 'Tecnología', 
-    props: {prependIcon: "mdi-laptop", to: "/productos"}
+    props: {prependIcon: "mdi-laptop", to: "/productos", },
+    categoria: "Tecnologia",
   },
   {title: 'Papelería', 
-    props: {prependIcon: "mdi-note-edit-outline", to: "/productos"},
+    props: {prependIcon: "mdi-note-edit-outline", to: "/productos",},
+    categoria: "Papeleria"
   },
   {title: 'Accesorios de computación', 
-    props: {prependIcon: "mdi-mouse", to: "/productos"},
+    props: {prependIcon: "mdi-mouse", to: "/productos",},
+    categoria: "Accesorios de computación",
   },
   {title: 'Bolsas y mochilas', 
-    props: {prependIcon: "mdi-bag-personal-outline", to: "/productos"},
+    props: {prependIcon: "mdi-bag-personal-outline", to: "/productos",},
+    categoria: "Bolsas y Mochilas"
   },
   {title: 'Ropa', 
     props: {prependIcon: "mdi-tshirt-crew-outline", to: "/productos"},
+    categoria: "Ropa",
   },
 
 ])
+
+
 </script>
 
 

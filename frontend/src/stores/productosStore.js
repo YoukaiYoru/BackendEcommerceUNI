@@ -15,6 +15,8 @@ export const useProductosStore = defineStore('productosStore',{
       getCarrito(state){
          return state.productosCarrito;
       }
+
+
    },
 
    actions: {
@@ -50,10 +52,6 @@ export const useProductosStore = defineStore('productosStore',{
             this.loading = false;
             }
          },
-
-      setSearchTerm(term) {
-         this.searchTerm = term;
-      },
    } 
 
 });

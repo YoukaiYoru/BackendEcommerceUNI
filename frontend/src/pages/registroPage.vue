@@ -34,31 +34,25 @@
     </div>
     </template>
     
-    <script>
-    export default {
-    data() {
-      return {
-        username: '',
-        password: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-      };
-    },
-    methods: {
-      register() {
-        
-        console.log(`Usuario: ${this.username}`);
-        console.log(`Contraseña: ${this.password}`);
-        console.log(`Nombres: ${this.firstName}`);
-        console.log(`Apellidos: ${this.lastName}`);
-        console.log(`Correo electrónico: ${this.email}`);
-        console.log(`Número de teléfono: ${this.phone}`);
-      },
-    },
+    <script setup>
+    import { ref } from 'vue';  
+    const username = ref('');
+    const password = ref('');
+    const firstName = ref('');
+    const lastName = ref('');
+    const email = ref('');
+    const phone = ref('');
+  
+    const register = () => {
+      console.log(`Usuario: ${username.value}`);
+      console.log(`Contraseña: ${password.value}`);
+      console.log(`Nombres: ${firstName.value}`);
+      console.log(`Apellidos: ${lastName.value}`);
+      console.log(`Correo electrónico: ${email.value}`);
+      console.log(`Número de teléfono: ${phone.value}`);
     };
-    </script>
+  </script>
+  
     
     <style scoped>
     .container {

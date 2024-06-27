@@ -9,31 +9,29 @@
          </v-row>
          <v-row >
             <v-col align="center">
-               <v-card>
+               <v-card @click="$router.push('/admin/productos')" class="bg-red-lighten-5" height="320">
                   <v-card-title>PRODUCTOS</v-card-title>
-                  <v-icon style="height:400px ; content: fill;" icon="mdi-shopping-outline"></v-icon>
+                  <v-img :src="'/src/assets/admin/shop.svg'" class="w-25 h-25" ></v-img>
                   <v-divider class="ma-5"></v-divider>
                   <v-card-text>Adiciona nuevos productos y modifica el stock de productos ya existentes</v-card-text>
                   <v-divider class="my-5 mx-5"></v-divider>
                </v-card>
             </v-col>
             <v-col align="center">
-               <v-card>
+               <v-card @click="$router.push('/admin/clientes')" class="bg-red-lighten-5" height="320">
                   <v-card-title>CLIENTES</v-card-title>
-                  <v-icon style="height:400px ">
-                     mdi-account-multiple-outline
-                  </v-icon>
+                  <v-img :src="'/src/assets/admin/clientes.svg'" class="w-25 h-25"></v-img>
                   <v-divider class="ma-5"></v-divider>
-                  <v-card-text>Adiciona nuevos productos y modifica el stock de productos ya existentes</v-card-text>
+                  <v-card-text>Búsqueda de clientes respecto a su usuario e ID para visualizar detalles más específicos</v-card-text>
                   <v-divider class="my-5 mx-5"></v-divider>
                </v-card>
             </v-col>
             <v-col align="center">
-               <v-card>
+               <v-card @click="$router.push('/admin/ordenes')" class="bg-red-lighten-5" height="320">
                   <v-card-title>ORDENES</v-card-title>
-                  <v-icon style="height:400px ; content: fill;" icon="mdi-package-variant-closed"></v-icon>
+                  <v-img :src="'/src/assets/admin/productos.svg'" class="w-25 h-25"></v-img>
                   <v-divider class="ma-5"></v-divider>
-                  <v-card-text>Adiciona nuevos productos y modifica el stock de productos ya existentes</v-card-text>
+                  <v-card-text>Especificaciones de las ordenes realizadas obteniendo diferentes datos previamente brindados</v-card-text>
                   <v-divider class="my-5 mx-5"></v-divider>
                </v-card>
             </v-col>

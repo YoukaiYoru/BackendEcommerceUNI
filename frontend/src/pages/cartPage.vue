@@ -9,7 +9,7 @@
             <v-col>
                <!-- !TODO Agregar botones para aumentar cantidad  -->
                <v-container>
-                  <v-card-title> Carrito</v-card-title>
+                  <v-card-title> Carrito </v-card-title>
                   <v-container>
                   <itemsCart v-for="product in productos" 
                   :key="product.id" 

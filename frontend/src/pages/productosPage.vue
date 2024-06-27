@@ -65,7 +65,7 @@ import { useProductosStore } from '@/stores/productosStore';
 import productosCard from '@/components/productosCard.vue'
 import { useRouter } from 'vue-router'
 
-const categoria = 'Cálculo Diferencial'
+
 const router = useRouter()
 
 const filtro = ref([
