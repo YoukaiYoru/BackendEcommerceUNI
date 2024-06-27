@@ -50,6 +50,10 @@ public class OrdenService {
         return convierteDatos(ordenRepository.findAll());
     }
 
+    public List<Orden> obtenerOrdenPorCliente(Long idOrden) {
+        return ordenRepository.findByIdOrden(idOrden);
+    }
+
     public List<TodasLasOrdenesDTO> convierteDatosDeOrdenes(List<Orden> ordenList) {
         // Agrupar las órdenes por idClient
         Map<Long, List<Orden>> groupedByClient = ordenList.stream()
@@ -120,7 +124,7 @@ public class OrdenService {
 
         // Crear la orden
         Orden orden = new Orden();
-        orden.setCliente(cliente);
+        orden.setCliente(cliente); //-- Crear Dto para esto o usar uno mejor uu
         orden.setMetodoPago(null);
         orden.setOrdenEstado(null);
         orden.setOrdenDate(null);
@@ -159,7 +163,8 @@ public class OrdenService {
         orden.setOrdenMonto(montoTotal);
         orden.setOrdenDate(LocalDate.now());
         orden.setMetodoPago(metodoPago);
-        orden.setOrdenEstado(estadoFinalizada); //
+        orden.setOrdenEstado(estadoFinalizada);
+        //mejorar un dto para q no cree loop
         return ordenRepository.save(orden);
     }
 

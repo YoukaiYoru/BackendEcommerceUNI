@@ -89,10 +89,10 @@ public class ProductoService {
         }
     }
 
-    //GuardarImagenDelUsuario
+    /*GuardarImagenDelUsuario
     private static final String DIRECTORIO_IMAGENES = "src//main//resources//static//img"; // Assuming resources folder is on classpath
 
-    public String guardarImagen(MultipartFile file){
+    public String guardarImagenxd(MultipartFile file){
         String nombreArchivo = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
 
         // Validate filename to prevent potential security vulnerabilities
@@ -117,5 +117,60 @@ public class ProductoService {
             }
         }
         return DIRECTORIO_IMAGENES + "/" + nombreArchivo;
+    }
+    */
+
+    /*public Producto guardarProductoConImagen(String nombreArchivo, MultipartFile file) throws IOException {
+        String rutaSrcImagen = guardarImagen(file);
+        Producto producto = new Producto();
+        producto.setProductImgUrl(rutaSrcImagen);
+        return productoRepository.save(producto);
+    }
+
+    private String guardarImagen(MultipartFile imagen) throws IOException {
+        String nombreArchivo = imagen.getOriginalFilename();
+        Path rutaArchivo = Paths.get("src/main/resources/static/img/" + nombreArchivo);
+        Files.copy(imagen.getInputStream(), rutaArchivo, StandardCopyOption.REPLACE_EXISTING);
+        return rutaArchivo.toString();
+    }
+
+     */
+    //modificar imagen de un servicio
+    public Producto guardarProductoConImagen(String nombre, String descripcion, int cantidad, String categoriaNombre, MultipartFile imagen) throws IOException {
+        String rutaImagen = guardarImagen(imagen);
+        Categoria categoria = categoriaRepository.findByCategoriaTipo(categoriaNombre)
+                .orElseGet(() -> {
+                    Categoria nuevaCategoria = new Categoria();
+                    nuevaCategoria.setCategoriaTipo(categoriaNombre);
+                    nuevaCategoria.setCategoriaContador(0);
+                    return categoriaRepository.save(nuevaCategoria);
+                });
+
+        Producto productoExistente = productoRepository.findByProductName(nombre).orElse(null);
+
+        if (productoExistente != null) {
+            productoExistente.setProductStock(productoExistente.getProductStock() + cantidad);
+            productoExistente.setProductImgUrl(rutaImagen);
+            productoExistente.setProductDescription(descripcion);
+            productoExistente.setCategoria(categoria);
+            return productoRepository.save(productoExistente);
+        } else {
+            Producto nuevoProducto = new Producto();
+            nuevoProducto.setProductName(nombre);
+            nuevoProducto.setProductDescription(descripcion);
+            nuevoProducto.setProductStock(cantidad);
+            nuevoProducto.setProductImgUrl(rutaImagen);
+            nuevoProducto.setCategoria(categoria);
+            categoria.setCategoriaContador(categoria.getCategoriaContador() + 1);
+            categoriaRepository.save(categoria);
+            return productoRepository.save(nuevoProducto);
+        }
+    }
+
+    private String guardarImagen(MultipartFile file) throws IOException {
+        String nombreArchivo = file.getOriginalFilename();
+        Path rutaArchivo = Paths.get("src/main/resources/static/img/" + nombreArchivo);
+        Files.copy(file.getInputStream(), rutaArchivo, StandardCopyOption.REPLACE_EXISTING);
+        return rutaArchivo.toString();
     }
 }

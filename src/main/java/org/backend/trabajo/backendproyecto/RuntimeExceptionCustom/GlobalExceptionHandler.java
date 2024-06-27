@@ -1,4 +1,4 @@
-package org.backend.trabajo.backendproyecto.controller;
+package org.backend.trabajo.backendproyecto.RuntimeExceptionCustom;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -26,23 +26,21 @@ public class Producto {
 
     //RELATIONS
 
-    @ManyToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "producto", orphanRemoval = true)
     private List<OrdenDetalles> ordenDetalles;
-    // TO STRING
 
-    public Producto(){};
-    public Producto(DatosProductoDTO datosProductoDTO){
+    // TO STRING
+    public Producto(DatosProductoDTO datosProductoDTO) {
         this.productName = datosProductoDTO.product_name();
         this.productDescription = datosProductoDTO.product_description();
         this.productPrice = datosProductoDTO.product_price();
         this.productStock = datosProductoDTO.product_stock();
         this.productImgUrl = datosProductoDTO.product_img_url();
     }
-
 
     public Producto() {
 
