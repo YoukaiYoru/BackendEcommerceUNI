@@ -22,12 +22,39 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: ()=> import('@/pages/SesionPage.vue')
+    component: ()=> import('@/pages/LoginUserPage.vue')
   },
   {
     path: '/productos',
     name: 'productos',
     component: ()=> import('@/pages/productosPage.vue')
+  },
+
+  {
+    path:'/productos/:id',
+    name:'productoDetalle',
+    component: ()=> import('@/pages/productoDetallePage.vue')
+
+  },
+  {
+    path:'/admin',
+    name:'admin',
+    component: ()=> import('@/pages/admin/landingAdminPage.vue')
+  },
+  {
+    path:'/admin/productos',
+    name:'productosAdmin',
+    component: ()=> import('@/pages/admin/productosAdminPage.vue')
+  },
+  {
+    path:'/admin/clientes',
+    name:'clientesAdmin',
+    component: ()=> import('@/pages/admin/clientesAdminPage.vue')
+  },
+  {
+    path:'/admin/ordenes',
+    name:'ordenesAdmin',
+    component: ()=> import('@/pages/admin/ordenesAdminPage.vue')
   },
 ]
 

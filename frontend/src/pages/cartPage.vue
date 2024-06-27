@@ -2,7 +2,7 @@
 
    <v-container>
       <v-row class="my-3">
-            <v-btn icon="mdi-chevron-left" class="text-white bg-yellow-darken-2" ></v-btn>       
+            <v-btn to="/productos" icon="mdi-chevron-left" class="text-white bg-yellow-darken-2" ></v-btn>       
             <p class="my-auto ml-3">Volver</p>
       </v-row>
          <v-row>
@@ -13,9 +13,11 @@
                   <v-container>
                   <itemsCart v-for="product in productos" 
                   :key="product.id" 
-                  :name="product.name"
-                  :price="product.price"
+                  :name="product.nombre"
+                  :price="product.precio"
+                  :img="product.imagen"
                   :quantity="product.quantity"
+                  :deleteProduct="eliminarProducto"
                   class="ma-2 pa-2"
                   />
                   </v-container>
@@ -61,7 +63,10 @@ import { useProductosStore } from '@/stores/productosStore';
 
 const store = useProductosStore();
 const productos = store.productosCarrito;
-
+const eliminarProducto = (id) => {
+   store.eliminarProducto(id);
+}
+console.log(productos)
 
 
 </script>

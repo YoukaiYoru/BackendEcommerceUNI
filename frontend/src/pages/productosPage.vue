@@ -29,6 +29,7 @@
             :nombreProducto="item.title"
             :imagenProducto="item.image"
             :precio="item.price"
+            @click="goToProducto(item.id)"
             />
             </v-col>
          </v-row>
@@ -47,7 +48,7 @@
 
       <v-pagination
          v-model="currentPage"
-         :length="15"
+         :length="store.fetchProductos.length"
          :total-visible="5"
          @input="store.fetchProductos"
       ></v-pagination>
@@ -59,12 +60,13 @@
 </template>
 
 <script setup>
-
 import { ref,onMounted, computed } from 'vue'
 import { useProductosStore } from '@/stores/productosStore';
 import productosCard from '@/components/productosCard.vue'
+import { useRouter } from 'vue-router'
 
 const categoria = 'Cálculo Diferencial'
+const router = useRouter()
 
 const filtro = ref([
    { id:'1',title: 'Defecto'},
@@ -78,6 +80,12 @@ const store = useProductosStore()
 const items = computed(() => {
    return store.getProductos
 })
+
+const goToProducto = (id) => {
+   router.push({name:'productoDetalle', params: { id }})
+}
+
+
 const orden = ref()
 const currentPage = ref(1);
 const error = ref(null);
@@ -90,8 +98,6 @@ onMounted(
       store.fetchProductos();
    }
 )
-
-
 
    
 </script>

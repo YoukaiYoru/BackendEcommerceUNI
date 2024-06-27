@@ -10,6 +10,9 @@ export const useProductosStore = defineStore('productosStore',{
    getters: { 
       getProductos(state){
          return state.listaProductos;
+      },
+      getCarrito(state){
+         return state.productosCarrito;
       }
    },
 
@@ -24,11 +27,16 @@ export const useProductosStore = defineStore('productosStore',{
          }
       },
 
-      agregarProducto(producto){
-         this.productosCarrito.push(producto);
-         console.log("Agregado al carrito")
+      agregarProducto(item){
+         this.productosCarrito.push(item);
+         console.log(item);
+      },
+      eliminarProducto(item){
+         const index = this.productosCarrito.findIndex(producto => producto.id === item.id);
+         if (index !== -1) {
+         this.productosCarrito.splice(index, 1);
+         }
       }
-
    } 
 
 });

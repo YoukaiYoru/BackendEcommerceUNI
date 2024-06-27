@@ -5,7 +5,7 @@
       <v-card-title>{{ nombreProducto }}</v-card-title>
       <v-card-subtitle>Precio: {{ precio }}</v-card-subtitle>
       <v-card-actions>
-         <v-btn color="primary" @click="store.agregarProducto">Agregar al carrito</v-btn>
+         <v-btn color="primary" @click="agregarCarrito">Agregar al carrito</v-btn>
       </v-card-actions>
    </v-card>
 </template>
@@ -21,12 +21,21 @@ import { useProductosStore } from '@/stores/productosStore';
 const store = useProductosStore();
 
 
-defineProps({
+
+
+const props = defineProps({
    nombreProducto: String,
    imagenProducto: String,
    precio: Number,
 });
 
 
+const agregarCarrito = () => {
+   store.agregarProducto({
+      nombre: props.nombreProducto,
+      precio: props.precio,
+      imagen: props.imagenProducto,
+   });
+};
 
 </script>
