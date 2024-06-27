@@ -116,7 +116,7 @@ export default {
     border: 1px solid #333;
     background-color: #303030;
     color: #fff;
-    border-color: rgb(250, 0, 254);
+    border-color: rgb(254, 0, 0);
     }
     
     .forgot-password {
@@ -124,7 +124,7 @@ export default {
     margin-top: 5px;
     text-align: right;
     color: #fef3f3;
-    text-decoration: mediumvioletred;
+    text-decoration: rgb(199, 21, 21);
     }
     
     .login-button,
@@ -135,16 +135,16 @@ export default {
     border-radius: 5px;
     margin-top: 10px;
     cursor: pointer;
-    border-color: mediumvioletred;
+    border-color: rgb(199, 21, 21);
     }
     
     .login-button {
-    background-color: #636262;
+    background-color: #904a4a;
     color: #fff;
     }
     
     .register-button {
-    background-color: #636262;
+    background-color: #883838;
     color: #fff;
     }
     </style>
