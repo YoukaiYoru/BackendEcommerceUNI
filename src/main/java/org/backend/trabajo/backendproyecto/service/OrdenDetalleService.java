@@ -23,35 +23,35 @@ public class OrdenDetalleService {
     @Autowired
     private ProductoRepository productoRepository;
 
-/*    @Transactional
-    public void eliminarProductoDeOrdenDetalles(Long userId, Long orderId, Long productoId) {
+//   @Transactional
+//    public void eliminarProductoDeOrdenDetalles(Long userId, Long orderId, Long productoId) {
+//
+//        Cliente cliente = clienteRepository.findById(userId)
+//                .orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado con ID: " + userId));
+//
+//        // Validar si la orden existe para el cliente
+//        Orden orden = cliente.getListOrden().stream()
+//                .filter(o -> o.getIdOrden().equals(orderId))
+//                .findFirst()
+//                .orElseThrow(() -> new EntityNotFoundException("Orden no encontrada para el usuario con ID: " + userId));
+//
+//        // Validar si el detalle de orden existe para la orden
+//        OrdenDetalles ordenDetalles = orden.getOrdenDetalles().stream()
+//                .filter(detalle -> Objects.equals(detalle.getProducto().getIdProducto(), productoId))
+//                .findFirst()
+//                .orElseThrow(() -> new EntityNotFoundException("Detalle de orden no encontrado para la orden con ID: " + orderId));
+//
+//
+//
+//        // Calcular el nuevo monto de la orden restando el precio del producto eliminado
+//        float nuevoOrdenMonto = orden.getOrdenMonto() - (ordenDetalles.getProducto().getProductPrice() * ordenDetalles.getCantidadProducto());
+//        orden.setOrdenMonto(nuevoOrdenMonto);
+//        OrdenDetalles detallesEliminar = (OrdenDetalles) ordenDetalleRepository.findByOrden_IdOrdenAndProducto_IdProductoAndOrden_Cliente_IdClient(orderId, productoId, userId);
+//        ordenDetalleRepository.delete(detallesEliminar);
+//        // Guardar los cambios en la base de datos
+//        ordenRepository.save(orden);
+//    }
 
-        Cliente cliente = clienteRepository.findById(userId)
-                .orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado con ID: " + userId));
-
-        // Validar si la orden existe para el cliente
-        Orden orden = cliente.getListOrden().stream()
-                .filter(o -> o.getIdOrden().equals(orderId))
-                .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Orden no encontrada para el usuario con ID: " + userId));
-
-        // Validar si el detalle de orden existe para la orden
-        OrdenDetalles ordenDetalles = orden.getOrdenDetalles().stream()
-                .filter(detalle -> Objects.equals(detalle.getProducto().getIdProducto(), productoId))
-                .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Detalle de orden no encontrado para la orden con ID: " + orderId));
-
-
-
-        // Calcular el nuevo monto de la orden restando el precio del producto eliminado
-        float nuevoOrdenMonto = orden.getOrdenMonto() - (ordenDetalles.getProducto().getProductPrice() * ordenDetalles.getCantidadProducto());
-        orden.setOrdenMonto(nuevoOrdenMonto);
-        OrdenDetalles detallesEliminar = (OrdenDetalles) ordenDetalleRepository.findByOrden_IdOrdenAndProducto_IdProductoAndOrden_Cliente_IdClient(orderId, productoId, userId);
-        ordenDetalleRepository.delete(detallesEliminar);
-        // Guardar los cambios en la base de datos
-        ordenRepository.save(orden);
-    }h
-*/
 /*
     @Transactional
     public OrdenDetalles agregarProductoAOrdenDetalles(Long id_producto, Long id_orden, int cantidad) {

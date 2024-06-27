@@ -3,7 +3,7 @@
    <v-data-table
    :headers="header"
    :items="filteredItems"
-   item-key="name">
+   item-key="product_name">
 
    <template v-slot:item.actions="{ item }">
       <v-icon
@@ -29,8 +29,8 @@
       </v-btn>
       </template>
 
-      <template v-slot:item.image="{item}" >
-         <v-img :src="item.image"></v-img> 
+      <template v-slot:item.product_img_url="{item}" >
+         <v-img :src="item.product_img_url"></v-img> 
       </template>
 
       <template v-slot:top>
@@ -172,6 +172,12 @@
 import { useProductosStore } from '@/stores/productosStore'
 import { computed, onMounted,ref,watch } from 'vue'
 
+onMounted(
+   () => {
+      store.fetchProductos();
+   }
+)
+
 const dialog = ref(false);
 const dialogDelete = ref(false);
 const editedIndex = ref(-1);
@@ -183,19 +189,21 @@ const items = computed(() => {
 })
 
 const filteredItems = computed(() => {
+   // Filtrar los items por título que coincida con el término de búsqueda, sin distinción entre mayúsculas y minúsculas
    return items.value.filter(item => 
-      item.title.toLowerCase().includes(search.value.toLowerCase())
+      item.product_name.toLowerCase().includes(search.value.toLowerCase())
    );
 });
 
 
 const header = [
-   {title: 'id', value: 'id', align: 'start'},
-   {title: 'Nombre', value: 'title', align: 'start'},
-   {title: 'Descripción', value: 'description', align: 'start'},
-   {title: 'Precio', value: 'price', align: 'start'},
-   {title: 'Categoria', value: 'category', align: 'start'},
-   {title: 'Imagen', value: 'image', align: 'center'},
+   {title: 'id', value: 'id_product', align: 'start'},
+   {title: 'Nombre', value: 'product_name', align: 'start'},
+   {title: 'Descripción', value: 'product_description', align: 'start'},
+   {title: 'Precio', value: 'product_price', align: 'start'},
+   {title: 'Categoria', value: 'categoria_producto', align: 'start'},
+   {title: 'Imagen', value: 'product_img_url', align: 'center'},
+   {title: 'Stock', value: 'product_stock', align: 'start'},
    {title: 'Acciones', value: 'actions', align: 'start'},
 
 ]
@@ -236,10 +244,12 @@ watch(dialog, (val) => {
    }
 });
 
-onMounted(
-   () => {
-      store.fetchProductos();
+watch(dialog, (val) => {
+   if (!val) {
+      close();
    }
-)
+});
+
+
 
 </script>

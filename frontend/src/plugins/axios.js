@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-   baseURL: 'https://fakestoreapi.com/',
+  baseURL: 'https://localhost:8080/',
   // Aquí puedes añadir más configuraciones como headers por defecto
 });
 

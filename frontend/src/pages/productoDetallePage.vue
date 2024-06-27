@@ -1,9 +1,15 @@
 <template>
-   <div class="product-detail">
-      <h1>{{ productoSeleccionado.title }}</h1>
-      <p>{{ productoSeleccionado.description }}</p>
-      <p>Price: ${{ productoSeleccionado.price }}</p>
+   <div v-if="productoSeleccionado" class="product-detail">
+      <h1>{{ productoSeleccionado.product_name }}</h1>
+      <p>{{ productoSeleccionado.product_description }}</p>
+      <p>Price: s/. {{ productoSeleccionado.product_price }}</p>
       <button @click="addToCart">Add to Cart</button>
+   </div>
+   <div v-else-if="loading">
+   <p>Cargando producto...</p>
+   </div>
+   <div v-else>
+   <p>{{ error }}</p>
    </div>
 </template>
 
@@ -16,7 +22,7 @@ import { useRoute } from 'vue-router';
 const store = useProductosStore();
 const route = useRoute();
 const productoSeleccionado = computed(()=> {
-   return store.getProductos.find((producto) => producto.id === Number(route.params.id));
+   return store.getProductos.find((producto) => producto.id_product === Number(route.params.id));
 })
 
 </script>

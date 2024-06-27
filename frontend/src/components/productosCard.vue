@@ -3,7 +3,7 @@
    max-height="400">
       <v-img :src="imagenProducto" height="200"></v-img>
       <v-card-title>{{ nombreProducto }}</v-card-title>
-      <v-card-subtitle>Precio: {{ precio }}</v-card-subtitle>
+      <v-card-subtitle>Precio: s/. {{ precio }}</v-card-subtitle>
       <v-card-actions>
          <v-btn color="primary" @click="agregarCarrito">Agregar al carrito</v-btn>
       </v-card-actions>

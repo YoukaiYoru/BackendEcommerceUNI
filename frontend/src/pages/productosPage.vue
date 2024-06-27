@@ -20,16 +20,16 @@
       <v-container>
          <v-row>
             <v-col
-            v-for="item in items"
-            :key="item.id"
+            v-for="item in paginatedItems"
+            :key="item.id_product"
             cols="12" sm="6" md="4" lg="3"
             class="d-flex align-center justify-center"
             >     
             <productosCard
-            :nombreProducto="item.title"
-            :imagenProducto="item.image"
-            :precio="item.price"
-            @click="goToProducto(item.id)"
+            :nombreProducto="item.product_name"
+            :imagenProducto="item.product_img_url"
+            :precio="item.product_price"
+            @click="goToProducto(item.id_product)"
             />
             </v-col>
          </v-row>
@@ -47,8 +47,8 @@
       </v-row>
 
       <v-pagination
-         v-model="currentPage"
-         :length="store.fetchProductos.length"
+         v-model="page"
+         :length="totalPages"
          :total-visible="5"
          @input="store.fetchProductos"
       ></v-pagination>
@@ -60,7 +60,7 @@
 </template>
 
 <script setup>
-import { ref,onMounted, computed } from 'vue'
+import { ref,onMounted, computed,watch } from 'vue'
 import { useProductosStore } from '@/stores/productosStore';
 import productosCard from '@/components/productosCard.vue'
 import { useRouter } from 'vue-router'
@@ -87,11 +87,17 @@ const goToProducto = (id) => {
 
 
 const orden = ref()
-const currentPage = ref(1);
 const error = ref(null);
 const loading = ref(false);
+const page = ref(1);
+const pageSize = 12; // Tamaño de página, puede ser ajustado según tus necesidades
 
-
+const totalPages = computed(() => Math.ceil(items.value.length / pageSize));
+const paginatedItems = computed(() => {
+   const start = (page.value - 1) * pageSize;
+   const end = start + pageSize;
+   return items.value.slice(start, end);
+});
 
 onMounted(
    () => {
@@ -99,5 +105,8 @@ onMounted(
    }
 )
 
-   
+
+watch(items, () => {
+  page.value = 1; // Reiniciar a la primera página cuando cambian los productos
+});
 </script>

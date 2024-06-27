@@ -99,28 +99,28 @@ public class OrdenController {
         }
     }
 
-    @Transactional
-    @DeleteMapping(value = "/{idOrden}/del/{login}/{password}")
-    public ResponseEntity<RespuestaDetalleDTO> eliminarProductoDeOrden(@RequestBody DetallesDTO detallesDTO,
-                                                         @PathVariable Long idOrden ,
-                                                         @PathVariable String login, @PathVariable String password){
-
-
-        Orden orden = ordenDetalleService.eliminarProductoDeOrdenDetalles(detallesDTO,idOrden,login,password);
-        RespuestaDetalleDTO r = new RespuestaDetalleDTO(
-                orden.getIdOrden(),
-                orden.getOrdenMonto(),
-                orden.getOrdenDate(),
-                orden.getOrdenDetalles().stream()
-                        .map(d -> new DetallesDTO(
-                                d.getProducto().getIdProducto(),
-                                d.getProducto().getProductName(),
-                                d.getCantidadProducto(),
-                                d.getSubTotalPrecio()
-                        )).collect(Collectors.toList())
-        );
-        return ResponseEntity.ok(r);
-    }
+//    @Transactional
+//    @DeleteMapping(value = "/{idOrden}/del/{login}/{password}")
+//    public ResponseEntity<RespuestaDetalleDTO> eliminarProductoDeOrden(@RequestBody DetallesDTO detallesDTO,
+//                                                         @PathVariable Long idOrden ,
+//                                                         @PathVariable String login, @PathVariable String password){
+//
+//
+//        Orden orden = ordenDetalleService.eliminarProductoDeOrdenDetalles(detallesDTO,idOrden,login,password);
+//        RespuestaDetalleDTO r = new RespuestaDetalleDTO(
+//                orden.getIdOrden(),
+//                orden.getOrdenMonto(),
+//                orden.getOrdenDate(),
+//                orden.getOrdenDetalles().stream()
+//                        .map(d -> new DetallesDTO(
+//                                d.getProducto().getIdProducto(),
+//                                d.getProducto().getProductName(),
+//                                d.getCantidadProducto(),
+//                                d.getSubTotalPrecio()
+//                        )).collect(Collectors.toList())
+//        );
+//        return ResponseEntity.ok(r);
+//    }
 
 
 }

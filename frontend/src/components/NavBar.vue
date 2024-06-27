@@ -3,6 +3,7 @@
 <v-app-bar :height="100"
 position-fixed
 >
+
 <v-row align="center" justify="center">
    <img
    
@@ -16,6 +17,7 @@ position-fixed
    prepend-icon="mdi-menu"
    size="large"
    class="mx-5"
+   @click="toggleDrawer"
    > Menu </v-btn>
 
    <v-text-field
@@ -23,7 +25,9 @@ position-fixed
    class="mx-5 my-10"
    hide-details="auto"
    v-model="search"
+   @input="searchProduct"
    append-inner-icon="mdi-magnify"
+   @click:append-inner="searchProduct"
    clearable
    clear-icon="mdi-close-circle-outline"
    variant="solo"
@@ -50,15 +54,23 @@ position-fixed
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref,inject } from 'vue'
 import { useRouter } from 'vue-router'
-const search = ref('')
+import { useProductosStore } from '@/stores/productosStore';
+
 const router = useRouter()
+const store = useProductosStore();
 
-
+const toggleDrawer = inject('toggleDrawer');
 const goHome = () => {
    router.push('/')
 }
+const search = ref(store.getSearchTerm);
+
+const searchProduct = () => {
+   store.setSearchTerm(search.value);
+};
+
 
 </script>
 

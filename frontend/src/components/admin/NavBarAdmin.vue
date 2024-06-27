@@ -26,10 +26,12 @@
       <v-btn 
       size="large"
       class="mx-5"
+      to="/admin/clientes"
       > Clientes </v-btn>
       <v-btn 
       size="large"
       class="mx-5"
+      to="/admin/ordenes"
       > Ordenes </v-btn>
       
       <v-btn
