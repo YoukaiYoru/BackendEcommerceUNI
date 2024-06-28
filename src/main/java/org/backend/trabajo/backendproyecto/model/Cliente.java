@@ -1,10 +1,9 @@
 package org.backend.trabajo.backendproyecto.model;
 
 import jakarta.persistence.*;
-
 import lombok.Data;
-
 import java.util.List;
+
 @Data
 @Entity
 @Table(name = "cliente")

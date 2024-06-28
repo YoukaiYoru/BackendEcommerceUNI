@@ -3,9 +3,7 @@ package org.backend.trabajo.backendproyecto.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.backend.trabajo.backendproyecto.dto.ProductoDTO.DatosProductoDTO;
-
 import java.util.List;
-
 
 @Data
 @Entity
@@ -23,7 +21,6 @@ public class Producto {
     private int productStock;
     private String productImgUrl;
 
-
     //RELATIONS
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -33,16 +30,15 @@ public class Producto {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "producto", orphanRemoval = true)
     private List<OrdenDetalles> ordenDetalles;
 
-    // TO STRING
-    public Producto(DatosProductoDTO datosProductoDTO) {
+    public Producto(DatosProductoDTO datosProductoDTO, Categoria categoria) {
         this.productName = datosProductoDTO.product_name();
         this.productDescription = datosProductoDTO.product_description();
         this.productPrice = datosProductoDTO.product_price();
         this.productStock = datosProductoDTO.product_stock();
         this.productImgUrl = datosProductoDTO.product_img_url();
+        this.categoria = categoria;
     }
 
     public Producto() {
-
     }
 }

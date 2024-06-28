@@ -28,6 +28,7 @@ public class OrdenService {
     @Autowired
     private OrdenEstadoRepository ordenEstadoRepository;
 
+    //Convertir datos a JSON
     public List<OrdenDTO> convierteDatos(List<Orden> ordenList){
         return ordenList.stream()
                 .map(o -> new OrdenDTO(o.getIdOrden(),
@@ -45,6 +46,8 @@ public class OrdenService {
                                 )).collect(Collectors.toList())))
                 .collect(Collectors.toList());
     }
+
+    //Servicios GET - pruebas
 
     public List<OrdenDTO> obtenerTodasLasOrdenes() {
         return convierteDatos(ordenRepository.findAll());
@@ -116,15 +119,16 @@ public class OrdenService {
         return convierteDatos(ordenRepository.findByClientUser(clientUsr));
     }
 
+    //Servicios de carrito
     @Transactional
     public Orden crearOrdenInicial (Long idCliente){
         // Buscar al cliente
         Cliente cliente = clienteRepository.findById(idCliente)
                 .orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado con ID: " + idCliente));
 
-        // Crear la orden
+        // Crear la orden vacia
         Orden orden = new Orden();
-        orden.setCliente(cliente); //-- Crear Dto para esto o usar uno mejor uu
+        orden.setCliente(cliente);
         orden.setMetodoPago(null);
         orden.setOrdenEstado(null);
         orden.setOrdenDate(null);
@@ -164,7 +168,6 @@ public class OrdenService {
         orden.setOrdenDate(LocalDate.now());
         orden.setMetodoPago(metodoPago);
         orden.setOrdenEstado(estadoFinalizada);
-        //mejorar un dto para q no cree loop
         return ordenRepository.save(orden);
     }
 

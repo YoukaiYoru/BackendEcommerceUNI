@@ -28,15 +28,14 @@ public class OrdenController {
     }
 
     @GetMapping("/user/{login}")
-    public List<OrdenDTO> obtenerOrdenPorUsr(@RequestParam String login ) {
+    public List<OrdenDTO> obtenerOrdenPorUsuario(@PathVariable String login ) {
         return ordenService.obtenerPorClientUsr(login);
     }
 
     @GetMapping("/{id}")
-    public List<OrdenDTO> obtenerOrdenPorId(@RequestParam Long id) {
+    public List<OrdenDTO> obtenerOrdenPorId(@PathVariable Long id) {
         return Collections.singletonList(ordenService.obtenerPorId(id));
     }
-
 
     @GetMapping("/todas")
     public ResponseEntity<List<TodasLasOrdenesDTO>> obtenerTodasLasOrdenes() {

@@ -23,6 +23,7 @@ public class OrdenDetalleService {
     @Autowired
     private ProductoRepository productoRepository;
 
+    //Servicio carrito
     @Transactional
     public OrdenDetalles agregarProductosAOrdenDetalles(Long idProducto, Long idOrden, int cantidadPedidaProducto) {
         // Buscar orden por ID

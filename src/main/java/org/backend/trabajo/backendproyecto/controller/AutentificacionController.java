@@ -1,7 +1,5 @@
 package org.backend.trabajo.backendproyecto.controller;
 
-
-import jakarta.validation.Valid;
 import org.backend.trabajo.backendproyecto.dto.AdminDTO.DatosAutentificaciónDTO;
 import org.backend.trabajo.backendproyecto.dto.AdminDTO.DatosJWTToken;
 import org.backend.trabajo.backendproyecto.model.Admin;
