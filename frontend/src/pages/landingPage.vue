@@ -19,6 +19,7 @@ import { ref } from 'vue'
 
 const items = ref([
   { src: '/src/assets/banner.webp' },
+  { src: '/src/assets/clientes.svg'},
 ])
 
 </script>

@@ -95,7 +95,7 @@ const searchProduct = () => {
    store.setSearchTerm(search.value);
 };
 
-const user = ref(JSON.parse(localStorage.getItem('user')));
+const user = ref(localStorage.getItem('user'));
 const logout = () => {
          localStorage.removeItem('user');
          user.value = null;

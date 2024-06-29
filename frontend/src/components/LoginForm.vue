@@ -41,7 +41,7 @@
   import { ref, watch } from 'vue';
   import { useRouter } from 'vue-router';
   import { useAuthStore } from '@/stores/authStore';
-import { errorMessages } from 'vue/compiler-sfc';
+  import { errorMessages } from 'vue/compiler-sfc';
 
   const username = ref('');
   const password = ref('');
@@ -49,7 +49,35 @@ import { errorMessages } from 'vue/compiler-sfc';
 
 const router = useRouter();
 
-const { login } = useAuthStore();
+const authStore = useAuthStore();
+
+const handleSubmit = async () => {
+  try {
+    // Llama a la acción de login del store de autenticación
+    await authStore.login({ username: username.value, password: password.value });
+
+    // Verifica si el usuario está autenticado correctamente
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      if (parsedUser && parsedUser.username === username.value) {
+        // Redirige según el tipo de usuario
+        if (parsedUser.username === 'admin') {
+          router.push('/admin'); // Redirige a la página de administrador
+        } else {
+          router.push('/'); // Redirige a la página principal u otra página
+        }
+      } else {
+        // Si no se estableció correctamente el usuario en localStorage
+        throw new Error('Error en el inicio de sesión');
+      }
+    } else {
+      throw new Error('Usuario no encontrado en localStorage');
+    }
+  } catch (error) {
+    console.error('Error al iniciar sesión:', error); // Mensaje de error al usuario
+  }
+};
 
 const usernameRules = [
   (v) => !!v || 'Usuario requerido',
@@ -57,32 +85,9 @@ const usernameRules = [
 
 
 const passwordRules = [
-  (v) => !!v || 'Contraseña requerida',
-  (v) => (v && v.length >= 8) || 'La contraseña debe tener al menos 8 caracteres',
+  (v) => !!v || 'Contraseña requerida',   
 ];
 
-const handleSubmit = async () => {
-  try {
-    // Realiza el inicio de sesión
-    await login({ username: username.value, password: password.value });
-
-    // Verifica si el usuario está autenticado correctamente
-    if (localStorage.getItem('user') === username.value) {
-      // Redirige según el tipo de usuario
-      if (username.value === 'admin') {
-        router.push('/admin'); // Redirige a la página de administrador
-      } else {
-        router.push('/'); // Redirige a la página principal u otra página
-      }
-    } else {
-      // Si no se estableció correctamente el usuario en localStorage
-      throw new Error('Error en el inicio de sesión');
-
-    }
-  } catch (error) {
-    console.error('Error al iniciar sesión:', error); // Mensaje de error al usuario
-  }
-}
 
 watch(name, () => {
   errorMessages.value = '';

@@ -1,5 +1,5 @@
 <template>
-   <div>
-      hi from Ordenes
-   </div>
+   <v-data-table>
+      
+   </v-data-table>
 </template>

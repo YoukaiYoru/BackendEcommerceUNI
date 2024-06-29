@@ -1,7 +1,7 @@
 import axios from "axios";
 import { defineStore } from "pinia";
 
-export const useClientesStore = defineStore('clientesStroe',{
+export const useClientesStore = defineStore('clientesStore',{
    state: () => ({
       listaClientes: [],
       cliente: {},
@@ -26,5 +26,7 @@ export const useClientesStore = defineStore('clientesStroe',{
             console.error(error);
          }
       }
+
+      
    }
 })

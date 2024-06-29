@@ -20,7 +20,7 @@
    </div>
    <div v-else-if="loading">
    <p>Cargando producto...</p>
-   </div>
+   </div>   
    <div v-else>
    <p>{{ error }}</p>
    </div>
@@ -39,7 +39,3 @@ const productoSeleccionado = computed(()=> {
 })
 
 </script>
-
-<style scoped>
-
-</style>

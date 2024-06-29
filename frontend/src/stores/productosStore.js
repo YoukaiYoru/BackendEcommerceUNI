@@ -34,10 +34,15 @@ export const useProductosStore = defineStore('productosStore',{
          this.productosCarrito.push(item);
          console.log(item);
       },
-      eliminarProducto(item){
-         const index = this.productosCarrito.findIndex(producto => producto.id === item.id);
-         if (index !== -1) {
-         this.productosCarrito.splice(index, 1);
+      async deleteProducto(id) {
+         try {
+            await axios.delete(`http://localhost:8080/producto/id/${id}`);
+            // Remove the deleted product from the list
+            this.listaProductos = this.listaProductos.filter(producto => producto.id !== id);
+            console.log('Producto eliminado:', id);
+         } catch (error) {
+            console.error('Error al eliminar el producto:', error);
+            alert('Error al eliminar el producto');
          }
       },
       async fetchProducto(id) {

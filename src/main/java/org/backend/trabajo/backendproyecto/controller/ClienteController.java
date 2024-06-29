@@ -84,8 +84,8 @@ public class ClienteController {
         return ResponseEntity.ok(r);
     }
 
-
-    @GetMapping("/acceder")
+    @Transactional
+    @PostMapping("/acceder")
     public ResponseEntity<List<DatosRespuestaClienteDTO>> acceder(@RequestBody @Valid DatosAccesoDTO accesoDTO) {
         boolean verificacion = clienteService.verificacionDeUsuario(accesoDTO.username(), accesoDTO.password());
         if (verificacion){

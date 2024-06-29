@@ -144,8 +144,8 @@
                >
                <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="blue-darken-1" variant="text" @click="closeDelete"
-                     >Cancel</v-btn
+                    <v-btn color="blue-darken-1" variant="text" @click="dialogDelete = false">Cancel</v-btn>
+                     
                   >
                   <v-btn
                      color="blue-darken-1"
@@ -196,6 +196,7 @@ const filteredItems = computed(() => {
 });
 
 
+
 const header = [
    {title: 'id', value: 'id_product', align: 'start'},
    {title: 'Nombre', value: 'product_name', align: 'start'},
@@ -231,12 +232,33 @@ const close = () => {
    editedIndex.value = -1;
 };
 
+
+
 const editItem = (item) => {
    editedIndex.value = items.value.indexOf(item);
    editedItem.value = { ...item };
    dialog.value = true;
 };
 
+const deleteItem = (item) => {
+   dialogDelete.value = true;
+   editedIndex.value = items.value.indexOf(item);
+};
+
+const deleteItemConfirm = () => {
+   if (editedIndex.value > -1) {
+      store.deleteProducto(editedItem.value.id);
+      closeDelete();
+   }
+};
+
+
+
+
+const closeDelete = () => {
+   dialogDelete.value = false;
+   editedIndex.value = -1;
+};
 
 watch(dialog, (val) => {
    if (!val) {

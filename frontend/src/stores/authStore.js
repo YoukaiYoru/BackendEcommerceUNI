@@ -1,5 +1,8 @@
-import { defineStore } from 'pinia';
 import axios from 'axios';
+import { defineStore } from 'pinia';
+
+
+const api = 'http://localhost:8080/user/acceder'
 
 export const useAuthStore = defineStore('auth', {
    state: () => ({
@@ -10,13 +13,14 @@ export const useAuthStore = defineStore('auth', {
    actions: {
       async login(credentials) {
          try {
-         const response = await axios.post('http://localhost:8080/user/acceder', credentials);
-         this.user = response.data.user; // Guarda el usuario en el estado
-         this.isAuthenticated = true;
-         // Puedes manejar el token JWT u otros detalles de sesión aquí
-         } catch (error) {
-         console.error('Error en el inicio de sesión:', error);
-         this.error = error.message;
+            const response = await axios.post(api, credentials);
+            this.user=response.data;
+            this.isAuthenticated = true;
+            localStorage.setItem('user', JSON.stringify(response.data));
+         }
+         catch (error) {
+            console.error('Error al iniciar sesión:', error);
+            this.error = error.message;
          }
       },
       async logout() {
