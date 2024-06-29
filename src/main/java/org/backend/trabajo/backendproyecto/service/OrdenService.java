@@ -28,6 +28,7 @@ public class OrdenService {
     @Autowired
     private OrdenEstadoRepository ordenEstadoRepository;
 
+    //Convertir datos a JSON
     public List<OrdenDTO> convierteDatos(List<Orden> ordenList){
         return ordenList.stream()
                 .map(o -> new OrdenDTO(o.getIdOrden(),
@@ -46,8 +47,14 @@ public class OrdenService {
                 .collect(Collectors.toList());
     }
 
+    //Servicios GET - pruebas
+
     public List<OrdenDTO> obtenerTodasLasOrdenes() {
         return convierteDatos(ordenRepository.findAll());
+    }
+
+    public List<Orden> obtenerOrdenPorCliente(Long idOrden) {
+        return ordenRepository.findByIdOrden(idOrden);
     }
 
     public List<TodasLasOrdenesDTO> convierteDatosDeOrdenes(List<Orden> ordenList) {
@@ -112,13 +119,14 @@ public class OrdenService {
         return convierteDatos(ordenRepository.findByClientUser(clientUsr));
     }
 
+    //Servicios de carrito
     @Transactional
     public Orden crearOrdenInicial (Long idCliente){
         // Buscar al cliente
         Cliente cliente = clienteRepository.findById(idCliente)
                 .orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado con ID: " + idCliente));
 
-        // Crear la orden
+        // Crear la orden vacia
         Orden orden = new Orden();
         orden.setCliente(cliente);
         orden.setMetodoPago(null);
@@ -159,7 +167,7 @@ public class OrdenService {
         orden.setOrdenMonto(montoTotal);
         orden.setOrdenDate(LocalDate.now());
         orden.setMetodoPago(metodoPago);
-        orden.setOrdenEstado(estadoFinalizada); //
+        orden.setOrdenEstado(estadoFinalizada);
         return ordenRepository.save(orden);
     }
 

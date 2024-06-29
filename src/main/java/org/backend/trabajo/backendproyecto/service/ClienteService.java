@@ -45,15 +45,26 @@ public class ClienteService {
     public void guardarUsuario(DatosRegistroClienteDTO datosRegistroClienteDTO) {
         String clientEmail = datosRegistroClienteDTO.getClientEmail();
         String clientUser = datosRegistroClienteDTO.getClientUser();
-        List<Cliente> clienteExistente = clienteRepository.findByClientUserOrClientEmail(clientUser, clientEmail);
-        if (!clienteExistente.isEmpty()) {
+
+        List<Cliente> clientesExistentes = clienteRepository.findByClientUserOrClientEmail(clientUser, clientEmail);
+
+        if (!clientesExistentes.isEmpty()) {
             throw new ClienteAlreadyExistsException("El cliente con el email " + clientEmail +
                     " y nombre de usuario " + clientUser + " ya está registrado.");
         } else {
-            clienteRepository.save(new Cliente());
+            // Aquí guardamos el nuevo cliente
+            Cliente nuevoCliente = new Cliente();
+            nuevoCliente.setClientEmail(clientEmail);
+            nuevoCliente.setClientUser(clientUser);
+            // Asumiendo que tienes algún método en tu DTO para obtener otros datos necesarios
+            nuevoCliente.setClientPassword(datosRegistroClienteDTO.getClientPassword());
+            nuevoCliente.setClientFirstName(datosRegistroClienteDTO.getClientFirstName());
+            nuevoCliente.setClientLastName(datosRegistroClienteDTO.getClientLastName());
+            nuevoCliente.setClientPhone(datosRegistroClienteDTO.getClientPhone());
+            // Guardamos el cliente utilizando el repository
+            clienteRepository.save(nuevoCliente);
         }
     }
-
 
     @Transactional
     public void eliminarClientePorLogin(String login) {
@@ -61,10 +72,6 @@ public class ClienteService {
        clienteRepository.delete(cliente.getFirst());
     }
 
-    //ADITIONAL SERVICE
-
-
-//Mejorar este método
     @Transactional
     public void actualizarPassword(String login, String oldPassword, String newPassword) {
         List<Cliente> cliente = clienteRepository.findByClientUser(login);
@@ -80,11 +87,12 @@ public class ClienteService {
         }
     }
 
+
     public boolean verificacionDeUsuario(String login, String password){
         List<ClienteDTO> cliente = convierteDatos(clienteRepository.findByClientUser(login));
         if(cliente.isEmpty()){
             throw new RuntimeException("No existe el cliente con el login " + login);
-        }else if(password.equals(cliente.get(0).clientPassword())){
+        }else if(password.equals(cliente.getFirst().clientPassword())){
             return true;
         }else{
             throw new RuntimeException("Contraseña incorrecta");

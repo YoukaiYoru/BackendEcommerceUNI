@@ -2,8 +2,6 @@ package org.backend.trabajo.backendproyecto.controller;
 
 import org.backend.trabajo.backendproyecto.dto.OrdenDTO.OrdenDTO;
 import org.backend.trabajo.backendproyecto.dto.OrdenDTO.TodasLasOrdenesDTO;
-import jakarta.transaction.Transactional;
-import org.backend.trabajo.backendproyecto.dto.OrdenDTO.*;
 import org.backend.trabajo.backendproyecto.model.Orden;
 import org.backend.trabajo.backendproyecto.model.OrdenDetalles;
 import org.backend.trabajo.backendproyecto.service.OrdenDetalleService;
@@ -12,11 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/orden")
@@ -33,15 +28,14 @@ public class OrdenController {
     }
 
     @GetMapping("/user/{login}")
-    public List<OrdenDTO> obtenerOrdenPorUsr(@RequestParam String login ) {
+    public List<OrdenDTO> obtenerOrdenPorUsuario(@PathVariable String login ) {
         return ordenService.obtenerPorClientUsr(login);
     }
 
     @GetMapping("/{id}")
-    public List<OrdenDTO> obtenerOrdenPorId(@RequestParam Long id) {
+    public List<OrdenDTO> obtenerOrdenPorId(@PathVariable Long id) {
         return Collections.singletonList(ordenService.obtenerPorId(id));
     }
-
 
     @GetMapping("/todas")
     public ResponseEntity<List<TodasLasOrdenesDTO>> obtenerTodasLasOrdenes() {
@@ -98,29 +92,5 @@ public class OrdenController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
-
-//    @Transactional
-//    @DeleteMapping(value = "/{idOrden}/del/{login}/{password}")
-//    public ResponseEntity<RespuestaDetalleDTO> eliminarProductoDeOrden(@RequestBody DetallesDTO detallesDTO,
-//                                                         @PathVariable Long idOrden ,
-//                                                         @PathVariable String login, @PathVariable String password){
-//
-//
-//        Orden orden = ordenDetalleService.eliminarProductoDeOrdenDetalles(detallesDTO,idOrden,login,password);
-//        RespuestaDetalleDTO r = new RespuestaDetalleDTO(
-//                orden.getIdOrden(),
-//                orden.getOrdenMonto(),
-//                orden.getOrdenDate(),
-//                orden.getOrdenDetalles().stream()
-//                        .map(d -> new DetallesDTO(
-//                                d.getProducto().getIdProducto(),
-//                                d.getProducto().getProductName(),
-//                                d.getCantidadProducto(),
-//                                d.getSubTotalPrecio()
-//                        )).collect(Collectors.toList())
-//        );
-//        return ResponseEntity.ok(r);
-//    }
-
 
 }

@@ -21,7 +21,7 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
-    @GetMapping()
+    @GetMapping("/get")
     public ResponseEntity<List<ClienteDTO>> obtenerUsuarios() {
         List<ClienteDTO> clientes = clienteService.obtenerTodosClientes();
         if (clientes.isEmpty()) {
@@ -30,7 +30,7 @@ public class ClienteController {
         return ResponseEntity.ok(clientes);
     }
 
-    @GetMapping("/name/{login}")
+    @GetMapping("/get/login/{login}")
     public ResponseEntity<List<ClienteDTO>> obtenerClientePorLogin(@PathVariable String login) {
         List<ClienteDTO> cliente = clienteService.obtenerPorLogin(login);
         if (cliente.isEmpty()) {
@@ -39,7 +39,7 @@ public class ClienteController {
         return ResponseEntity.ok(cliente);
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/get/id/{id}")
     public ResponseEntity obtenerClientePorId(@PathVariable Long id){
         List<ClienteDTO> clientbyId = clienteService.obtenerPorID(id);
         return ResponseEntity.ok(clientbyId);
@@ -60,9 +60,9 @@ public class ClienteController {
         }
     }
 
+    @PostMapping("/delete")
     @Transactional
-    @DeleteMapping("/deleteUsuario/{login}")
-    public ResponseEntity eliminarClientePorLogin(@PathVariable String login) {
+    public ResponseEntity eliminarClientePorLoginPost(@RequestParam String login) {
         clienteService.eliminarClientePorLogin(login);
         return ResponseEntity.noContent().build();
     }
@@ -84,7 +84,6 @@ public class ClienteController {
         return ResponseEntity.ok(r);
     }
 
-    @Transactional
     @PostMapping("/acceder")
     public ResponseEntity<List<DatosRespuestaClienteDTO>> acceder(@RequestBody @Valid DatosAccesoDTO accesoDTO) {
         boolean verificacion = clienteService.verificacionDeUsuario(accesoDTO.username(), accesoDTO.password());

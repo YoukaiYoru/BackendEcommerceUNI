@@ -1,7 +1,5 @@
 package org.backend.trabajo.backendproyecto.dto.OrdenDTO;
 
-import org.backend.trabajo.backendproyecto.dto.OrdenDTO.DetallesDTO;
-
 import java.time.LocalDate;
 import java.util.List;
 

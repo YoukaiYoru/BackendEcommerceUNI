@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class ProductoController {
     @Autowired
     private ProductoService productoService;
 
-    @GetMapping("/get/productos")
+    @GetMapping("/get")
     public ResponseEntity<List<ProductoDTO>> obtenerProductos() {
         List<ProductoDTO> productos = productoService.obtenerTodosLosProductos();
         if (productos.isEmpty()) {
@@ -31,13 +33,13 @@ public class ProductoController {
         return ResponseEntity.ok(productos);
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/get/id/{id}")
     public ResponseEntity obtenerProductoPorId(@PathVariable Long id) {
         ProductoDTO productoById = productoService.obtenerPorId(id);
         return ResponseEntity.ok(productoById);
     }
 
-    @GetMapping("/categoria/{categoria}")
+    @GetMapping("/get/categoria/{categoria}")
     public ResponseEntity<List<ProductoDTO>> obtenerProductosPorCategoria(@PathVariable String categoria) {
         List<ProductoDTO> productos = productoService.obtenerProductosPorCategoria(categoria);
         if (productos.isEmpty()) {
@@ -46,35 +48,45 @@ public class ProductoController {
         return ResponseEntity.ok(productos);
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<DatosRespuestaProductoDTO> agregarProducto(@Valid @RequestBody DatosProductoDTO datosProducto,
-                                                                     UriComponentsBuilder uriBuilder) {
-        Long productoId = productoService.agregarProducto(datosProducto);
-        DatosRespuestaProductoDTO r = new DatosRespuestaProductoDTO(datosProducto.product_name(), datosProducto.product_description(),
-                datosProducto.product_price(), datosProducto.product_stock(), datosProducto.product_img_url(), datosProducto.categoria_producto());
-        URI url = uriBuilder.path("/producto/id/{id}").buildAndExpand(productoId).toUri();
-        return ResponseEntity.created(url).body(r);
-
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity eliminarProductoPorId(@PathVariable Long id) {
+    @PostMapping("/delete")
+    public ResponseEntity eliminarProductoPorId(@RequestParam Long id) {
         productoService.eliminarPorId(id);
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/update/id/{id}/precio/{precio}")
     @Transactional
-    @PutMapping("/change/{id}/{precio}")
     public ResponseEntity actualizarPrecioPorId(@PathVariable Long id, @PathVariable Float precio) {
         Producto productoActualizado = productoService.actualizarPrecioPorId(id, precio);
-        DatosRespuestaProductoDTO r = new DatosRespuestaProductoDTO(productoActualizado.getProductName(),
+
+        if (productoActualizado == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        DatosRespuestaProductoDTO respuestaDTO = new DatosRespuestaProductoDTO(
+                productoActualizado.getProductName(),
                 productoActualizado.getProductDescription(),
                 productoActualizado.getProductPrice(),
                 productoActualizado.getProductStock(),
                 productoActualizado.getProductImgUrl(),
                 productoActualizado.getCategoria().getCategoriaDescripcion()
-                );
-        return ResponseEntity.ok(r);
+        );
+
+        return ResponseEntity.ok(respuestaDTO);
     }
 
+    @PostMapping("/add")
+    public ResponseEntity<Producto> agregarProducto(@RequestParam("nombre") String nombre,
+                                                    @RequestParam("precio") float price,
+                                                    @RequestParam("descripcion") String descripcion,
+                                                    @RequestParam("cantidad") int cantidad,
+                                                    @RequestParam("categoriaNombre") String categoriaNombre,
+                                                    @RequestParam("imagen") MultipartFile imagen) {
+        try {
+            Producto producto = productoService.agregarProducto(nombre, price, descripcion, cantidad, categoriaNombre, imagen);
+            return ResponseEntity.ok(producto);
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }

@@ -28,7 +28,6 @@ public interface OrdenRepository extends JpaRepository<Orden, Long> {
             "JOIN o.metodoPago mp")
     List<Object[]> findDetailedOrdenInfo();
 
-    Optional<Orden> findByIdOrden(Long idOrden);
 
-
+    List<Orden> findByIdOrden(Long idOrden);
 }

@@ -1,8 +1,6 @@
 package org.backend.trabajo.backendproyecto.service.Security;
 
-import org.backend.trabajo.backendproyecto.model.Admin;
 import org.backend.trabajo.backendproyecto.repository.AdminRepository;
-import org.backend.trabajo.backendproyecto.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
