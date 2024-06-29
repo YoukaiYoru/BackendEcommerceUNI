@@ -8,7 +8,7 @@ export const useProductosStore = defineStore('productosStore',{
       searchTerm: '',
    }),
 
-   getters: { 
+   getters: {
       getProductos(state){
          return state.listaProductos;
       },
@@ -22,7 +22,7 @@ export const useProductosStore = defineStore('productosStore',{
    actions: {
       async fetchProductos(){
          try {
-            const response = await axios.get('http://localhost:8080/producto/get/productos');
+            const response = await axios.get('http://localhost:8080/producto/get');
             this.listaProductos = response.data;
          } catch (error) {
             alert('Error al obtener los productos');
@@ -36,7 +36,7 @@ export const useProductosStore = defineStore('productosStore',{
       },
       async deleteProducto(id) {
          try {
-            await axios.delete(`http://localhost:8080/producto/id/${id}`);
+            await axios.delete(`http://localhost:8080/producto/delete/${id}`);
             // Remove the deleted product from the list
             this.listaProductos = this.listaProductos.filter(producto => producto.id !== id);
             console.log('Producto eliminado:', id);
@@ -48,7 +48,7 @@ export const useProductosStore = defineStore('productosStore',{
       async fetchProducto(id) {
          try {
             this.loading = true;
-            const response = await axios.get(`http://localhost:8080/producto/id/${id}`);
+            const response = await axios.get(`http://localhost:8080/producto/get/id/${id}`);
             this.producto = response.data;
             } catch (error) {
             console.error('Error al obtener el producto:', error);
@@ -57,6 +57,6 @@ export const useProductosStore = defineStore('productosStore',{
             this.loading = false;
             }
          },
-   } 
+   }
 
 });
